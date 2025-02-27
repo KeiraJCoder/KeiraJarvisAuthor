@@ -1,30 +1,31 @@
 document.addEventListener("DOMContentLoaded", function () {
-    // Select all character cards
-    const characterCards = document.querySelectorAll(".character-card");
+    // Function to open the overlay and load character details
+    window.openCharacterOverlay = function(characterId) {
+        const characterData = document.getElementById(characterId);
+        if (!characterData) {
+            console.error(`Character data not found for ID: ${characterId}`);
+            return;
+        }
 
-    // Expand character details on click
-    characterCards.forEach((card) => {
-        card.addEventListener("click", function () {
-            this.classList.toggle("expanded");
-        });
-    });
+        // Get overlay elements
+        const overlay = document.getElementById("character-overlay");
+        const overlayContent = document.getElementById("overlay-content");
 
-    // Optional: Filtering by Book (Add filter buttons if needed)
-    const filters = document.querySelectorAll(".filter-button");
-    filters.forEach((button) => {
-        button.addEventListener("click", function () {
-            const filter = this.dataset.filter;
-            filterCharacters(filter);
-        });
-    });
+        // Populate the overlay with the character's full details
+        overlayContent.innerHTML = characterData.innerHTML;
+        
+        // Show the overlay
+        overlay.classList.add("visible");
+    };
 
-    function filterCharacters(book) {
-        characterCards.forEach((card) => {
-            if (book === "all" || card.dataset.book === book) {
-                card.style.display = "block";
-            } else {
-                card.style.display = "none";
-            }
-        });
-    }
+    // Function to close the overlay
+    window.closeCharacterOverlay = function () {
+        const overlay = document.getElementById("character-overlay");
+        overlay.classList.remove("visible");
+
+        // Clear overlay content
+        setTimeout(() => {
+            document.getElementById("overlay-content").innerHTML = "";
+        }, 300);
+    };
 });

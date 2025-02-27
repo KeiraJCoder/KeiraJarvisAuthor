@@ -2,7 +2,7 @@
 
 /* Main Container */
 .characters-container {
-    max-width: 900px; /* Limits width for better readability */
+    max-width: 1100px; /* Increase width for a more spacious layout */
     margin: 40px auto;
     padding: 20px;
     background: rgba(0, 0, 0, 0.85);
@@ -22,37 +22,50 @@
 
 /* Sections for Each Book */
 .book-section {
-    text-align: center; /* Centered headings */
-    font-size: 2em; /* Readable size */
-    color: #c5c5c5; /* Keeps consistency with theme */
-    margin: 50px auto 20px; /* Adds spacing */
+    text-align: center; 
+    font-size: 2em; 
+    color: #c5c5c5; 
+    margin: 50px auto 20px;
     font-weight: bold;
     text-transform: uppercase;
-    border-bottom: 2px solid #7b0202; /* Gothic red separator */
+    border-bottom: 2px solid #7b0202; 
     padding-bottom: 10px;
-    max-width: 80%; /* Keeps text width consistent */
+    max-width: 80%;
+}
+
+/* Section Title Styling */
+.section-title {
+    width: 100%;
+    text-align: center;
+    font-size: 2em;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #c5c5c5;
+    margin: 30px 0;
+    border-bottom: 2px solid #7b0202;
+    padding-bottom: 10px;
 }
 
 /* Character Grid */
 .character-container {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center; /* Ensures characters are centered */
+    justify-content: space-evenly; /* More even distribution */
     gap: 20px;
     padding: 20px 0;
 }
 
 /* Character Card */
 .character-card {
-    max-width: 380px; /* Limits width for uniformity */
-    width: 90%; /* Ensures responsiveness */
+    width: 280px; /* Fixed width to ensure uniform card size */
     margin: 10px;
-    background-color: rgba(0, 0, 0, 0.75); /* Darker background */
+    background-color: rgba(0, 0, 0, 0.75); 
     padding: 20px;
     border-radius: 8px;
     border: 2px solid #7b0202;
     text-align: center;
     transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    cursor: pointer;
 }
 
 .character-card:hover {
@@ -62,8 +75,8 @@
 
 /* Character Image */
 .character-card img {
-    width: 140px;
-    height: 140px;
+    width: 180px;
+    height: 180px;
     object-fit: cover;
     border-radius: 5px;
     border: 2px solid #7b0202;
@@ -73,7 +86,7 @@
 
 /* Character Name */
 .character-card h3 {
-    font-size: 1.6em;
+    font-size: 1.5em;
     color: #c5c5c5;
     text-transform: uppercase;
     margin: 10px 0;
@@ -86,13 +99,6 @@
     margin-top: 5px;
 }
 
-/* Character Role */
-.character-card p.role {
-    font-style: italic;
-    color: #a30000;
-    margin-bottom: 10px;
-}
-
 /* Character Traits List */
 .character-traits {
     list-style: none;
@@ -102,7 +108,6 @@
     margin: 0 auto;
 }
 
-/* Custom Gothic Bullet Points */
 .character-traits li {
     display: flex;
     align-items: center;
@@ -118,16 +123,84 @@
     margin-right: 8px;
 }
 
+/* ================== Full-Page Overlay ================== */
+.character-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9); 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+    z-index: 1000;
+}
+
+.character-overlay.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Overlay Content Box */
+.overlay-content {
+    background: rgba(20, 20, 20, 0.95);
+    padding: 40px;
+    max-width: 90vw;
+    width: 90%;
+    border-radius: 10px;
+    text-align: center;
+    border: 2px solid #7b0202;
+    box-shadow: 0px 0px 20px rgba(139, 0, 0, 0.7);
+    overflow-y: auto;
+    max-height: 90vh; 
+    position: relative;
+}
+
+/* Make the full text readable */
+.overlay-content p {
+    color: #c5c5c5; 
+    font-size: 1.2em; 
+    line-height: 1.6; 
+    margin-top: 10px;
+}
+
+/* Overlay Character Image */
+.overlay-content img {
+    width: 200px; 
+    height: 180px;
+    object-fit: cover;
+    border-radius: 5px;
+    border: 2px solid #7b0202;
+    display: block;
+    margin: 0 auto 10px;
+}
+
+/* Close Button */
+.close-overlay {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 2em;
+    color: #d62727;
+    cursor: pointer;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .characters-container {
         padding: 15px;
     }
-    
+
     .characters-container h1 {
         font-size: 2em;
     }
-    
+
     .book-section {
         font-size: 1.8em;
         max-width: 90%;
@@ -135,14 +208,20 @@
 
     .character-card {
         padding: 15px;
-        max-width: 300px;
+        width: 90%;
     }
 
     .character-card h3 {
         font-size: 1.4em;
     }
-    
+
     .character-traits li {
         font-size: 0.9em;
+    }
+
+    .overlay-content {
+        max-width: 95vw; 
+        max-height: 95vh; 
+        padding: 20px; 
     }
 }

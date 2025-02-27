@@ -4,7 +4,8 @@
     padding: 30px;
     border-radius: 10px;
     box-shadow: 0px 0px 20px rgba(139, 0, 0, 0.7);
-    max-width: 700px;
+    max-width: 350px;
+    height:600px;
     margin: 40px auto;
     text-align: center;
     display: flex;
@@ -47,6 +48,11 @@
     box-shadow: 0px 0px 20px rgba(139, 0, 0, 0.7); /* Blood red glow */
     max-width: 400px;
     margin: 20px auto;
+    height: 550px; /* Ensures consistent carousel height */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 /* Book Section */
@@ -65,17 +71,26 @@
 
 /* Book Cover */
 #book-cover {
-    width: 100%;
-    max-width: 250px;
+    width: 300px; /* Fixed width */
+    height: 450px; /* Fixed height */
+    object-fit: cover; /* Ensures images are cropped, not stretched */
     border-radius: 5px;
-    transition: transform 0.3s ease-in-out;
+    transition: opacity 0.5s ease-in-out;
     display: block;
-    margin: 10px auto; /* Centers the image properly */
+    margin: 10px auto;
 }
 
 #book-cover:hover {
     transform: scale(1.05);
     box-shadow: 0px 0px 15px rgba(139, 0, 0, 0.7);
+}
+
+.book-cover img {
+    width: 300px; /* Consistent width */
+    height: 450px; /* Consistent height */
+    object-fit: cover; /* Ensures proper scaling */
+    border-radius: 5px;
+    transition: opacity 0.5s ease-in-out;
 }
 
 /* Book Title */
