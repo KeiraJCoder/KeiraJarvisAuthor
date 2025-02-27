@@ -77,6 +77,3 @@ document.addEventListener("DOMContentLoaded", function() {
 
     setInterval(updateBook, 4000); // Rotate every 4 seconds
 });
-
-
-

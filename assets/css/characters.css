@@ -1,0 +1,148 @@
+/* ================== Character Page Styles ================== */
+
+/* Main Container */
+.characters-container {
+    max-width: 900px; /* Limits width for better readability */
+    margin: 40px auto;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.85);
+    border: 2px solid #7b0202;
+    border-radius: 10px;
+    box-shadow: 0px 0px 15px rgba(139, 0, 0, 0.6);
+}
+
+/* Page Title */
+.characters-container h1 {
+    text-align: center;
+    color: #c5c5c5;
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+}
+
+/* Sections for Each Book */
+.book-section {
+    text-align: center; /* Centered headings */
+    font-size: 2em; /* Readable size */
+    color: #c5c5c5; /* Keeps consistency with theme */
+    margin: 50px auto 20px; /* Adds spacing */
+    font-weight: bold;
+    text-transform: uppercase;
+    border-bottom: 2px solid #7b0202; /* Gothic red separator */
+    padding-bottom: 10px;
+    max-width: 80%; /* Keeps text width consistent */
+}
+
+/* Character Grid */
+.character-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Ensures characters are centered */
+    gap: 20px;
+    padding: 20px 0;
+}
+
+/* Character Card */
+.character-card {
+    max-width: 380px; /* Limits width for uniformity */
+    width: 90%; /* Ensures responsiveness */
+    margin: 10px;
+    background-color: rgba(0, 0, 0, 0.75); /* Darker background */
+    padding: 20px;
+    border-radius: 8px;
+    border: 2px solid #7b0202;
+    text-align: center;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.character-card:hover {
+    transform: scale(1.03);
+    box-shadow: 0px 0px 12px rgba(139, 0, 0, 0.7);
+}
+
+/* Character Image */
+.character-card img {
+    width: 140px;
+    height: 140px;
+    object-fit: cover;
+    border-radius: 5px;
+    border: 2px solid #7b0202;
+    display: block;
+    margin: 0 auto 10px;
+}
+
+/* Character Name */
+.character-card h3 {
+    font-size: 1.6em;
+    color: #c5c5c5;
+    text-transform: uppercase;
+    margin: 10px 0;
+}
+
+/* Character Description */
+.character-card p {
+    font-size: 1.1em;
+    color: #a30000;
+    margin-top: 5px;
+}
+
+/* Character Role */
+.character-card p.role {
+    font-style: italic;
+    color: #a30000;
+    margin-bottom: 10px;
+}
+
+/* Character Traits List */
+.character-traits {
+    list-style: none;
+    padding: 0;
+    text-align: left;
+    max-width: 80%;
+    margin: 0 auto;
+}
+
+/* Custom Gothic Bullet Points */
+.character-traits li {
+    display: flex;
+    align-items: center;
+    font-size: 1em;
+    color: #c5c5c5;
+    margin-bottom: 5px;
+}
+
+.character-traits li::before {
+    content: "❖";
+    color: #7b0202;
+    font-size: 1.2em;
+    margin-right: 8px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .characters-container {
+        padding: 15px;
+    }
+    
+    .characters-container h1 {
+        font-size: 2em;
+    }
+    
+    .book-section {
+        font-size: 1.8em;
+        max-width: 90%;
+    }
+
+    .character-card {
+        padding: 15px;
+        max-width: 300px;
+    }
+
+    .character-card h3 {
+        font-size: 1.4em;
+    }
+    
+    .character-traits li {
+        font-size: 0.9em;
+    }
+}

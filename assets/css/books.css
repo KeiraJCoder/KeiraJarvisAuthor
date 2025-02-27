@@ -1,0 +1,149 @@
+/* Book Section */
+.book-container {
+    background: #111;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 20px rgba(139, 0, 0, 0.7);
+    max-width: 700px;
+    margin: 40px auto;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Book Cover */
+#book-cover {
+    width: 100%;
+    max-width: 250px;
+    border-radius: 5px;
+    transition: transform 0.3s ease-in-out;
+    display: block;
+    margin: 10px auto;
+}
+
+#book-cover:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 0px 15px rgba(139, 0, 0, 0.7);
+}
+
+/* Book Title */
+.book-title {
+    font-size: 1.8em;
+    font-weight: bold;
+    color: #a30000;
+    text-shadow: 2px 2px 6px black;
+    letter-spacing: 1px;
+    text-align: center;
+    margin-top: 10px;
+}
+
+/* Book Carousel */
+#book-carousel {
+    text-align: center;
+    padding: 20px;
+    background: #1a1a1a; /* Dark grey */
+    border-radius: 10px;
+    box-shadow: 0px 0px 20px rgba(139, 0, 0, 0.7); /* Blood red glow */
+    max-width: 400px;
+    margin: 20px auto;
+}
+
+/* Book Section */
+.book-container {
+    background: #111; /* Dark gothic background */
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 20px rgba(139, 0, 0, 0.7); /* Blood-red glow */
+    max-width: 700px;
+    margin: 40px auto; /* Ensures proper centering */
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Book Cover */
+#book-cover {
+    width: 100%;
+    max-width: 250px;
+    border-radius: 5px;
+    transition: transform 0.3s ease-in-out;
+    display: block;
+    margin: 10px auto; /* Centers the image properly */
+}
+
+#book-cover:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 0px 15px rgba(139, 0, 0, 0.7);
+}
+
+/* Book Title */
+.book-title {
+    font-size: 1.8em;
+    font-weight: bold;
+    color: #a30000; /* Deep vampire red */
+    text-shadow: 2px 2px 6px black;
+    letter-spacing: 1px; /* Fixes minor spacing issues */
+    text-align: center;
+    margin-top: 10px;
+}
+
+.book-subtitle {
+    font-size: 1.4em;
+    color: #a30000; /* Deep vampire red */
+    text-shadow: 1px 1px 5px black;
+    margin-bottom: 10px;
+}
+
+/* Book Description */
+.book-description {
+    font-size: 1.1em;
+    line-height: 1.8; /* Slightly increased for better readability */
+    color: #c5c5c5; /* Softer white for readability */
+    margin-bottom: 15px;
+    text-align: center; /* Ensures text remains centered */
+}
+
+/* Emphasized Text (Final Line) */
+.book-description strong {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #fff;
+    text-shadow: 1px 1px 5px rgba(255, 255, 255, 0.3);
+    display: block;
+    margin-top: 10px;
+}
+
+/* Book Description Container */
+#book-description {
+    background: #1a1a1a;
+    padding: 20px;
+    margin: 20px auto;
+    border-radius: 8px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.8);
+    max-width: 600px;
+    text-align: center;
+}
+
+/* Buy Now Button */
+.buy-button {
+    display: inline-block;
+    padding: 12px 20px;
+    margin-top: 20px;
+    font-size: 1.2em;
+    font-weight: bold;
+    background: #7b0202;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    border: 2px solid #a30000;
+    text-align: center;
+}
+
+/* Hover Effect - Makes Button Glow */
+.buy-button:hover {
+    background: #a30000;
+    box-shadow: 0px 0px 15px rgba(139, 0, 0, 0.9);
+}

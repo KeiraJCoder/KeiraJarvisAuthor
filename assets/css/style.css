@@ -1,9 +1,18 @@
 /* Import Gothic Font */
 @import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&display=swap');
 
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden; /* Prevents horizontal scrolling */
+    margin: 0;
+    padding: 0;
+}
+
 
 /* Global Styles */
 body {
+    height:100vh;
     background: url("../images/background2.webp") no-repeat center center fixed;
     background-size: cover;
     background-attachment: fixed;
@@ -12,6 +21,15 @@ body {
     padding: 0;
     background-color: #0d0d0d; /* Deep black */
     color: #c5c5c5; /* Soft grey */
+}
+
+/* Remove the background from the index page completely */
+body.index-page {
+    background: none;
+}
+
+body.index-page::before {
+    display: none; /* Ensures no overlay */
 }
 
 body::before {
@@ -40,11 +58,25 @@ nav ul {
     list-style: none;
     padding: 0;
     text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px; /* Adds equal spacing between items */
 }
 
 nav ul li {
-    display: inline;
-    margin: 0 20px;
+    display: flex;
+    align-items: center;
+}
+
+nav ul li::after {
+    content: "◆"; /* Gothic-style separator */
+    color: #a30000; /* Deep red */
+    margin: 0 15px; /* Space around the symbol */
+}
+
+nav ul li:last-child::after {
+    content: ""; /* Removes the separator after the last item */
 }
 
 nav ul li a {
@@ -54,31 +86,40 @@ nav ul li a {
     font-size: 1.1em;
     transition: color 0.3s ease-in-out;
     letter-spacing: 1px;
+
 }
 
 nav ul li a:hover {
-    color: #7b0202; /* Blood red */
+    color: #a30000; /* Blood red */
+    transform: scale(1.1); /* Subtle hover animation */
 }
 
-/* Hero Section */
+
+/* Ensure hero section takes full viewport height */
 .hero {
-    background: url("../images/background.webp") no-repeat center center/cover; /* Add a dark gothic mist background */
-    height: 350px;
+    background: url("../images/background.webp") no-repeat center center/cover;
+    height: 100vh; /* Force it to take up full viewport height */
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
     color: white;
     text-shadow: 2px 2px 8px black;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    height: calc(100vh - 80px); /* Adjusts for header/footer */
 }
 
+/* Ensuring the hero-content does not exceed the width */
 .hero-content {
     background: rgba(0, 0, 0, 0.8);
-    padding: 30px;
+    
     border-radius: 10px;
     max-width: 600px;
     text-align: center;
 }
+
 
 .hero h2 {
     font-size: 2.5em;
@@ -89,202 +130,6 @@ nav ul li a:hover {
 .hero p {
     font-size: 1.2em;
     margin-bottom: 20px;
-}
-
-/* Book Carousel */
-#book-carousel {
-    text-align: center;
-    padding: 20px;
-    background: #1a1a1a; /* Dark grey */
-    border-radius: 10px;
-    box-shadow: 0px 0px 20px rgba(139, 0, 0, 0.7); /* Blood red glow */
-    max-width: 400px;
-    margin: 20px auto;
-}
-
-/* Book Section */
-.book-container {
-    background: #111; /* Dark gothic background */
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0px 0px 20px rgba(139, 0, 0, 0.7); /* Blood-red glow */
-    max-width: 700px;
-    margin: 40px auto; /* Ensures proper centering */
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-/* Book Cover */
-#book-cover {
-    width: 100%;
-    max-width: 250px;
-    border-radius: 5px;
-    transition: transform 0.3s ease-in-out;
-    display: block;
-    margin: 10px auto; /* Centers the image properly */
-}
-
-#book-cover:hover {
-    transform: scale(1.05);
-    box-shadow: 0px 0px 15px rgba(139, 0, 0, 0.7);
-}
-
-/* Book Title */
-.book-title {
-    font-size: 1.8em;
-    font-weight: bold;
-    color: #a30000; /* Deep vampire red */
-    text-shadow: 2px 2px 6px black;
-    letter-spacing: 1px; /* Fixes minor spacing issues */
-    text-align: center;
-    margin-top: 10px;
-}
-
-/* Book Description */
-.book-description {
-    font-size: 1.1em;
-    line-height: 1.8; /* Slightly increased for better readability */
-    color: #c5c5c5; /* Softer white for readability */
-    margin-bottom: 15px;
-    text-align: center; /* Ensures text remains centered */
-}
-
-/* Emphasized Text (Final Line) */
-.book-description strong {
-    font-size: 1.2em;
-    font-weight: bold;
-    color: #fff;
-    text-shadow: 1px 1px 5px rgba(255, 255, 255, 0.3);
-    display: block;
-    margin-top: 10px;
-}
-
-/* Book Description Container */
-#book-description {
-    background: #1a1a1a;
-    padding: 20px;
-    margin: 20px auto;
-    border-radius: 8px;
-    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.8);
-    max-width: 600px;
-    text-align: center;
-}
-
-/* Buy Now Button */
-.buy-button {
-    display: inline-block;
-    padding: 12px 20px;
-    margin-top: 20px;
-    font-size: 1.2em;
-    font-weight: bold;
-    background: #7b0202;
-    color: white;
-    border-radius: 5px;
-    text-decoration: none;
-    transition: background 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-    border: 2px solid #a30000;
-    text-align: center;
-}
-
-/* Hover Effect - Makes Button Glow */
-.buy-button:hover {
-    background: #a30000;
-    box-shadow: 0px 0px 15px rgba(139, 0, 0, 0.9);
-}
-
-
-
-/* About Section */
-#about {
-    text-align: center;
-    padding: 50px 10%;
-    max-width: 900px;
-    margin: auto;
-}
-
-/* Flexbox for Image & Text */
-.about-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column; /* Stack image and text for better balance */
-    gap: 20px;
-    max-width: 700px; /* Widens text area slightly */
-    margin: auto;
-    text-align: center;
-}
-
-/* Profile Picture */
-.profile-pic {
-    width: 200px; /* Slightly larger for prominence */
-    height: 200px;
-    margin-bottom: -10px; /* Moves text slightly closer */
-    border-radius: 50%;
-    border: 3px solid #7b0202;
-    box-shadow: 0px 0px 15px rgba(139, 0, 0, 0.7);
-    transition: transform 0.3s ease-in-out;
-}
-
-.profile-pic:hover {
-    transform: scale(1.05); /* Subtle hover effect */
-}
-
-/* About Text */
-.about-text {
-    opacity: 0;
-    animation: fadeIn 1s forwards;
-    font-size: 1.2em; /* Slightly larger */
-    line-height: 1.7;
-    max-width: 600px; 
-}
-
-/* Fade-in Animation */
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-
-
-
-/* Contact Section */
-#contact {
-    text-align: center;
-    background: rgba(26, 26, 26, 0.8);
-    padding: 40px;
-    border-radius: 10px;
-    max-width: 600px;
-    margin: 30px auto;
-    box-shadow: 0px 0px 15px rgba(139, 0, 0, 0.5);
-}
-
-/* Contact Form */
-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 15px;
-    max-width: 500px;
-    margin: auto;
-}
-
-/* Form Inputs */
-input, textarea {
-    width: 100%;
-    padding: 12px;
-    font-size: 1em;
-    background: #0d0d0d;
-    color: #c5c5c5;
-    border: 2px solid #7b0202;
-    border-radius: 5px;
-}
-
-input:focus, textarea:focus {
-    outline: none;
-    border-color: #a30000;
-    box-shadow: 0px 0px 8px rgba(139, 0, 0, 0.7);
 }
 
 /* Contact Button */
@@ -306,13 +151,15 @@ input:focus, textarea:focus {
     box-shadow: 0px 0px 12px rgba(139, 0, 0, 0.9);
 }
 
-/* Footer */
+/* Ensure the footer is positioned correctly */
 footer {
     background: #111;
     color: #c5c5c5;
     text-align: center;
     padding: 10px;
-    margin-top: 70px;
     font-size: 0.9em;
     border-top: 2px solid #7b0202;
+    position: relative;
+    bottom: 0;
+    width: 100%;
 }

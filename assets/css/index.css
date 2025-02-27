@@ -1,0 +1,31 @@
+/* Remove background from index page */
+body.index-page {
+    background: none;
+}
+
+body.index-page::before {
+    display: none;
+}
+
+/* Hero Section */
+.hero {
+    background: url("../images/background.webp") no-repeat center center/cover;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    text-shadow: 2px 2px 8px black;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+/* Hero Content */
+.hero-content {
+    background: rgba(0, 0, 0, 0.8);
+    border-radius: 10px;
+    max-width: 600px;
+    text-align: center;
+}

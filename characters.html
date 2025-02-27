@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact | Keira Jarvis</title>
+    <title>Meet the Characters | Keira Jarvis</title>
     <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="assets/css/contact.css">
+    <link rel="stylesheet" href="assets/css/characters.css">
     <link rel="stylesheet" href="assets/css/chatbot.css">
 </head>
 <body>
     <header>
-        <h1>Keira Jarvis</h1>
+        <h1>Meet the Characters</h1>
         <nav>
             <ul>
                 <li><a href="index.html">Home</a></li>
@@ -23,30 +23,44 @@
     </header>
 
     <main>
-        <section id="contact">
-            <h2>Contact Me</h2>
-            <p>If you have any questions or just want to connect, feel free to reach out using the form below.</p>
+        <section class="character-section">
+            <div class="book-section">
+                MEMOIRS OF A VAMPYR’S DAUGHTER: EDEN
+            </div>
+            <div class="character-container">
+                <div class="character-card">
+                    <img src="assets/images/placeholder.png" alt="Character Image">
+                    <h3>Character Name</h3>
+                    <p>Short character description goes here.</p>
+                </div>
+                <div class="character-card">
+                    <img src="assets/images/placeholder.png" alt="Character Image">
+                    <h3>Character Name</h3>
+                    <p>Short character description goes here.</p>
+                </div>
+            </div>
+        </section>
 
-            <form action="https://formspree.io/f/mnnayngl" method="POST">
-                <label for="name">Your Name:</label>
-                <input type="text" id="name" name="name" required>
-
-                <label for="email">Your Email:</label>
-                <input type="email" id="email" name="_replyto" required>
-
-                <label for="message">Your Message:</label>
-                <textarea id="message" name="message" rows="5" required></textarea>
-
-                <button type="submit" class="button">Send Message</button>
-            </form>
+        <section class="character-section">
+            <div class="book-section">
+                MEMOIRS OF A VAMPYR'S DAUGHTER: WISDOM
+            </div>
+            <div class="character-container">
+                <div class="character-card">
+                    <img src="assets/images/placeholder.png" alt="Character Image">
+                    <h3>Character Name</h3>
+                    <p>Short character description goes here.</p>
+                </div>
+                <div class="character-card">
+                    <img src="assets/images/placeholder.png" alt="Character Image">
+                    <h3>Character Name</h3>
+                    <p>Short character description goes here.</p>
+                </div>
+            </div>
         </section>
     </main>
 
-    <footer>
-        <p>&copy; 2025 Keira Jarvis. All rights reserved.</p>
-    </footer>
-
-<!-- ================================================ -->
+    <!-- ================================================ -->
 <!-- =================== CHATBOT ================= -->
 <!-- ================================================ -->
 
@@ -92,10 +106,12 @@
   </div>  
 <button id="open-chatbot">Chat with Me</button>
 
+    <footer>
+        <p>&copy; 2025 Keira Jarvis. All rights reserved.</p>
+    </footer>
 
-    <script src="/assets/js/script.js"></script>
+    <script src="assets/js/script.js"></script>
     <script src="assets/js/chatbot.js"></script>
-
-    
+    <script src="assets/js/characters.js"></script>
 </body>
 </html>

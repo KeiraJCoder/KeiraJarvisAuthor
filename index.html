@@ -5,8 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Keira Jarvis | Author</title>
     <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/index.css">
+    <link rel="stylesheet" href="assets/css/chatbot.css">
 </head>
-<body>
+<body class="index-page">
     <header>
 
         <h1>Keira Jarvis</h1>
@@ -14,6 +16,7 @@
             <ul>
                 <li><a href="index.html">Home</a></li>
                 <li><a href="about.html">About</a></li>
+                <li><a href="characters.html">Meet the Characters</a></li>
                 <li><a href="books.html">Books</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
@@ -29,11 +32,59 @@
             </div>
         </section>
     </main>
+<!-- ================================================ -->
+<!-- =================== CHATBOT ================= -->
+<!-- ================================================ -->
+
+
+<div id="chatbot" style="display: none;"> <!-- Hidden initially -->
+    <button id="minimize-button" onclick="closeChatbot()">×</button>
+    <h2>FAQ Chatbot</h2>
+    <p>Hi! How can I assist you today?</p>
+  
+    <!-- Response section -->
+    <div id="response">
+        <p>I couldn't find an answer to your question. Please provide your email, and I'll get back to you shortly!</p>
+        <form id="email-form">
+            <input type="email" placeholder="Your email address" required />
+            <textarea placeholder="Your question" required></textarea>
+            <button type="button">Send</button>
+        </form>
+    </div>
+  
+    
+    <!-- Options section -->
+    <div id="options">
+        <button onclick="getResponse('About Me')">About Me</button>
+        <button onclick="getResponse('My Books')">My Books</button>
+        <button onclick="getResponse('Where to Buy')">Where to Buy</button>
+        <button onclick="getResponse('Upcoming Projects')">Upcoming Projects</button>
+        <button onclick="getResponse('Writing Process')">Writing Process</button>
+        <button onclick="getResponse('World-Building')">World-Building</button>
+        <button onclick="getResponse('Favourite Authors')">Favourite Authors</button>
+        <button onclick="getResponse('Other Questions')">Other Questions</button>
+        <button onclick="getResponse('Fun Fact')">Fun Fact</button> <!-- New button -->
+    </div>
+    
+<br>
+    <!-- Input section -->
+    <div id="input-container">
+        <input type="text" id="user-input" placeholder="What would you like to know?" />
+        <button id="submit-button" onclick="sendQuestion()">Send</button>
+    </div>
+
+</div>
+</div>  
+<button id="open-chatbot">Chat with Me</button>
+
 
     <footer>
         <p>&copy; 2025 Keira Jarvis. All rights reserved.</p>
     </footer>
 
     <script src="/assets/js/script.js"></script>
+    <script src="assets/js/chatbot.js"></script>
+
+    
 </body>
 </html>
