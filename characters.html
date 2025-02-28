@@ -6,6 +6,7 @@
     <title>Meet the Characters | Keira Jarvis</title>
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/characters.css">
+    <link rel="stylesheet" href="assets/css/characters-overlay.css">
     <link rel="stylesheet" href="assets/css/chatbot.css">
 </head>
 <body>
@@ -23,190 +24,1648 @@
     </header>
 
     <main>
-        <section class="character-section">
+        <!-- Book Selection Dropdown -->
+        <div class="book-selection-container">
+            <label for="book-select">Select Book:</label>
+            <select id="book-select" onchange="filterCharacters()">
+                <option value="book1">Book 1: Eden</option>
+                <option value="book2">Book 2: Wisdom</option>
+            </select>
+        </div>
+
+        <!-- Book 1 Characters Section -->
+        <section class="character-section book1">
             <div class="book-section">
                 MEMOIRS OF A VAMPYR’S DAUGHTER: EDEN
             </div>
             <div class="character-container">
-                
                 <!-- Main Characters Section -->
                 <div class="section-title">
-                    <h2>Main Characters</h2>
+                    <h2>Main Protagonist</h2>
                 </div>
-        
-                <!-- Sophie Munday -->
-                <div class="character-card" onclick="openCharacterOverlay('sophie')">
+
+                <!-- Sophie's Main Character Card (Book 1) -->
+                <div class="character-card book1" onclick="openCharacterOverlay('sophie-overlay')">
                     <img src="assets/images/characters/Sophie/sophie.webp" alt="Sophie Munday">
                     <h3>Sophie Munday</h3>
                     <p class="short-description">A haunted girl burdened by relentless night terrors and a past she cannot remember.</p>
-                    
-                    <div class="character-details" id="sophie" style="display: none;">
-                        <img src="assets/images/characters/Sophie/sophie.webp" alt="Sophie Munday">
-                        <h3>Sophie Munday</h3>
-                        <p><strong>Full Bio:</strong> Sophie Munday is a 15-year-old schoolgirl on the cusp of turning 16. She has lived her entire life plagued by vivid and terrifying nightmares, waking most nights in tears. The toll of constant sleep deprivation is evident—her blue eyes are shadowed by dark circles, and her thoughts often seem distant, as if she is only half-present in the waking world. She always carries a tattered, well-worn notebook, a place to capture fragments of dreams and thoughts she cannot escape.</p>
-                        <p>Despite her quiet and somewhat withdrawn nature, Sophie possesses a deep inner strength. She has no memory of her father and struggles to reconcile the missing pieces of her past with the unsettling feeling that there is more to her nightmares than simple bad dreams. As the story unfolds, she is drawn deeper into a world she never believed existed, where Vampyrs, Witches, and Werewolves are real—and she is at the center of a prophecy that could change everything.</p>
-                        <ul class="character-traits">
-                            <li>Resilient</li>
-                            <li>Intelligent</li>
-                            <li>Empathetic</li>
-                            <li>Determined</li>
-                            <li>Haunted by the past</li>
-                        </ul>
+                </div>
+
+                <!-- Sophie’s Full Bio Overlay (Initially Hidden) -->
+                <div class="character-overlay" id="sophie-overlay">
+                    <div class="overlay-content">
+                        <button class="close-overlay" onclick="closeCharacterOverlay('sophie-overlay')">&times;</button>
+
+                        <div class="overlay-header">
+                            <h2>Sophie Munday</h2>
+                        </div>
+
+                        <div class="overlay-intro">
+                            <img src="assets/images/characters/Sophie/Sophie.webp" alt="Sophie">
+                            <ul class="character-traits">
+                                <li><span class="trait">Curious</span></li>
+                                <li><span class="trait">Resilient</span></li>
+                                <li><span class="trait">Empathetic</span></li>
+                                <li><span class="trait">Defiant</span></li>
+                                <li><span class="trait">Uncertain</span></li>
+                            </ul>
+                        </div>
+
+                        <!-- Expandable Sections -->
+                        <div class="expandable-sections">
+                            <!-- Main Sections -->
+                            <div class="expandable-sections-container">
+                                <details>
+                                    <summary><strong>Character Overview</strong></summary>
+                                    <p>
+                                        Sophie Munday is a girl caught between two worlds—one she has always known and another she never believed existed.  
+                                        Her life has been defined by <span class="emphasis">mystery, unanswered questions, and relentless nightmares</span>.  
+                                        As she turns <span class="emphasis">16</span>, everything begins to change, forcing her to confront <span class="emphasis">a past hidden from her</span>.
+                                    </p>
+                                </details>
+
+                                <details>
+                                    <summary><strong>Her Background</strong></summary>
+                                    <p>
+                                        Sophie was raised by her <span class="emphasis">single mother, Jean</span>, who has always been <span class="emphasis">protective to an unusual degree</span>.  
+                                        She was led to believe that her father was <span class="emphasis">a firefighter who died before she could remember him</span>.
+                                    </p>
+                                    <p>
+                                        Since childhood, she has suffered from <span class="emphasis">terrifying nightmares and strange visions</span>.  
+                                        She has always suspected that there is <span class="emphasis">more to her past than she has been told</span>, but <span class="emphasis">no one will give her answers</span>.
+                                    </p>
+                                </details>
+
+                                <details>
+                                    <summary><strong>Her Connection to the Prophecy</strong></summary>
+                                    <p>
+                                        Sophie learns that <span class="emphasis">powerful figures in the Night World</span> are interested in her for reasons she does not yet understand.  
+                                        Her <span class="emphasis">blood type is rare</span>, and there are <span class="emphasis">whispers of an ancient prophecy</span> that somehow involves her.
+                                    </p>
+                                    <p>
+                                        She does not know what it means, but she <span class="emphasis">is determined to find out</span>—even if it means stepping into <span class="emphasis">dangerous territory</span>.
+                                    </p>
+                                </details>
+
+                                <details>
+                                    <summary><strong>Her Abilities</strong></summary>
+                                    <p>
+                                        Sophie begins experiencing <span class="emphasis">unexplainable phenomena</span>, things that <span class="emphasis">defy logic</span>.
+                                    </p>
+                                    <ul>
+                                        <li><span class="emphasis">Heightened Awareness:</span> She <em>notices details others miss</em>, as if she is sensing something deeper.</li>
+                                        <li><span class="emphasis">Strange Dreams & Visions:</span> Her <em>nightmares</em> begin feeling <em>too real</em>, as if they are showing her something.</li>
+                                        <li><span class="emphasis">Unusual Reflexes:</span> In moments of crisis, she reacts with <em>speed and precision beyond a normal human</em>.</li>
+                                    </ul>
+                                    <p>
+                                        She does not yet know what this means, but <span class="emphasis">she refuses to ignore it</span>.
+                                    </p>
+                                </details>
+
+                                <details>
+                                    <summary><strong>Her Relationships</strong></summary>
+                                    <h4>Jean Munday (Mother)</h4>
+                                    <p>
+                                        Jean has kept secrets from Sophie for <span class="emphasis">her entire life</span>, but Sophie begins to <span class="emphasis">sense that something is missing</span>.  
+                                        Their relationship is close, but Jean’s <span class="emphasis">fear for Sophie is undeniable</span>.
+                                    </p>
+
+                                    <h4>The Master (Mysterious Figure)</h4>
+                                    <p>
+                                        Sophie becomes aware of <span class="emphasis">a presence watching her</span>, though she does not know who—or what—he is.  
+                                        The whispers in the night suggest that <span class="emphasis">she is part of something much larger than she realizes</span>.
+                                    </p>
+
+                                    <h4>Aeryn (An Unseen Connection)</h4>
+                                    <p>
+                                        Sophie begins having <span class="emphasis">strange visions</span>, ones that feel <span class="emphasis">too vivid to be dreams</span>.  
+                                        In them, she is in <span class="emphasis">places she has never been</span>, experiencing <span class="emphasis">things that are not her own memories</span>.  
+                                        She does not yet know who Aeryn is—or why she is seeing through her eyes.
+                                    </p>
+                                </details>
+                            </div>
+
+                            <!-- Spoiler Heading (Standalone) -->
+                            <h2 class="spoiler-heading">⚠ Spoilers</h2>
+
+                            <!-- Spoiler Sections -->
+                            <div class="spoiler-sections">
+                                <details>
+                                    <summary><strong>Discovering the Truth</strong></summary>
+                                    <p>
+                                        After <span class="emphasis">years of uncertainty</span>, Sophie finally uncovers the truth—her mother has been lying to her.  
+                                        Her real father is <span class="emphasis">Eden</span>, a man <span class="emphasis">shrouded in mystery and fear</span>—and he is not human.
+                                    </p>
+                                    <p>
+                                        This revelation sends her on a <span class="emphasis">relentless search for the truth</span>, even when <span class="emphasis">every answer leads to more questions</span>.
+                                    </p>
+                                </details>
+
+                                <details>
+                                    <summary><strong>Sophie’s Growth & Defiance</strong></summary>
+                                    <p>
+                                        Sophie refuses to be a <span class="emphasis">passive player in her own life</span>.  
+                                        Instead of waiting for answers, she <span class="emphasis">takes risks, seeks the truth, and begins forging her own path</span>.
+                                    </p>
+                                    <ul>
+                                        <li>She <span class="emphasis">confronts the supernatural</span> head-on, even when it terrifies her.</li>
+                                        <li>She <span class="emphasis">fights back against forces trying to control her</span>.</li>
+                                        <li>She <span class="emphasis">begins to question the very nature of her identity</span>.</li>
+                                    </ul>
+                                    <p>
+                                        By the end of Book One, she is <span class="emphasis">not the same girl who started this journey</span>—she is becoming something <span class="emphasis">far greater</span>.
+                                    </p>
+                                </details>
+
+                                <details>
+                                    <summary><strong>Mysteries & Unanswered Questions</strong></summary>
+                                    <ul>
+                                        <li>What exactly <span class="emphasis">does the prophecy say</span> about her?</li>
+                                        <li>What is the <span class="emphasis">true source of her visions and abilities</span>?</li>
+                                        <li>Who <span class="emphasis">is watching her</span>—and what do they want?</li>
+                                        <li>What will she become if she <span class="emphasis">fully embraces the truth</span>?</li>
+                                    </ul>
+                                </details>
+                            </div>
+                        </div>
                     </div>
                 </div>
-        
-                <!-- Eden -->
-                <div class="character-card" onclick="openCharacterOverlay('eden')">
+
+                <!-- Main Characters Section for Book 1 (continued) -->
+                <div class="section-title">
+                    <h2>Main Characters</h2>
+                </div>
+
+                <!-- Eden's Main Character Card (Book 1) -->
+                <div class="character-card book1" onclick="openCharacterOverlay('eden-overlay')">
                     <img src="assets/images/characters/Eden/Eden.webp" alt="Eden">
                     <h3>Eden</h3>
                     <p class="short-description">A timeless guardian who lingers in the shadows, bound by secrets and duty.</p>
-                    
-                    <div class="character-details" id="eden" style="display: none;">
-                        <img src="assets/images/characters/Eden/Eden.webp" alt="Eden">
-                        <h3>Eden</h3>
-                        <p><strong>Full Bio:</strong> Eden is an enigmatic figure, seamlessly blending timelessness with modernity. Originally from East London in a bygone era, his appearance suggests an age in the late 20s to early 30s, yet he possesses an ageless quality. A silent observer, he has watched over Sophie since her infancy, his motives known only to himself.</p>
-                        <p>With a balanced yet muscular build, dark wavy hair, and piercing eyes that seem to peer into one's soul, Eden carries an air of quiet authority. His attire is always dark and functional, his long leather coat serving as both a shield and a relic of his past. He moves with the precision of a predator yet harbors a rare depth of emotion that sets him apart from others of his kind.</p>
-                        <p>Though hardened by centuries of existence, Eden is not without kindness. He carries a depth of empathy rarely seen among his kind, making him a contradiction—both ruthless and gentle, protector and predator. His reasons for watching over Sophie remain his own, but his presence is unwavering, ensuring she is never truly alone.</p>
-                        <ul class="character-traits">
-                            <li>Mysterious</li>
-                            <li>Protective</li>
-                            <li>Empathetic yet Hardened</li>
-                            <li>Timeless</li>
-                            <li>Soulful Vampire</li>
-                        </ul>
+                </div>
+
+                <!-- Eden's Full Bio Overlay -->
+                <div class="character-overlay" id="eden-overlay">
+                    <div class="overlay-content">
+                        <button class="close-overlay" onclick="closeCharacterOverlay('eden-overlay')">&times;</button>
+
+                        <div class="overlay-header">
+                            <h2>Eden</h2>
+                        </div>
+
+                        <div class="overlay-intro">
+                            <img src="assets/images/characters/Eden/Eden.webp" alt="Eden">
+                            <ul class="character-traits">
+                                <li><span class="trait">Brooding & Tormented</span></li>
+                                <li><span class="trait">Strategically Intelligent & Calculating</span></li>
+                                <li><span class="trait">Protective, Yet Distrustful</span></li>
+                                <li><span class="trait">Morally Torn</span></li>
+                                <li><span class="trait">Emotionally Guarded</span></li>
+                                <li><span class="trait">Telepathic & Empathic</span></li>
+                                <li><span class="trait">Powerful, But Haunted</span></li>
+                            </ul>
+                        </div>
+
+                        <!-- Expandable Sections -->
+                        <div class="expandable-sections">
+                            <!-- Main Sections -->
+                            <div class="expandable-sections-container">
+                                <details>
+                                    <summary><strong>Character Overview</strong></summary>
+                                    <p>
+                                        Eden is a Vampyr with a past steeped in darkness. Once The Master's <span class="emphasis">most trusted disciple</span>,
+                                        he has spent centuries attempting to atone for his past crimes. Now, with his daughter Sophie caught in
+                                        the Night World’s grasp, he is forced to confront his past head-on.
+                                    </p>
+                                </details>
+
+                                <details>
+                                    <summary><strong>His History with The Master</strong></summary>
+                                    <p>
+                                        Eden was once The Master's <span class="emphasis">protégé</span>, trained in his ways and raised in his court of terror.
+                                        He committed <span class="emphasis">countless atrocities</span> before finally breaking away. Few who have defied
+                                        The Master have lived to tell the tale—Eden is one of them.
+                                    </p>
+                                    <p>
+                                        Though he outwardly severed ties, he maintained the illusion of loyalty for years to keep Sophie hidden.
+                                    </p>
+                                </details>
+
+                                <details>
+                                    <summary><strong>Sophie’s Birth & His Banishment from Her Life</strong></summary>
+                                    <p>
+                                        Eden met <span class="emphasis">Jean Munday</span> in the late 1980s at The Ruskin Arms Pub in East Ham.
+                                        Their <span class="emphasis">whirlwind romance</span> led to Jean’s pregnancy—something neither of them thought was possible.
+                                    </p>
+                                    <p>
+                                        When Jean discovered <span class="emphasis">what he truly was</span>, she was horrified. She cut him out of her life
+                                        and forbade him from seeing Sophie. Despite this, Eden could not stay away, secretly watching over
+                                        his daughter for years.
+                                    </p>
+                                </details>
+
+                                <details>
+                                    <summary><strong>His Psychic Abilities & Internal Struggles</strong></summary>
+                                    <p>
+                                        Eden possesses <span class="emphasis">enhanced telepathy and empathy</span>, allowing him to sense emotions and sometimes hear thoughts.
+                                        This ability fuels his guilt, as he can <span class="emphasis">feel the pain of those he has hurt</span>.
+                                    </p>
+                                    <p>
+                                        His past is soaked in blood, and though he seeks redemption, he believes it is <span class="emphasis">forever out of reach</span>.
+                                    </p>
+                                </details>
+
+                                <details>
+                                    <summary><strong>The Prophecy & Sophie’s Danger</strong></summary>
+                                    <p>
+                                        Eden returned to Sophie’s life to protect her from The Master, who believes she is <span class="emphasis">the key to an ancient prophecy</span>.
+                                    </p>
+                                    <p>
+                                        The prophecy foretells the <span class="emphasis">“Downfall of Night”</span>, but Eden does not fully understand its meaning.
+                                        He only knows that The Master <span class="emphasis">collected her blood</span> to confirm she is the prophesied one.
+                                    </p>
+                                    <p>
+                                        Unsure whether Sophie will be The Master’s downfall or something more dangerous, Eden struggles between
+                                        <span class="emphasis">protecting her and preparing her</span> for what lies ahead.
+                                    </p>
+                                </details>
+
+                                <details>
+                                    <summary><strong>Key Relationships</strong></summary>
+                                    <h4>Sophie Munday (Daughter)</h4>
+                                    <p>
+                                        Eden never expected to be part of Sophie’s life, but when they finally meet, he feels an overwhelming
+                                        sense of <span class="emphasis">love and responsibility</span>. He is fiercely protective of her but fears he may not
+                                        be strong enough to keep her safe from The Master.
+                                    </p>
+
+                                    <h4>Jean Munday (Former Lover)</h4>
+                                    <p>
+                                        Jean was <span class="emphasis">the love of his life</span>. Though he understood her decision to push him away, it left him
+                                        heartbroken. He respected her choice to <span class="emphasis">raise Sophie as human</span> and never tried to take
+                                        that from her.
+                                    </p>
+
+                                    <h4>Aeryn (A Bond Beyond Words)</h4>
+                                    <p>
+                                        Aeryn and Eden share a <span class="emphasis">deep, unspoken bond</span> forged in blood, survival, and shared tragedy. 
+                                        Their past remains largely untold, but <span class="emphasis">Eden clearly feels responsible for her fate</span>.
+                                    </p>
+                                    <p>
+                                        Though he rarely expresses emotion, his determination to keep her safe
+                                        speaks volumes about how much she means to him.
+                                    </p>
+                                    <p>
+                                        Whether out of <span class="emphasis">duty, guilt, or something more</span>, Eden will stop at nothing to free her.
+                                    </p>
+
+                                    <h4>The Master (Enemy & Former Mentor)</h4>
+                                    <p>
+                                        The Master is the <span class="emphasis">single most terrifying figure in Eden’s past</span>.
+                                    </p>
+                                    <p>
+                                        Once his most trusted follower, Eden now <span class="emphasis">actively works against him</span> while avoiding direct confrontation.
+                                    </p>
+                                </details>
+                            </div>
+
+                            <!-- Spoiler Heading (Standalone) -->
+                            <h2 class="spoiler-heading">⚠ Spoilers</h2>
+
+                            <!-- Spoiler Sections -->
+                            <div class="spoiler-sections">
+                                <details>
+                                    <summary><strong>Eden’s True Role in the Prophecy</strong></summary>
+                                    <p>
+                                        Eden does not yet fully understand his connection to the prophecy. While The Master is certain Sophie
+                                        is the key, <span class="emphasis">Eden fears the truth may be far more complicated</span>.
+                                    </p>
+                                    <p>
+                                        Instead of simply protecting Sophie, <span class="emphasis">he must prepare her</span> —in case she must fight, run, or make
+                                        a decision that could change the fate of the Night World.
+                                    </p>
+                                    <p>
+                                        The greatest question in his mind: <span class="emphasis">Is Sophie destined to destroy The Master, or become something even more dangerous?</span>
+                                    </p>
+                                </details>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Aeryn -->
-<div class="character-card" onclick="openCharacterOverlay('aeryn')">
-    <img src="assets/images/characters/Aeryn/Aeryn.jpg" alt="Aeryn">
-    <h3>Aeryn</h3>
-    <p class="short-description">A Vampyr torn between the past and present, haunted by time and fate.</p>
+                <!-- Aeryn's Main Character Card (Book 1) -->
+                <div class="character-card book1" onclick="openCharacterOverlay('aeryn-overlay')">
+                    <img src="assets/images/characters/Aeryn/Aeryn.jpg" alt="Aeryn">
+                    <h3>Aeryn</h3>
+                    <p class="short-description">A Vampyr torn between the past and present, haunted by time and fate.</p>
+                </div>
 
-    <div class="character-details" id="aeryn" style="display: none;">
-        <img src="assets/images/characters/Aeryn/Aeryn.jpg" alt="Aeryn">
-        <h3>Aeryn</h3>
-        <p><strong>Full Bio:</strong> Aeryn, originally named Elspeth, was born in the 1870s in Bethnal Green, London. Her life was simple, bound by the expectations of a working-class family, until she encountered Eden in 1888. Their meeting changed her life forever, as she was turned into a Vampyr without consent. From that moment, she became an eternal being, forced to navigate a world of darkness she never asked for.</p>
+                <!-- Aeryn's Full Bio Overlay -->
+                <div class="character-overlay" id="aeryn-overlay">
+                    <div class="overlay-content">
+                        <button class="close-overlay" onclick="closeCharacterOverlay('aeryn-overlay')">&times;</button>
 
-        <p>Despite her immortality, Aeryn remains torn between her Vampyr instincts and the fragments of humanity she clings to. While outwardly youthful, her violet eyes and solemn gaze betray the centuries of loss, conflict, and regret she has endured. She struggles to reconcile the person she was with the predator she has become. Her relationship with Eden is fraught with complexity; she acknowledges him as her creator but harbors resentment over the choice he made for her.</p>
+                        <div class="overlay-header">
+                            <h2>Aeryn</h2>
+                            <h6>Otherwise Known As</h6>
+                            <p>Elspeth Mary</p>
+                        </div>
 
-        <p>Aeryn often appears cold and distant, a defense against the pain of forming attachments. However, beneath her guarded exterior lies a being capable of profound love and unwavering loyalty. Her bond with Sophie is more than just obligation—Sophie represents a connection to something greater, a reason to keep fighting. In Sophie, Aeryn sees both danger and hope, a possibility of redemption she never thought possible.</p>
+                        <div class="overlay-intro">
+                            <img src="assets/images/characters/Aeryn/Aeryn.jpg" alt="Aeryn">
+                            <ul class="character-traits">
+                                <li>Conflicted</li>
+                                <li>Loyal</li>
+                                <li>Emotionally Guarded</li>
+                                <li>Noble yet Damaged</li>
+                                <li>Haunted by the Past</li>
+                                <li>Struggles with her Vampyr nature</li>
+                                <li>Fiercely Independent</li>
+                            </ul>
+                        </div>
 
-        <h4>Other Name:</h4>
-        <p><strong>Elspeth</strong></p>
+                        <!-- Expandable Sections -->
+                        <div class="expandable-sections">
+                            <!-- Main Sections -->
+                            <div class="expandable-sections-container">
+                                <details>
+                                    <summary>Overview</summary>
+                                    <p>Aeryn is introduced in Book One as <span class="emphasis">one of Eden’s closest allies</span>.  
+                                    She is <span class="emphasis">strong-willed, confident, and dangerous</span>, yet there is a quiet intensity to her that suggests <span class="emphasis">deep, hidden wounds</span>.  
+                                    While most young Vampyrs are drawn to power, Aeryn has always <span class="emphasis">followed her own path</span>, making her <span class="emphasis">an enigma even among her kind</span>.</p>
+                                    <p>When we first meet her, she is <span class="emphasis">waiting in a graveyard</span>, impatient for Eden to arrive.  
+                                    Her playful scolding and familiarity with him <span class="emphasis">immediately hint at a long history between them</span>.</p>
+                                </details>
 
-        <ul class="character-traits">
-            <li>Conflicted</li>
-            <li>Loyal</li>
-            <li>Emotionally Guarded</li>
-            <li>Noble yet Damaged</li>
-            <li>Haunted by Time</li>
-            <li>Struggles with her Vampyr nature</li>
-            <li>Possesses an intense and otherworldly presence</li>
-        </ul>
-    </div>
-</div>
+                                <details>
+                                    <summary>Connection to Eden</summary>
+                                    <p>Aeryn is the <span class="emphasis">only Vampyr Eden truly trusts</span>.  
+                                    They share an <span class="emphasis">unspoken bond</span>—one built on loyalty, survival, and something even deeper.  
+                                    She <span class="emphasis">teases him</span>, but she also respects him in ways that others do not.</p>
+                                    <p>She acknowledges that <span class="emphasis">many young female Vampyrs want Eden as their master</span>, but she sees him differently.  
+                                    When he turns to her for help, she doesn’t hesitate, even though it <span class="emphasis">puts her in direct opposition to The Master</span>.</p>
+                                    <p>Their connection is <span class="emphasis">complex</span>—one of trust, devotion, and possibly <span class="emphasis">something more</span>.</p>
+                                </details>
 
-                <!-- Blaine -->
-<div class="character-card" onclick="openCharacterOverlay('blaine')">
-    <img src="assets/images/characters/Blaine/Blaine.webp" alt="Blaine">
-    <h3>Blaine</h3>
-    <p class="short-description">A tortured soul bound by his past and his transformation into something otherworldly.</p>
+                                <details>
+                                    <summary>Knowledge of Sophie</summary>
+                                    <p>Aeryn is <span class="emphasis">one of the few people Eden confides in</span> about Sophie.  
+                                    The moment he mentions her, she <span class="emphasis">immediately understands the danger</span> of his involvement.</p>
+                                    <p>She warns him not to get too close, yet she doesn’t press the issue.  
+                                    This suggests that she <span class="emphasis">knows more than she says</span>—perhaps even about the <span class="emphasis">prophecy or Sophie’s significance</span>.</p>
+                                </details>
 
-    <div class="character-details" id="blaine" style="display: none;">
-        <img src="assets/images/characters/Blaine/Blaine.webp" alt="Blaine">
-        <h3>Blaine</h3>
-        <p><strong>Full Bio:</strong> Blaine, originally known as Richard, was turned into a Vampyr around 170 years ago in Dublin, Ireland. At 19, he was transformed by Faye, and has lived with the consequences of his change ever since. As Blaine, he has wandered through centuries with the weight of his past heavy on his shoulders. Though physically ageless, his mind is burdened by guilt, regret, and the darkness of what he has become.</p>
+                                <details>
+                                    <summary>Vampyr Nature</summary>
+                                    <p>Aeryn has fully embraced <span class="emphasis">her Vampyr instincts</span>.  
+                                    She is a <span class="emphasis">skilled hunter</span>, stalking her prey with precision and taking pleasure in the kill.</p>
+                                    <p>Unlike Eden, she <span class="emphasis">does not hesitate to feed</span>. She is <span class="emphasis">methodical and experienced</span>, ensuring there is <span class="emphasis">no evidence left behind</span>.  
+                                    Her efficiency suggests that she has been living this way for <span class="emphasis">a long time</span>.</p>
+                                    <p>She sees the Vampyr world for what it is—<span class="emphasis">a struggle for survival</span>—and while she admires Eden’s restraint, she does not share it.</p>
+                                </details>
+                            </div>
 
-        <p>Blaine is a man of contradictions: on one hand, he struggles with his inner demons, tormented by his transformation; on the other, he remains a powerful and determined figure, capable of great compassion and immense strength. His past haunts him, but he has learned to navigate the world with quiet resilience.</p>
+                            <!-- Spoiler Heading (Standalone) -->
+                            <h2 class="spoiler-heading">⚠ Spoilers</h2>
 
-        <p>Though fiercely independent, Blaine's connection with the prophecy and his ties to Eden have shaped much of his life. His loyalty is often tested, and he walks the line between good and evil, forced to confront his past while seeking redemption.</p>
+                            <!-- Spoiler Sections -->
+                            <div class="spoiler-sections">
+                                <details>
+                                    <summary>Relationship with Eden</summary>
+                                    <p>After a hunt, Aeryn mistakenly <span class="emphasis">attacks Eden</span>, thinking he is human.  
+                                    He overpowers her easily, but instead of being angry, she <span class="emphasis">laughs</span>—showing that she <span class="emphasis">isn’t afraid of him</span>.</p>
+                                    <p>Their tension <span class="emphasis">quickly shifts into something else</span>, and they <span class="emphasis">end up sleeping together</span>.  
+                                    This is the first and only time in Book One that Eden <span class="emphasis">shows a romantic or sexual connection</span> with anyone.</p>
+                                    <p>However, <span class="emphasis">Eden immediately regrets it</span>, further highlighting his <span class="emphasis">inner conflict</span> over his emotions.</p>
+                                </details>
 
-        <p><strong>Other Name:</strong> Richard</p>
+                                <details>
+                                    <summary>Defying The Master</summary>
+                                    <p>When Eden turns to Aeryn for help, she <span class="emphasis">knows the risk</span>.  
+                                    Helping him means <span class="emphasis">betraying The Master</span>, a decision that will <span class="emphasis">turn her into a hunted outcast</span>.</p>
+                                    <p>Despite this, <span class="emphasis">she does not hesitate</span>. Her loyalty to Eden outweighs her fear of the consequences.</p>
+                                    <p>With a wry smile, she tells him, <span class="emphasis">“Till death do us part, Eden.”</span>  
+                                    This moment cements her <span class="emphasis">complete devotion to him</span>, even if it means <span class="emphasis">losing everything else</span>.
+                                    </p>
+                                </details>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-        <ul class="character-traits">
-            <li>Guilt-ridden</li>
-            <li>Compassionate</li>
-            <li>Resilient</li>
-            <li>Conflicted</li>
-            <li>Seeking redemption</li>
-        </ul>
-    </div>
-</div>
+                <!-- Blaine's Main Character Card (Book 1) -->
+                <div class="character-card book1" onclick="openCharacterOverlay('blaine-overlay')">
+                    <img src="assets/images/characters/Blaine/Blaine.webp" alt="Blaine">
+                    <h3>Blaine</h3>
+                    <p class="short-description">A tortured soul bound by his past and his transformation into something otherworldly.</p>
+                </div>
 
-        
-                <!-- Family Connections Section -->
+                <!-- Blaine's Full Bio Overlay -->
+                <div class="character-overlay" id="blaine-overlay">
+                    <div class="overlay-content">
+                        <button class="close-overlay" onclick="closeCharacterOverlay('blaine-overlay')">&times;</button>
+
+                        <div class="overlay-header">
+                            <h2>Blaine</h2>
+                        </div>
+
+                        <div class="overlay-intro">
+                            <img src="assets/images/characters/Blaine/Blaine.webp" alt="Blaine">
+                            <ul class="character-traits">
+                                <li><span class="trait">Mysterious</span></li>
+                                <li><span class="trait">Cunning</span></li>
+                                <li><span class="trait">Charismatic</span></li>
+                                <li><span class="trait">Unpredictable</span></li>
+                                <li><span class="trait">Playful but Dangerous</span></li>
+                            </ul>
+                        </div>
+
+                        <!-- Expandable Sections -->
+                        <div class="expandable-sections">
+                            <!-- Main Sections -->
+                            <div class="expandable-sections-container">
+                                <details>
+                                    <summary><strong>Character Overview</strong></summary>
+                                    <p>
+                                        Blaine is a Vampyr who appears out of nowhere, 
+                                        <em>watching Sophie from the shadows</em> before making himself known.  
+                                        He is <span class="emphasis">playful, teasing, and frustratingly vague</span>, never giving away too much about himself.
+                                    </p>
+                                    <p>
+                                        There’s an <span class="emphasis">underlying danger</span> to him, but whether he is truly a threat remains uncertain.  
+                                        His motives are <span class="emphasis">unclear</span>, his past <span class="emphasis">a mystery</span>, and his presence 
+                                        <span class="emphasis">raises more questions than it answers</span>.
+                                    </p>
+                                </details>
+
+                                <details>
+                                    <summary><strong>His Introduction</strong></summary>
+                                    <p>
+                                        Sophie first encounters Blaine in a <span class="emphasis">graveyard</span>, where he follows her through the darkness.  
+                                        He <em>doesn’t lunge, doesn’t attack</em>—he simply watches, calculating.  
+                                    </p>
+                                    <p>
+                                        When he finally speaks, his tone is <span class="emphasis">light and amused</span>, as if the situation entertains him.  
+                                        But there is an edge beneath his charm, a <span class="emphasis">predatory awareness</span> that keeps Sophie on guard.
+                                    </p>
+                                </details>
+
+                                <details>
+                                    <summary><strong>What He Knows</strong></summary>
+                                    <p>
+                                        Blaine immediately <span class="emphasis">recognises the name ‘Eden’</span> and reacts with <span class="emphasis">undeniable shock</span>.  
+                                        He clearly <span class="emphasis">knows more than he lets on</span>, but instead of explaining, he toys with Sophie, keeping his information to himself.
+                                    </p>
+                                    <p>
+                                        He <span class="emphasis">knows the Night World intimately</span>, but how he fits into it is unknown.  
+                                        He could be a <span class="emphasis">lone wanderer, a scout for something larger, or someone with his own hidden agenda</span>.
+                                    </p>
+                                </details>
+
+                                <details>
+                                    <summary><strong>His Interest in Sophie</strong></summary>
+                                    <p>
+                                        Blaine’s interest in Sophie starts as <span class="emphasis">a hunt</span>—but shifts into something else.  
+                                        He doesn’t immediately see her as prey, and he <span class="emphasis">tests her in ways that aren’t purely Vampyric</span>.
+                                    </p>
+                                    <p>
+                                        He attempts to <span class="emphasis">influence her mind</span>, but when she resists, he doesn’t get angry.  
+                                        Instead, he <span class="emphasis">smiles</span>, entertained by the challenge.
+                                    </p>
+                                </details>
+
+                                <details>
+                                    <summary><strong>His Motivations</strong></summary>
+                                    <p>
+                                        Blaine offers to help Sophie, but <span class="emphasis">why</span>?  
+                                        Is he being genuine, or does he have his own reasons for leading her down this path?
+                                    </p>
+                                    <p>
+                                        Why was he even in the graveyard?  
+                                        Was he <span class="emphasis">waiting for Sophie, or was it all a coincidence</span>?
+                                    </p>
+                                    <p>
+                                        With Blaine, <span class="emphasis">nothing is clear, and nothing is simple</span>.
+                                    </p>
+                                </details>
+                            </div>
+
+                            <!-- Spoiler Heading (Standalone) -->
+                            <h2 class="spoiler-heading">⚠ Spoilers</h2>
+
+                            <!-- Spoiler Sections -->
+                            <div class="spoiler-sections">
+                                <details>
+                                    <summary><strong>Mysteries & Unanswered Questions</strong></summary>
+                                    <ul>
+                                        <li><span class="emphasis">Who</span> <span class="emphasis">was</span> Blaine before he was turned?</li>
+                                        <li><span class="emphasis">What</span> <span class="emphasis">truly</span> stopped him from attacking Sophie?</li>
+                                        <li><span class="emphasis">How much</span> does he <span class="emphasis">really</span> know about Eden?</li>
+                                        <li><span class="emphasis">Why</span> is he <span class="emphasis">so drawn</span> to Sophie?</li>
+                                        <li><span class="emphasis">Is he</span> <span class="emphasis">a threat, an ally, or something in between?</span></li>
+                                    </ul>
+                                </details>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Family Connections Section (Book 1) -->
                 <div class="section-title">
                     <h2>Family Connections</h2>
                 </div>
-        
-                <!-- Jean -->
-<div class="character-card" onclick="openCharacterOverlay('jean')">
-    <img src="assets/images/characters/Jean/JeanMunday.webp" alt="Jean">
-    <h3>Jean Munday</h3>
-    <p class="short-description">A loving but troubled mother who has faced heartbreak and mystery.</p>
 
-    <div class="character-details" id="jean" style="display: none;">
-        <img src="assets/images/characters/Jean/JeanMunday.webp" alt="Jean">
-        <h3>Jean</h3>
-        <p><strong>Full Bio:</strong> Jean is Sophie’s mother, who met Eden in 1987 when she was 19 years old at the Ruskin Arms, a Metal/Rock pub and live music venue in East Ham. At the time, she was drawn to him as he stood out with his leather attire and guyliner, a stark contrast to her own "alternative" style. Their brief but intense connection led to Jean’s unexpected pregnancy, and soon after, she learned she was carrying Eden's child, Sophie, a realization that stunned both of them, as Eden believed such a thing was impossible for his kind.</p>
+                <!-- Jean's Main Character Card (Book 1) -->
+                <div class="character-card book1" onclick="openCharacterOverlay('jean-overlay')">
+                    <img src="assets/images/characters/Jean/JeanMunday.webp" alt="Jean">
+                    <h3>Jean Munday</h3>
+                    <p class="short-description">A loving but troubled mother who has faced heartbreak and mystery.</p>
+                </div>
 
-        <p>Jean had no idea Eden was a Vampyr until he finally revealed his true nature. Shocked and hurt, Jean's protective instincts took over, and she banned him from ever seeing his daughter. His presence in their lives became a silent, distant one, watching over Sophie as a guardian while she slept. Despite her emotional turmoil and the confusion about the supernatural forces at play, Jean remained devoted to Sophie, determined to shield her from the hidden truths that had haunted her past.</p>
+                <!-- Jean's Full Bio Overlay -->
+                <div class="character-overlay" id="jean-overlay">
+                    <div class="overlay-content">
+                        <button class="close-overlay" onclick="closeCharacterOverlay('jean-overlay')">×</button>
 
-        <p>Jean's connection to Eden, and the life she built with Sophie, is a complex and troubled one. Though she is a loving mother, her experiences with Eden have left her with scars and unspoken truths that continue to affect her, especially as Sophie grows older and closer to uncovering the mysteries surrounding her origins.</p>
+                        <div class="overlay-header">
+                            <h2>Jean Munday</h2>
+                        </div>
 
-        <ul class="character-traits">
-            <li>Protective</li>
-            <li>Complicated</li>
-            <li>Empathetic</li>
-            <li>Strong-willed</li>
-            <li>Overwhelmed</li>
-        </ul>
-    </div>
-</div>
+                        <div class="overlay-intro">
+                            <img src="assets/images/characters/Jean/JeanMunday.webp" alt="Jean">
+                            <ul class="character-traits">
+                                <li><span class="trait">Protective</span></li>
+                                <li><span class="trait">Complicated</span></li>
+                                <li><span class="trait">Empathetic</span></li>
+                                <li><span class="trait">Strong-willed</span></li>
+                                <li><span class="trait">Overwhelmed</span></li>
+                            </ul>
+                        </div>
 
-<!-- Antagonist Section -->
-<div class="section-title">
-    <h2>Antagonist</h2>
-</div>
+                        <!-- Expandable Sections -->
+                        <div class="expandable-sections">
+                            <!-- Main Sections -->
+                            <div class="expandable-sections-container">
+                                <details>
+                                    <summary><strong>Character Overview</strong></summary>
+                                    <p>
+                                        Jean Munday is a <span class="emphasis">fiercely protective mother</span>, burdened by a past filled with <em>heartbreak, secrecy, and supernatural mystery</em>.  
+                                        She has spent her life keeping her daughter, Sophie, safe—no matter the cost.
+                                    </p>
+                                    <p>
+                                        <span class="emphasis">Headstrong and independent</span>, Jean makes difficult choices, even when they break her heart.  
+                                        She struggles with <em>trust, fear, and regret</em>, particularly when it comes to Eden and the world he belongs to.
+                                    </p>
+                                </details>
 
-<!-- The Master -->
-<div class="character-card" onclick="openCharacterOverlay('themaster')">
-<img src="assets/images/characters/TheMaster/TheMaster.webp" alt="The Master">
-<h3>The Master</h3>
-<p class="short-description">The embodiment of evil, psychopathy, and unimaginable power.</p>
+                                <details>
+                                    <summary><strong>Her Relationship with Eden</strong></summary>
+                                    <p>
+                                        Jean met <span class="emphasis">Eden</span> in the late 1980s at <em>The Ruskin Arms</em>, a well-known rock and metal pub in East Ham, London.  
+                                        She was a rebellious free spirit, drawn to his <span class="emphasis">dangerous aura</span> and undeniable presence.
+                                    </p>
+                                    <p>
+                                        Their connection was <span class="emphasis">brief but intense</span>, leading to Sophie’s conception—something neither of them believed was possible.  
+                                        When Jean discovered <span class="emphasis">Eden was a Vampyr</span>, she was horrified and immediately cut him out of her life.
+                                    </p>
+                                </details>
 
-<div class="character-details" id="themaster" style="display: none;">
-<img src="assets/images/characters/TheMaster/TheMaster.webp" alt="The Master">
-<h3>The Master</h3>
-<p><strong>Full Bio:</strong> The Master is a figure from ancient times, his presence chilling and unsettling. With a distorted, pale visage and a sickly aura, he no longer resembles his former self, yet his power remains immense. Though diminished in form, he exerts control over others through fear, manipulation, and coercion.</p>
+                                <details>
+                                    <summary><strong>Her Decision to Raise Sophie Alone</strong></summary>
+                                    <p>
+                                        After leaving Eden, Jean moved back in with her parents for support.  
+                                        She <span class="emphasis">lied about Sophie’s father</span>, telling her daughter that he was a firefighter who died tragically.
+                                    </p>
+                                    <p>
+                                        Jean <span class="emphasis">refused to let Eden have contact with Sophie</span>, believing it was the only way to keep her safe.  
+                                        Eden, despite this, continued to <em>watch over Sophie in secret</em>, even appearing in her room at night.
+                                    </p>
+                                    <p>
+                                        When Sophie was six, Eden told her he was her <span class="emphasis">“guardian angel”</span>,  
+                                        but realizing he was getting too close, he disappeared from her life once again.
+                                    </p>
+                                </details>
 
-<p>Known also as *Malus Angelus*, The Master has long sought to maintain his hold on power, even if it means using those closest to him for his own ends. His relationship with Eden, one of his most trusted, is founded on coercion and psychological manipulation. Eden remains close to The Master, not out of loyalty but out of necessity, to protect a child The Master believes could be key to his plans. However, Eden has his own motives, aiming to shield Sophie from The Master's grasp.</p>
+                                <details>
+                                    <summary><strong>Jean’s Protective Nature & Conflict with Eden</strong></summary>
+                                    <p>
+                                        For sixteen years, Jean <span class="emphasis">shielded Sophie from the truth</span>,  
+                                        raising her as a normal human and denying any connection to the supernatural.
+                                    </p>
+                                    <ul>
+                                        <li>She dismissed Sophie’s <span class="emphasis">nightmares and visions</span> as childhood trauma.</li>
+                                        <li>She <span class="emphasis">fabricated a false past</span>, ensuring Sophie never questioned her origins.</li>
+                                        <li>She lived in <em>constant fear</em> of Eden finding their daughter.</li>
+                                    </ul>
+                                    <p>
+                                        When Jean <span class="emphasis">found Eden in Sophie’s bedroom</span>, she reacted with sheer panic, immediately calling the police.  
+                                        She <span class="emphasis">knew what Eden was capable of</span>—both great love and terrible violence.
+                                    </p>
+                                </details>
 
-<p>The Master's true agenda remains veiled, but it is clear he seeks to use Sophie for his own ends, driven by his desire for control and dominance over the Vampyr world.</p>
+                                <details>
+                                    <summary><strong>Jean’s Relationship with Sophie</strong></summary>
+                                    <ul>
+                                        <li><span class="emphasis">Loving but Overprotective</span> – Jean adores Sophie but keeps secrets from her, believing it is for her own good.</li>
+                                        <li><span class="emphasis">Denies the Supernatural</span> – She refuses to acknowledge that Sophie’s abilities are real.</li>
+                                        <li><span class="emphasis">Keeps Sophie in the Dark</span> – She has hidden Sophie’s true heritage and the existence of her real father.</li>
+                                        <li><span class="emphasis">Struggles with Regret</span> – She often questions whether she made the right choice in keeping Eden away.</li>
+                                    </ul>
+                                </details>
+                            </div>
 
-<h4>Other Name:</h4>
-<p><strong>Malus Angelus</strong></p>
+                            <!-- Spoiler Heading (Standalone) -->
+                            <h2 class="spoiler-heading">⚠ Spoilers</h2>
 
-<ul class="character-traits">
-<li>Powerful</li>
-<li>Evil</li>
-<li>Psychopathic</li>
-<li>Distorted</li>
-<li>Ancient</li>
-<li>Coercive and Manipulative</li>
-<li>Master of Psychological Abuse</li>
-<li>Possesses a deep, terrifying presence</li>
-</ul>
-</div>
-</div>
+                            <!-- Spoiler Sections -->
+                            <div class="spoiler-sections">
+                                <details>
+                                    <summary><strong>Mysteries & Unanswered Questions</strong></summary>
+                                    <ul>
+                                        <li>Does Jean <span class="emphasis">still have feelings</span> for Eden?</li>
+                                        <li>Did she ever <span class="emphasis">regret</span> cutting him out of their lives?</li>
+                                        <li>Why is she <span class="emphasis">so afraid</span> of Eden? Did he do something she hasn’t told Sophie?</li>
+                                        <li>Does she <span class="emphasis">know more</span> about the prophecy than she has admitted?</li>
+                                    </ul>
+                                </details>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-        
+                <!-- Antagonist Section (Book 1) -->
+                <div class="section-title">
+                    <h2>Antagonist</h2>
+                </div>
+
+                <!-- The Master's Main Character Card (Book 1) -->
+                <div class="character-card book1" onclick="openCharacterOverlay('themaster-overlay')">
+                    <img src="assets/images/characters/TheMaster/TheMaster.webp" alt="The Master">
+                    <h3>The Master</h3>
+                    <p class="short-description">The embodiment of evil, psychopathy, and unimaginable power.</p>
+                </div>
+
+                <!-- The Master's Full Bio Overlay -->
+                <div class="character-overlay" id="themaster-overlay">
+                    <div class="overlay-content">
+                        <button class="close-overlay" onclick="closeCharacterOverlay('themaster-overlay')">&times;</button>
+
+                        <div class="overlay-header">
+                            <h2>The Master</h2>
+                            <h6>Otherwise Known As</h6>
+                            <p>Angelus Malus</p>
+                        </div>
+
+                        <div class="overlay-intro">
+                            <img src="assets/images/characters/TheMaster/TheMaster.webp" alt="The Master">
+                            <ul class="character-traits">
+                                <li><span class="trait">Ancient</span></li>
+                                <li><span class="trait">Powerful</span></li>
+                                <li><span class="trait">Evil</span></li>
+                                <li><span class="trait">Psychopathic</span></li>
+                                <li><span class="trait">Manipulative</span></li>
+                                <li><span class="trait">Obsessive</span></li>
+                                <li><span class="trait">Mastermind</span></li>
+                            </ul>
+                        </div>
+
+                        <!-- Expandable Sections -->
+                        <div class="expandable-sections">
+                            <!-- Main Sections -->
+                            <div class="expandable-sections-container">
+                                <details>
+                                    <summary><strong>Character Overview</strong></summary>
+                                    <p>
+                                        The Master is a figure of <span class="emphasis">legend and terror</span>, a Vampyr so ancient that his true origins are lost to time.  
+                                        His <em>distorted, creased, and barely human</em> face reflects both his <span class="emphasis">immense power</span> and <span class="emphasis">depraved mind</span>.
+                                    </p>
+                                    <p>
+                                        Once an <span class="emphasis">ordinary Vampyr</span>, he abandoned all remnants of humanity, amassing <span class="emphasis">centuries of knowledge, influence, and terror</span>.  
+                                        Now, he is the <span class="emphasis">ultimate predator</span>, manipulating history itself to maintain his hold over the Night World.
+                                    </p>
+                                </details>
+
+                                <details>
+                                    <summary><strong>His Rise to Power</strong></summary>
+                                    <p>
+                                        The Master is believed to be a <span class="emphasis">direct descendant of Dracula</span>, his <em>lineage legendary</em> within the Vampyr world.  
+                                        He was <span class="emphasis">sired by Clarke Hinchcliffe</span>, known as <em>The Baron</em>, one of history’s most feared Vampyrs.
+                                    </p>
+                                    <p>
+                                        His <span class="emphasis">hunger for power</span> drove him to <em>unimaginable lengths</em>, eliminating all who stood in his way.  
+                                        Over time, he became so powerful that even the <span class="emphasis">sun</span> became an inconvenience rather than a death sentence.
+                                    </p>
+                                    <p>
+                                        With <span class="emphasis">a vast empire of Vampyrs</span> under his control, his reign remains <em>unchallenged</em>,  
+                                        enforced by his reputation for <span class="emphasis">brutality and absolute dominance</span>.
+                                    </p>
+                                </details>
+
+                                <details>
+                                    <summary><strong>His Obsession with the Prophecy</strong></summary>
+                                    <p>
+                                        An <span class="emphasis">ancient prophecy</span>, written in the first century, foretells a <em>cataclysmic event</em> that could destroy or reshape the Night World.  
+                                        The Master has spent <span class="emphasis">centuries trying to interpret and control it</span>.
+                                    </p>
+                                    <p>
+                                        The prophecy was first sought by <span class="emphasis">Clarke Hinchcliffe</span>, who was deemed <em>mad</em> for his belief in it.  
+                                        Before his death, Clarke <span class="emphasis">passed the prophecy to Malus</span>—some believe <em>The Master killed him for it</em>.
+                                    </p>
+                                    <p>
+                                        The prophecy speaks of the <span class="emphasis">“Downfall of Night”</span>, a moment in time tied to a <em>specific bloodline</em>.  
+                                        <span class="emphasis">Sophie Munday’s blood</span> has confirmed her connection to this prophecy—The Master now believes she is the key to everything.
+                                    </p>
+                                </details>
+                            </div>
+
+                            <!-- Spoiler Heading (Standalone) -->
+                            <h2 class="spoiler-heading">⚠ Spoilers</h2>
+
+                            <!-- Spoiler Sections -->
+                            <div class="spoiler-sections">
+                                <details>
+                                    <summary><strong>His Powers & Abilities</strong></summary>
+                                    <ul>
+                                        <li><span class="emphasis">Unmatched Psychic Power</span> – Can sense and control emotions, and possibly read thoughts.</li>
+                                        <li><span class="emphasis">Nightmare Projection</span> – Has tormented Sophie with terrifying dreams for years.</li>
+                                        <li><span class="emphasis">Immense Strength & Speed</span> – Even among Vampyrs, his power is legendary.</li>
+                                        <li><span class="emphasis">Shadow Manipulation</span> – Can appear and disappear in darkness, moving through shadows.</li>
+                                        <li><span class="emphasis">Mind Control</span> – Can compel weaker minds to obey without question.</li>
+                                        <li><span class="emphasis">Tactical Genius</span> – Spent centuries mastering psychological warfare.</li>
+                                    </ul>
+                                </details>
+
+                                <details>
+                                    <summary><strong>The Master's Obsession</strong></summary>
+                                    <p>
+                                        The <span class="emphasis">prophecy’s true meaning</span> remains hidden, even from The Master himself.  
+                                        But one thing is certain—<span class="emphasis">Sophie is the key</span> to everything.
+                                    </p>
+                                    <p>
+                                        His <span class="emphasis">obsession with control</span> drives him to <em>claim Sophie for himself</em>,  
+                                        ensuring that whatever the prophecy foretells, he is the one who benefits from it.
+                                    </p>
+                                </details>
+
+                                <details>
+                                    <summary><strong>Mysteries & Unanswered Questions</strong></summary>
+                                    <ul>
+                                        <li>What <em>exactly</em> does he want from Sophie?</li>
+                                        <li>Why does he keep <span class="emphasis">Eden alive</span> despite his betrayal?</li>
+                                        <li>What <span class="emphasis">is the full prophecy</span>?</li>
+                                        <li>What <em>ancient evil</em> protects the prophecy scroll?</li>
+                                        <li>What is his <span class="emphasis">true endgame</span>?</li>
+                                    </ul>
+                                </details>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
+
+<!-- ----------------------------------------------------------- -->
+<!--         Book 2 Characters Section (Initially Hidden)        -->
+<!-- ----------------------------------------------------------- -->
+
+ <!-- Book 1 Characters Section -->
+ <section class="character-section book2">
+    <div class="book-section">
+        MEMOIRS OF A VAMPYR’S DAUGHTER: EDEN
+    </div>
+    <div class="character-container">
+        <!-- Main Characters Section -->
+        <div class="section-title">
+            <h2>Main Protagonist</h2>
+        </div>
+  
+      <!-- Sophie's Main Character Card (Book 2 Duplicate) -->
+      <div class="character-card book2" onclick="openCharacterOverlay('sophie2-overlay')">
+        <img src="assets/images/characters/Sophie/sophie.webp" alt="Sophie Munday">
+        <h3>Sophie Munday</h3>
+        <p class="short-description">
+          A transformed young woman, embracing newfound power and burdened with the weight of destiny.
+        </p>
+      </div>
+  
+      <!-- Sophie’s Full Bio Overlay for Book 2 (Updated) -->
+      <div class="character-overlay" id="sophie2-overlay">
+        <div class="overlay-content">
+          <button class="close-overlay" onclick="closeCharacterOverlay('sophie2-overlay')">&times;</button>
+          <div class="overlay-header">
+            <h2>Sophie Munday – Book Two Update</h2>
+          </div>
+          <div class="overlay-intro">
+            <img src="assets/images/characters/Sophie/Sophie.webp" alt="Sophie">
+            <ul class="character-traits">
+              <li><span class="trait">Empowered</span></li>
+              <li><span class="trait">Insightful</span></li>
+              <li><span class="trait">Determined</span></li>
+              <li><span class="trait">Resilient</span></li>
+              <li><span class="trait">Awakened</span></li>
+            </ul>
+          </div>
+          <!-- Expandable Sections for Book 2 Sophie -->
+          <div class="expandable-sections">
+            <div class="expandable-sections-container">
+              <details>
+                <summary><strong>New Insights</strong></summary>
+                <p>
+                  In Book Two, Sophie begins to unlock hidden truths about her abilities and lineage.
+                  The mysterious forces of the Night World push her to confront secrets that redefine her identity.
+                </p>
+              </details>
+              <details>
+                <summary><strong>Growth & Transformation</strong></summary>
+                <p>
+                  No longer the uncertain girl of her past, Sophie emerges as a determined force ready to face the supernatural.
+                  Her nightmares now serve as catalysts for personal growth, fueling her resolve to embrace her destiny.
+                </p>
+              </details>
+              <details>
+                <summary><strong>Emerging Destiny</strong></summary>
+                <p>
+                  As the stakes rise, Sophie’s role in an ancient prophecy becomes clearer.
+                  The challenges she faces force her to question everything—including who she once was—and pave the way for a future where she might be the key to reshaping the Night World.
+                </p>
+              </details>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      <div class="section-title">
+        <h2>Main Characters</h2>
+      </div>
+  
+      <!-- Eden's Main Character Card (Book 2) -->
+      <div class="character-card book2" onclick="openCharacterOverlay('eden2-overlay')">
+        <img src="assets/images/characters/Eden/Eden.webp" alt="Eden">
+        <h3>Eden</h3>
+        <p class="short-description">
+          A haunted guardian burdened by regret and fighting for redemption in a world on the brink.
+        </p>
+      </div>
+  
+      <!-- Eden's Full Bio Overlay for Book 2 -->
+      <div class="character-overlay" id="eden2-overlay">
+        <div class="overlay-content">
+          <button class="close-overlay" onclick="closeCharacterOverlay('eden2-overlay')">&times;</button>
+          <div class="overlay-header">
+            <h2>Eden – Book Two Update</h2>
+          </div>
+          <div class="overlay-intro">
+            <img src="assets/images/characters/Eden/Eden.webp" alt="Eden">
+            <ul class="character-traits">
+              <li><span class="trait">Haunted by Regret</span></li>
+              <li><span class="trait">Determined Protector</span></li>
+              <li><span class="trait">Struggling with Redemption</span></li>
+              <li><span class="trait">Conflicted</span></li>
+              <li><span class="trait">Resilient</span></li>
+              <li><span class="trait">Courageous</span></li>
+            </ul>
+          </div>
+          <!-- Expandable Sections for Book 2 Eden -->
+          <div class="expandable-sections">
+            <div class="expandable-sections-container">
+              <details>
+                <summary><strong>New Character Overview</strong></summary>
+                <p>
+                  In Book Two, Eden emerges as a man burdened not only by his dark past but also by the heavy cost of his choices.
+                  As the stakes in the Night World escalate, he is torn between duty and a desperate hope for redemption.
+                </p>
+              </details>
+              <details>
+                <summary><strong>Reckoning with the Past</strong></summary>
+                <p>
+                  Confronted by revelations about the prophecy and the looming threat to Sophie, Eden is forced to reexamine his values and face the consequences of his hidden past.
+                </p>
+              </details>
+              <details>
+                <summary><strong>Struggle for Redemption</strong></summary>
+                <p>
+                  As he grapples with overwhelming guilt and the burden of protecting his daughter, Eden embarks on a perilous journey toward redemption, where every decision echoes in the fate of the Night World.
+                </p>
+              </details>
+            </div>
+            <!-- Spoiler Sections -->
+            <h2 class="spoiler-heading">⚠ Spoilers</h2>
+            <div class="spoiler-sections">
+              <details>
+                <summary><strong>Unforeseen Alliances</strong></summary>
+                <p>
+                  As the prophecy unfolds, Eden discovers unexpected alliances that challenge his old loyalties and force him to reconsider what he values most—even if it comes at a steep price.
+                </p>
+              </details>
+              <details>
+                <summary><strong>Ultimate Sacrifice?</strong></summary>
+                <p>
+                  With the stakes higher than ever, Eden faces a heart-wrenching decision: risk everything to protect Sophie and the Night World, or let his past mistakes condemn them all.
+                </p>
+              </details>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Blaine's Main Character Card (Book 2 Updated Duplicate) -->
+      <div class="character-card book2" onclick="openCharacterOverlay('blaine2-overlay')">
+        <img src="assets/images/characters/Blaine/Blaine.webp" alt="Blaine">
+        <h3>Blaine</h3>
+        <p class="short-description">
+          A conflicted and enigmatic Vampyr, grappling with guilt and seeking redemption in a darker world.
+        </p>
+      </div>
+  
+      <!-- Blaine's Full Bio Overlay for Book 2 -->
+      <div class="character-overlay" id="blaine2-overlay">
+        <div class="overlay-content">
+          <button class="close-overlay" onclick="closeCharacterOverlay('blaine2-overlay')">&times;</button>
+          <div class="overlay-header">
+            <h2>Blaine – Book Two Update</h2>
+          </div>
+          <div class="overlay-intro">
+            <img src="assets/images/characters/Blaine/Blaine.webp" alt="Blaine">
+            <ul class="character-traits">
+              <li><span class="trait">Enigmatic</span></li>
+              <li><span class="trait">Conflicted</span></li>
+              <li><span class="trait">Haunted by Guilt</span></li>
+              <li><span class="trait">Searching for Redemption</span></li>
+              <li><span class="trait">Determined</span></li>
+            </ul>
+          </div>
+          <!-- Expandable Sections for Book 2 Blaine -->
+          <div class="expandable-sections">
+            <div class="expandable-sections-container">
+              <details>
+                <summary><strong>Character Overview</strong></summary>
+                <p>
+                  In Book Two, Blaine emerges as a more layered figure—a Vampyr who is no longer just a mysterious presence in the shadows.
+                  Tormented by his past transgressions and the heavy cost of his transformation, he now seeks a form of redemption.
+                </p>
+                <p>
+                  His once playful and vague demeanor has given way to deep internal conflict, as he wrestles with loyalty, guilt, and the burden of his actions.
+                </p>
+              </details>
+              <details>
+                <summary><strong>His Newfound Awareness</strong></summary>
+                <p>
+                  Blaine’s journey in Book Two is marked by self-discovery. He begins to question his previous motivations and confronts the harsh realities of the Night World with renewed intensity.
+                </p>
+              </details>
+              <details>
+                <summary><strong>Motivations & Future Path</strong></summary>
+                <p>
+                  Now driven by a desire to atone for past mistakes, Blaine's actions in Book Two are tinged with both hope and despair.
+                  His enigmatic nature deepens as he strives to protect those he cares about, even as he grapples with the darkness within him.
+                </p>
+              </details>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Aeryn's Main Character Card (Book 2) -->
+      <div class="character-card book2" onclick="openCharacterOverlay('aeryn2-overlay')">
+        <img src="assets/images/characters/Aeryn/Aeryn.jpg" alt="Aeryn">
+        <h3>Aeryn</h3>
+        <p class="short-description">
+          A fierce survivor, trapped between loyalty and her own past.
+        </p>
+      </div>
+  
+      <!-- Aeryn's Full Bio Overlay for Book 2 -->
+      <div class="character-overlay" id="aeryn2-overlay">
+        <div class="overlay-content">
+          <button class="close-overlay" onclick="closeCharacterOverlay('aeryn2-overlay')">&times;</button>
+          <div class="overlay-header">
+            <h2>Aeryn</h2>
+            <h6>Otherwise Known As</h6>
+            <p>Elspeth Mary (formerly)</p>
+          </div>
+          <div class="overlay-intro">
+            <img src="assets/images/characters/Aeryn/Aeryn.jpg" alt="Aeryn">
+            <ul class="character-traits">
+              <li><span class="trait">Resilient</span></li>
+              <li><span class="trait">Haunted</span></li>
+              <li><span class="trait">Loyal</span></li>
+              <li><span class="trait">Fiercely Independent</span></li>
+              <li><span class="trait">Secretive</span></li>
+              <li><span class="trait">Emotionally Guarded</span></li>
+            </ul>
+          </div>
+          <!-- Expandable Sections for Aeryn -->
+          <div class="expandable-sections">
+            <div class="expandable-sections-container">
+              <details>
+                <summary><strong>Overview</strong></summary>
+                <p>
+                  Aeryn is a Vampyr bound by pain, loyalty, and a past she cannot escape. She was turned in 1888 but has never fully given in to the darkness within her.
+                  Though she stands by Eden, she begins to question her place in the war that looms ahead.
+                </p>
+              </details>
+              <details>
+                <summary><strong>Her Captivity & Torture</strong></summary>
+                <p>
+                  When <em>Wisdom</em> begins, Aeryn is a prisoner of <strong>The Master</strong>. Subjected to physical and psychological torment, 
+                  she is kept in absolute darkness, where time and reality blur. The Master intends to break her spirit, but Aeryn clings to her will to survive.
+                </p>
+              </details>
+              <details>
+                <summary><strong>Her Escape & Mischa's Role</strong></summary>
+                <p>
+                  Aeryn's escape comes through <strong>Mischa</strong>, a mysterious and seemingly unhinged figure with extraordinary Magickal abilities.
+                  Mischa not only releases her from captivity but also protects her from Werewolves as they flee.
+                </p>
+              </details>
+              <details>
+                <summary><strong>The High Order & Hailzy the White</strong></summary>
+                <p>
+                  Seeking refuge, Aeryn finds herself entangled with <strong>Hailzy the White</strong> and the <strong>High Order</strong>, a powerful Witch faction.
+                  Though they offer protection, Aeryn senses ulterior motives. As tensions rise, Hailzy interrogates Sophie and threatens Aeryn with her Magick.
+                </p>
+              </details>
+            </div>
+            <!-- Spoiler Sections for Aeryn -->
+            <h2 class="spoiler-heading">⚠ Spoilers</h2>
+            <div class="spoiler-sections">
+              <details>
+                <summary><strong>Relationship with Eden</strong></summary>
+                <p>
+                  After a hunt, Aeryn mistakenly attacks Eden, thinking he is human. He overpowers her easily, but instead of being angry, she laughs—showing that she isn’t afraid of him.
+                </p>
+                <p>
+                  Their tension quickly shifts into something else, and they end up sleeping together. This is the first and only time in Book One that Eden shows a romantic or sexual connection with anyone.
+                </p>
+                <p>
+                  However, Eden immediately regrets it, further highlighting his inner conflict over his emotions.
+                </p>
+              </details>
+              <details>
+                <summary><strong>A Growing Threat</strong></summary>
+                <p>
+                  Aeryn discovers Faye’s corpse, realizing that a power shift is coming.
+                  With The Master tightening his grip and the prophecy unfolding, Aeryn is forced to reconsider her loyalties.
+                </p>
+              </details>
+              <details>
+                <summary><strong>A New Purpose</strong></summary>
+                <p>
+                  By the end of <em>Wisdom</em>, Aeryn is no longer just Eden’s ally—she is a force of her own.
+                  Her suffering and survival have changed her, and she must now decide whether to remain in Eden’s shadow or forge her own destiny.
+                </p>
+              </details>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="section-title">
+        <h2>Famnily</h2>
+      </div>
+    
+      <!-- Jean's Main Character Card (Book 2) -->
+      <div class="character-card book2" onclick="openCharacterOverlay('jean2-overlay')">
+        <img src="assets/images/characters/Jean/JeanMunday.webp" alt="Jean">
+        <h3>Jean Munday</h3>
+        <p class="short-description">
+          A mother bound by love, secrets, and the past she tried to forget.
+        </p>
+      </div>
+    
+      <!-- Jean's Full Bio Overlay -->
+      <div class="character-overlay" id="jean2-overlay">
+        <div class="overlay-content">
+          <button class="close-overlay" onclick="closeCharacterOverlay('jean2-overlay')">&times;</button>
+          <div class="overlay-header">
+            <h2>Jean Munday</h2>
+            <h6>Otherwise Known As</h6>
+            <p>Jean Amelia Munday</p>
+          </div>
+          <div class="overlay-intro">
+            <img src="assets/images/characters/Jean/JeanMunday.webp" alt="Jean">
+            <ul class="character-traits">
+              <li><span class="trait">Protective</span></li>
+              <li><span class="trait">Determined</span></li>
+              <li><span class="trait">Haunted</span></li>
+              <li><span class="trait">Resilient</span></li>
+              <li><span class="trait">Secretive</span></li>
+              <li><span class="trait">Struggling with Destiny</span></li>
+            </ul>
+          </div>
+          <!-- Expandable Sections for Jean -->
+          <div class="expandable-sections">
+            <div class="expandable-sections-container">
+              <details>
+                <summary><strong>Character Overview</strong></summary>
+                <p>
+                  Jean is a mother torn between love and fear. She spent her life hiding Sophie from the Night World,
+                  desperate to protect her from the dark fate written in blood and prophecy. But in <em>Wisdom</em>,
+                  Jean must face her past and embrace the power she swore never to use.
+                </p>
+              </details>
+              <details>
+                <summary><strong>Her Hidden Lineage & Shocking Discovery</strong></summary>
+                <p>
+                  Jean was raised as an ordinary girl, but her father <strong>Alexander Munday</strong> revealed the truth on his deathbed:
+                  - <strong>Jean is half-Witch</strong>, the daughter of a powerful, unknown mother.
+                  - Her latent magic has always been there—controlling the weather, influencing fate—but she suppressed it.
+                  - She vowed never to use magic, believing it would only lead to pain.
+                </p>
+              </details>
+              <details>
+                <summary><strong>Her Search for Sophie</strong></summary>
+                <p>
+                  When Sophie vanishes, Jean is forced to step into the world she feared most.
+                  She follows a mystical astral line—a connection between mother and daughter—leading her into London’s underground lairs.
+                  There, she discovers that Sophie has changed, her aura no longer purely human.
+                </p>
+              </details>
+              <details>
+                <summary><strong>Breaking Her Vows & Using Magic</strong></summary>
+                <p>
+                  With no other choice, Jean turns to her father’s spellbook, unlocking powers she had long denied.
+                  She calls upon the old magic to track Sophie, facing creatures she never believed in.
+                  But the more she uses magic, the more she risks losing herself to the power she once feared.
+                </p>
+              </details>
+            </div>
+    
+            <!-- Spoiler Sections for Jean -->
+            <h2 class="spoiler-heading">⚠ Spoilers</h2>
+            <div class="spoiler-sections">
+              <details>
+                <summary><strong>The Truth About Sophie’s Fate</strong></summary>
+                <p>
+                  Jean’s worst fears are confirmed—Sophie is at the heart of an ancient prophecy,
+                  one that could destroy the Night World or change it forever.
+                  Her blood is the key to an apocalyptic war.
+                </p>
+              </details>
+              <details>
+                <summary><strong>A Terrible Bargain</strong></summary>
+                <p>
+                  To find Sophie, Jean is forced to bargain with the High Order, a faction of powerful Witches.
+                  In return for their help, they demand something in exchange—her loyalty, her freedom, or something even worse.
+                </p>
+              </details>
+              <details>
+                <summary><strong>Embracing Her Power</strong></summary>
+                <p>
+                  By the end of <em>Wisdom</em>, Jean is no longer just Sophie’s mother—she is a Witch in her own right.
+                  The magic she once feared is now her weapon, but whether it will save Sophie or destroy them both remains unknown.
+                </p>
+              </details>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <!-- New Characters Section Title -->
+      <div class="section-title">
+        <h3>Antagonists</h3>
+      </div>
+    
+      <!-- The Master's Character Card (Book 2 Update) -->
+      <div class="character-card book2" onclick="openCharacterOverlay('master2-overlay')">
+        <img src="assets/images/characters/TheMaster/TheMaster.webp" alt="The Master">
+        <h3>The Master</h3>
+        <p class="short-description">
+          A tyrant of the Night World, his grip on power is slipping, but his thirst for control is unrelenting.
+        </p>
+      </div>
+    
+      <!-- The Master's Full Bio Overlay for Book 2 (Single version) -->
+      <div class="character-overlay" id="master2-overlay">
+        <div class="overlay-content">
+          <button class="close-overlay" onclick="closeCharacterOverlay('master2-overlay')">&times;</button>
+          <div class="overlay-header">
+            <h2>The Master – Book Two Update</h2>
+          </div>
+          <div class="overlay-intro">
+            <img src="assets/images/characters/TheMaster/TheMaster.webp" alt="The Master">
+            <ul class="character-traits">
+              <li><span class="trait">Ancient & Cunning</span></li>
+              <li><span class="trait">Ruthless</span></li>
+              <li><span class="trait">Master Manipulator</span></li>
+              <li><span class="trait">Obsessed with Power</span></li>
+              <li><span class="trait">Feared by All</span></li>
+            </ul>
+          </div>
+          <!-- Expandable Sections for The Master -->
+          <div class="expandable-sections">
+            <div class="expandable-sections-container">
+              <details>
+                <summary><strong>The Unraveling</strong></summary>
+                <p>
+                  Once an untouchable force in the Night World, The Master finds himself at a turning point.
+                  Whispers of rebellion stir beneath him, and even his most loyal subjects begin to question his rule.
+                </p>
+              </details>
+              <details>
+                <summary><strong>Hunger for Control</strong></summary>
+                <p>
+                  Despite his fading influence, The Master refuses to accept decline.
+                  He seeks out new allies and strengthens his grip on ancient magick to ensure his reign continues—no matter the cost.
+                </p>
+              </details>
+            </div>
+            <h2 class="spoiler-heading">⚠ Spoilers</h2>
+            <div class="spoiler-sections">
+              <details>
+                <summary><strong>☠ The Prophecy & Sophie</strong></summary>
+                <p>
+                  The Master confirms his long-standing suspicions: Sophie’s bloodline is tied to the prophecy that could end or reshape the Night World.
+                  His plans shift—she must either be controlled or destroyed.
+                </p>
+              </details>
+              <details>
+                <summary><strong>☠ A Dangerous Betrayal</strong></summary>
+                <p>
+                  As his empire crumbles, The Master faces unexpected betrayal from within his own ranks.
+                  His desperation forces him to make a brutal decision—one that will forever alter the balance of power.
+                </p>
+              </details>
+              <details>
+                <summary><strong>☠ A Final Gambit</strong></summary>
+                <p>
+                  With time running out, The Master devises one last, unthinkable act to reclaim his place at the top.
+                  But will his past mistakes come back to haunt him before he can see it through?
+                </p>
+              </details>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <!-- Faye's Main Character Card (Book 2) -->
+      <div class="character-card book2" onclick="openCharacterOverlay('faye-overlay')">
+        <img src="assets/images/characters/Faye/faye.webp" alt="Faye">
+        <h3>Faye</h3>
+        <p class="short-description">
+          The seductive and deadly queen of her own Vampyr empire.
+        </p>
+      </div>
         
-        
-    </main>
+      <!-- Faye's Full Bio Overlay -->
+      <div class="character-overlay" id="faye-overlay">
+        <div class="overlay-content">
+          <button class="close-overlay" onclick="closeCharacterOverlay('faye-overlay')">&times;</button>
+          <div class="overlay-header">
+            <h2>Faye</h2>
+            <h6>Otherwise Known As</h6>
+            <p>Faybeth</p>
+          </div>
+          <div class="overlay-intro">
+            <img src="assets/images/characters/Faye/faye.webp" alt="Faye">
+            <ul class="character-traits">
+              <li><span class="trait">Enigmatic</span></li>
+              <li><span class="trait">Intelligent</span></li>
+              <li><span class="trait">Ruthless</span></li>
+              <li><span class="trait">Charismatic</span></li>
+              <li><span class="trait">Manipulative</span></li>
+              <li><span class="trait">Dominant</span></li>
+            </ul>
+          </div>
+          <!-- Expandable Sections for Faye -->
+          <div class="expandable-sections">
+            <div class="expandable-sections-container">
+              <details>
+                <summary><strong>Character Overview</strong></summary>
+                <p>
+                  Faye, originally known as Faybeth, is the commanding leader of a thousand Vampyrs.
+                  Turned at fourteen, she maintains a youthful appearance that deceives many into underestimating her.
+                  She is intelligent, strategic, and fiercely independent, seeing relationships as power plays rather than emotional connections.
+                </p>
+              </details>
+              <details>
+                <summary><strong>Her Rise to Power</strong></summary>
+                <p>
+                  Faye was turned into a Vampyr at a young age, but instead of succumbing to fear, she quickly adapted,
+                  learning to control those around her. Her cunning nature and ability to manipulate made her an ideal leader.
+                  She built an empire of loyal followers, ensuring their dependence by feeding them blood laced with heroin.
+                </p>
+              </details>
+              <details>
+                <summary><strong>Her Rule & Philosophy</strong></summary>
+                <p>
+                  Faye sees weakness as an unforgivable flaw. She commands absolute loyalty and has no patience for betrayal.
+                  To her, power is everything, and she will go to any lengths to maintain control over those beneath her.
+                </p>
+              </details>
+            </div>
+            <!-- Spoiler Sections for Faye -->
+            <h2 class="spoiler-heading">⚠ Spoilers</h2>
+            <div class="spoiler-sections">
+              <details>
+                <summary><strong>Her Conflict with Sophie</strong></summary>
+                <p>
+                  Faye sees Sophie as a threat when she realizes her connection to Eden and the prophecy.
+                  She immediately calculates the risk and decides that Sophie must be eliminated before she can fulfill her destiny.
+                </p>
+              </details>
+              <details>
+                <summary><strong>Her Downfall</strong></summary>
+                <p>
+                  Despite her immense power, Faye is ultimately betrayed. When Blaine, once devoted to her, turns against her to protect Sophie,
+                  they engage in a vicious battle. Though she nearly kills him, Blaine overpowers her and drains her of blood.
+                  As she weakens, she warns them that Sophie will bring destruction before Blaine personally breaks her neck.
+                </p>
+              </details>
+              <details>
+                <summary><strong>Her Legacy</strong></summary>
+                <p>
+                  With her death, her empire collapses, leaving a dangerous power vacuum. The Master sees an opportunity to seize control,
+                  and the events that follow alter the course of the Night World forever.
+                  Though she ruled through manipulation and addiction, she remains one of the most feared and respected figures in Vampyr history.
+                </p>
+              </details>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="section-title">
+        <h2>The Witches</h2>
+      </div>
+    
+      <!-- Mischa's Main Character Card (Book 2) -->
+      <div class="character-card book2" onclick="openCharacterOverlay('mischa-overlay')">
+        <img src="assets/images/characters/Mischa/mischa.webp" alt="Mischa">
+        <h3>Mischa</h3>
+        <p class="short-description">
+          The enigmatic and unpredictable outcast, wielding magic beyond comprehension.
+        </p>
+      </div>
+    
+      <!-- Mischa's Full Bio Overlay -->
+      <div class="character-overlay" id="mischa-overlay">
+        <div class="overlay-content">
+          <button class="close-overlay" onclick="closeCharacterOverlay('mischa-overlay')">&times;</button>
+          <div class="overlay-header">
+            <h2>Mischa</h2>
+            <h6>Otherwise Known As</h6>
+            <p>"The Unfathomable Witch"</p>
+          </div>
+          <div class="overlay-intro">
+            <img src="assets/images/characters/Mischa/mischa.webp" alt="Mischa">
+            <ul class="character-traits">
+              <li><span class="trait">Mysterious</span></li>
+              <li><span class="trait">Powerful</span></li>
+              <li><span class="trait">Detached</span></li>
+              <li><span class="trait">Unpredictable</span></li>
+              <li><span class="trait">Outcast</span></li>
+              <li><span class="trait">Loyal in her own way</span></li>
+            </ul>
+          </div>
+          <!-- Expandable Sections for Mischa -->
+          <div class="expandable-sections">
+            <div class="expandable-sections-container">
+              <details>
+                <summary><strong>Character Overview</strong></summary>
+                <p>
+                  Mischa is a witch of immense power, feared even by her own kind. Though she is loosely affiliated with a coven, she is considered an outcast due to the sheer magnitude of her abilities. Her speech is often fragmented, but those who spend time with her find her words slowly becoming clearer—as if reality itself bends around her.
+                </p>
+              </details>
+              <details>
+                <summary><strong>Her Connection to the Witches</strong></summary>
+                <p>
+                  Though part of a coven, Mischa is kept at arm's length. The other witches view her with suspicion and fear, knowing that if she ever turned against them, she could <span class="emphasis">annihilate their entire order</span>. It is whispered that she stays with them <span class="emphasis">not out of loyalty, but because it amuses her</span>.
+                </p>
+              </details>
+              <details>
+                <summary><strong>Her Unique Abilities</strong></summary>
+                <p>
+                  Mischa’s magic is unlike that of any other witch. She does not rely on rituals or spells in the conventional sense. Instead, reality itself seems to shift in response to her desires. Her abilities include:
+                </p>
+                <ul>
+                  <li><span class="emphasis">Perception Warping:</span> People around her begin to hear her words more clearly over time, as if <span class="emphasis">the world itself adjusts to accommodate her presence</span>.</li>
+                  <li><span class="emphasis">Vanishing & Appearing:</span> She moves <span class="emphasis">without sound</span>, appearing and disappearing at will.</li>
+                  <li><span class="emphasis">Unknowable Knowledge:</span> She seems to <span class="emphasis">know things she should not</span>—as if she can see past, present, and future all at once.</li>
+                </ul>
+              </details>
+            </div>
+            <!-- Spoiler Sections for Mischa -->
+            <h2 class="spoiler-heading">⚠ Spoilers</h2>
+            <div class="spoiler-sections">
+              <details>
+                <summary><strong>Her Connection to Aeryn</strong></summary>
+                <p>
+                  Mischa rescues Aeryn from imprisonment, offering her new clothes and safe passage. Though Aeryn is initially wary, Mischa <span class="emphasis">proves both unpredictable and invaluable</span>. It is unclear whether Mischa acts out of kindness or if she simply <span class="emphasis">enjoys playing with fate</span>.
+                </p>
+              </details>
+              <details>
+                <summary><strong>The Secret She Knows</strong></summary>
+                <p>
+                  Mischa speaks cryptically about an event <span class="emphasis">that has not yet happened</span>. When confronted, she simply says: "It will. You will see." Her words hint at an approaching disaster, yet she seems neither eager nor afraid—it is as if she exists <span class="emphasis">outside the consequences</span> of time.
+                </p>
+              </details>
+              <details>
+                <summary><strong>Her True Purpose</strong></summary>
+                <p>
+                  Near the end of Book 2, Mischa <span class="emphasis">vanishes without a trace</span>, leaving behind only a single, cryptic message. The meaning of her departure remains <span class="emphasis">one of the greatest mysteries</span> in the story—was she simply a traveler through time and space, or was she guiding events toward an inevitable conclusion?
+                </p>
+              </details>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <!-- Hailzy the White Character Card (Book 2 Update) -->
+      <div class="character-card book2" onclick="openCharacterOverlay('hailzy2-overlay')">
+        <img src="assets/images/characters/Hailzy/hailzy.webp" alt="Hailzy the White">
+        <h3>Hailzy the White</h3>
+        <p class="short-description">
+          The enigmatic and formidable leader of the High Order of Witches, commanding power that even the Night World fears.
+        </p>
+      </div>
+    
+      <!-- Hailzy's Full Bio Overlay for Book 2 (Single version) -->
+      <div class="character-overlay" id="hailzy2-overlay">
+        <div class="overlay-content">
+          <button class="close-overlay" onclick="closeCharacterOverlay('hailzy2-overlay')">&times;</button>
+          <div class="overlay-header">
+            <h2>Hailzy the White – Book Two Update</h2>
+          </div>
+          <div class="overlay-intro">
+            <img src="assets/images/characters/Hailzy/hailzy.webp" alt="Hailzy the White">
+            <ul class="character-traits">
+              <li><span class="trait">Commanding & Unpredictable</span></li>
+              <li><span class="trait">Master of Elemental Magic</span></li>
+              <li><span class="trait">Mentally Overpowering</span></li>
+              <li><span class="trait">Respected & Feared</span></li>
+              <li><span class="trait">Knows More Than She Lets On</span></li>
+            </ul>
+          </div>
+          <!-- Expandable Sections for Hailzy -->
+          <div class="expandable-sections">
+            <div class="expandable-sections-container">
+              <details>
+                <summary><strong>Leader of the High Order</strong></summary>
+                <p>
+                  As head of the High Order of Witches, Hailzy commands immense power. Her methods are unconventional, her decisions ruthless, and her goals often shrouded in mystery.
+                </p>
+              </details>
+              <details>
+                <summary><strong>A Force of Nature</strong></summary>
+                <p>
+                  When Hailzy loses her temper, the very air around her crackles with energy. She can summon devastating electrical storms, set fire to her surroundings with a thought, and shatter minds with psychic force.
+                </p>
+              </details>
+            </div>
+            <h2 class="spoiler-heading">⚠ Spoilers</h2>
+            <div class="spoiler-sections">
+              <details>
+                <summary><strong>☠ Sophie & The Prophecy</strong></summary>
+                <p>
+                  Hailzy has long known more about Sophie’s role in the prophecy than she has ever admitted. She does not fear Sophie—but she knows that if the prophecy is fulfilled, even witches may not be safe.
+                </p>
+              </details>
+              <details>
+                <summary><strong>☠ The Confrontation</strong></summary>
+                <p>
+                  When Sophie refuses to submit to her authority, Hailzy’s rage boils over, nearly triggering a magical catastrophe. Only at the last moment does she regain control—perhaps realizing Sophie is too important to destroy.
+                </p>
+              </details>
+              <details>
+                <summary><strong>☠ A Calculated Move</strong></summary>
+                <p>
+                  Though outwardly hostile, Hailzy’s true motives remain unclear. Does she seek to protect Sophie, use her, or destroy her? Only time will tell which path she chooses.
+                </p>
+              </details>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="section-title">
+        <h2>Supporting Characters</h2>
+      </div>
+    
+      <!-- Murwill Character Card -->
+      <div class="character-card" onclick="openCharacterOverlay('murwill-overlay')">
+        <img src="assets/images/characters/Murwill/murwill.webp" alt="Murwill">
+        <h3>Murwill</h3>
+        <p class="short-description">
+          A distinguished member of the High Order of Witches, known for her wisdom and composed demeanor.
+        </p>
+      </div>
+    
+      <!-- Murwill's Full Bio Overlay -->
+      <div class="character-overlay" id="murwill-overlay">
+        <div class="overlay-content">
+          <button class="close-overlay" onclick="closeCharacterOverlay('murwill-overlay')">&times;</button>
+          <div class="overlay-header">
+            <h2>Murwill</h2>
+          </div>
+          <div class="overlay-intro">
+            <img src="assets/images/characters/Murwill/murwill.webp" alt="Murwill">
+            <ul class="character-traits">
+              <li><span class="trait">Respected High Order Witch</span></li>
+              <li><span class="trait">Practitioner of Ancient Magick</span></li>
+              <li><span class="trait">Wise and Observant</span></li>
+            </ul>
+          </div>
+          <div class="expandable-sections">
+            <details>
+              <summary><strong>Character Overview</strong></summary>
+              <p>
+                Murwill is a prominent member of the <span class="emphasis">High Order of Witches</span>, standing alongside 
+                <span class="emphasis">Hailzy the White</span> and <span class="emphasis">Bronwyn</span>.
+                She is a skilled practitioner of magick and plays an important role in guiding the Order's decisions.
+              </p>
+            </details>
+            <details>
+              <summary><strong>Appearance & Personality</strong></summary>
+              <p>
+                Murwill is described as a <span class="emphasis">tall and slim</span> witch with <span class="emphasis">long golden hair</span>.
+                She has a warm and <span class="emphasis">kind demeanor</span>, often smiling and presenting a calming presence.
+                Unlike the more assertive <span class="emphasis">Hailzy</span>, Murwill exudes a <span class="emphasis">quiet authority</span>,
+                choosing her words carefully.
+              </p>
+            </details>
+            <details>
+              <summary><strong>Abilities & Role</strong></summary>
+              <p>
+                As a member of the <span class="emphasis">High Order</span>, Murwill is an expert in <span class="emphasis">ancient magick</span> 
+                and ritual work. She is particularly adept at <span class="emphasis">protective spells and enchantments</span>.
+                While <span class="emphasis">Hailzy</span> is the leader of the Order, Murwill acts as an <span class="emphasis">advisor and trusted ally</span>, 
+                ensuring balance in their decisions.
+              </p>
+            </details>
+            <details>
+              <summary><strong>Notable Appearances</strong></summary>
+              <p>
+                Murwill is first introduced when <span class="emphasis">Aeryn</span> meets the High Order of Witches.
+                She plays an active role in the discussions regarding <span class="emphasis">Aeryn</span> and <span class="emphasis">the prophecy</span>,
+                often exchanging quiet words with <span class="emphasis">Hailzy</span>.
+                Her presence signifies the <span class="emphasis">importance of wisdom and stability</span> in the Order's actions.
+              </p>
+            </details>
+          </div>
+        </div>
+    </div>
+    
+      <!-- Bronwyn Character Card -->
+      <div class="character-card" onclick="openCharacterOverlay('bronwyn-overlay')">
+        <img src="assets/images/characters/Bronwyn/bronwyn.webp" alt="Bronwyn">
+        <h3>Bronwyn</h3>
+        <p class="short-description">
+          A high-ranking member of the High Order of Witches, known for her wisdom and quiet strength.
+        </p>
+      </div>
+    
+      <!-- Bronwyn's Full Bio Overlay -->
+      <div class="character-overlay" id="bronwyn-overlay">
+        <div class="overlay-content">
+          <button class="close-overlay" onclick="closeCharacterOverlay('bronwyn-overlay')">&times;</button>
+          <div class="overlay-header">
+            <h2>Bronwyn</h2>
+          </div>
+          <div class="overlay-intro">
+            <img src="assets/images/characters/Bronwyn/bronwyn.webp" alt="Bronwyn">
+            <ul class="character-traits">
+              <li><span class="trait">Respected High Order Witch</span></li>
+              <li><span class="trait">Practitioner of Ancient Magick</span></li>
+              <li><span class="trait">Wise and Kind-Hearted</span></li>
+            </ul>
+          </div>
+          <div class="expandable-sections">
+            <details>
+              <summary><strong>Character Overview</strong></summary>
+              <p>
+                Bronwyn is a high-ranking member of the High Order of Witches, serving alongside Hailzy the White and Murwill.
+                She is known for her wisdom and quiet strength, often acting as a trusted advisor.
+              </p>
+            </details>
+            <details>
+              <summary><strong>Appearance & Personality</strong></summary>
+              <p>
+                Bronwyn is described as the larger of the two witches who accompany Hailzy.
+                She has a kindly demeanor but carries an air of quiet authority, making her a figure of respect within the Order.
+              </p>
+            </details>
+            <details>
+              <summary><strong>Abilities & Role</strong></summary>
+              <p>
+                As a practitioner of ancient magick, Bronwyn wields considerable power and knowledge.
+                She follows Hailzy’s leadership but plays an influential role in the Order’s decisions.
+              </p>
+            </details>
+            <details>
+              <summary><strong>Notable Appearances</strong></summary>
+              <p>
+                Bronwyn is first introduced alongside Murwill when Aeryn meets the High Order of Witches.
+                She later plays a role in key discussions, whispering counsel to Hailzy and observing crucial moments in the story.
+              </p>
+            </details>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  
+</main>
 
     <!-- Character Overlay (Hidden initially) -->
     <div id="character-overlay" class="character-overlay">
@@ -222,5 +1681,7 @@
 
     <script src="assets/js/chatbot.js"></script>
     <script src="assets/js/characters.js"></script>
+    
+
 </body>
 </html>

@@ -163,3 +163,32 @@ footer {
     bottom: 0;
     width: 100%;
 }
+
+/* Style for the scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+/* Scrollbar track */
+::-webkit-scrollbar-track {
+    background: #1a1a1a; /* Dark track */
+    border-radius: 10px;
+}
+
+/* Scrollbar thumb */
+::-webkit-scrollbar-thumb {
+    background: #7b0202; /* Slightly lighter red to match the theme */
+    border-radius: 10px;
+}
+
+/* Scrollbar thumb on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #ff4444; /* Lighter red when hovered */
+}
+
+/* Optional: style scrollbar for horizontal scrolling */
+::-webkit-scrollbar-horizontal {
+    height: 8px;
+}
+

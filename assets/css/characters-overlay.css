@@ -1,0 +1,232 @@
+/* ================== Full-Page Overlay ================== */
+.character-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9); 
+    display: none; /* Ensures it does not appear by default */
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+    z-index: 1000;
+}
+
+/* Show Overlay When Active */
+.character-overlay.visible {
+    display: flex;
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Overlay Content Box */
+.overlay-content {
+    background: rgba(20, 20, 20, 0.95);
+    padding: 40px;
+    max-width: 90vw;
+    width: 95%;
+    border-radius: 10px;
+    text-align: center;
+    border: 2px solid #7b0202;
+    box-shadow: 0px 0px 20px rgba(139, 0, 0, 0.7);
+    overflow-y: auto;
+    max-height: 90vh;
+    position: relative;
+}
+
+/* Centered Header Above Image & Traits */
+.overlay-header {
+    text-align: center;
+    font-size: 2em;
+    color: #c5c5c5;
+    margin-bottom: 10px;
+}
+
+/* Flexbox for Image & Traits - Ensuring Proper Layout */
+.overlay-intro {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Character Image Inside Overlay */
+.overlay-intro img {
+    width: 180px;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 5px;
+    border: 2px solid #7b0202;
+}
+
+/* Centered Character Traits */
+.character-traits {
+    list-style: none;
+    padding: 0;
+    text-align: left;
+    margin: 0;
+}
+
+/* Section Title Styling */
+.section-title {
+    width: 100%;
+    text-align: center;
+    font-size: 2em;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #c5c5c5;
+    margin: 30px 0;
+    border-bottom: 2px solid #7b0202;
+    padding-bottom: 10px;
+}
+
+/* Character Traits Styling */
+.character-traits li {
+    font-size: 1em;
+    color: #c5c5c5;
+    margin-bottom: 5px;
+}
+
+/* Trait Bullet Points */
+.character-traits li::before {
+    content: "❖";
+    color: #7b0202;
+    font-size: 1.2em;
+    margin-right: 8px;
+}
+
+/* Close Button */
+.close-overlay {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 2em;
+    color: #d62727;
+    cursor: pointer;
+}
+
+
+/* ================== Expandable Sections Grid ================== */
+.expandable-sections {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    max-width: 800px;
+    margin: 20px auto;
+}
+
+/* Two-column grid for main sections */
+.expandable-sections-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    justify-content: center;
+    justify-items: center; /* Centers the buttons */
+    width: 100%;
+}
+
+/* Ensuring odd button is centered below the others */
+.expandable-sections-container details:nth-child(odd):last-child {
+    grid-column: span 2;
+    justify-self: center;
+}
+
+/* Base style for buttons */
+.expandable-sections details {
+    background: rgba(30, 30, 30, 0.9);
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #7b0202;
+    cursor: pointer;
+    text-align: center;
+    min-width: 250px;
+    max-width: 350px;
+    transition: all 0.3s ease-in-out;
+}
+
+/* When expanded, keep it centered without shifting */
+.expandable-sections details[open] {
+    position: fixed; /* Keeps it fixed in place instead of shifting */
+    z-index: 1000;
+    background: rgba(20, 20, 20, 0.98);
+    width: 600px;
+    max-width: 90vw;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) scale(1); /* Ensures no unexpected shift */
+    box-shadow: 0px 0px 15px rgba(139, 0, 0, 0.6);
+    padding: 20px;
+    border-radius: 10px;
+    transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
+    opacity: 1;
+}
+
+/* "⚠ Spoilers" heading is always on a new line below the main buttons */
+.spoiler-heading {
+    width: 100%;
+    text-align: center;
+    font-size: 1.2em;
+    color: #ff4444;
+    margin-top: 20px; /* Space from last details section */
+    margin-bottom: 10px;
+}
+
+/* Two-column grid for Spoilers section */
+.spoiler-sections {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    justify-content: center;
+    justify-items: center; /* Centers the buttons */
+    width: 100%;
+}
+
+/* Ensuring odd Spoiler button is centered below the others */
+.spoiler-sections details:nth-child(odd):last-child {
+    grid-column: span 2;
+    justify-self: center;
+}
+
+/* Responsive Design: Adjust for Mobile */
+@media (max-width: 768px) {
+    /* Stack buttons in a single column on mobile */
+    .expandable-sections-container,
+    .spoiler-sections {
+        grid-template-columns: 1fr;
+    }
+
+    .expandable-sections details,
+    .spoiler-sections details {
+        width: 100%;
+        max-width: 350px;
+    }
+
+    /* Adjust layout for mobile, reducing the padding and font size for better visibility */
+    .expandable-sections details summary,
+    .spoiler-sections details summary {
+        font-size: 1em;
+        padding: 8px;
+    }
+}
+
+/* Section Title Styling */
+.section-title {
+    width: 100%;
+    text-align: center;
+    font-size: 2em;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #c5c5c5;
+    margin: 30px 0;
+    border-bottom: 2px solid #7b0202;
+    padding-bottom: 10px;
+}

@@ -33,6 +33,18 @@
     max-width: 80%;
 }
 
+/* Custom Styling for Book 2 Section */
+#book-2 {
+    background-color: rgba(255, 0, 0, 0.15); /* Light red background */
+    color: #c5c5c5; /* Ensure the text remains readable */
+    border: 2px solid #ff4444; /* Red border to match the background */
+}
+
+#book-2 h2 {
+    font-size: 2.2em; /* Increase font size for Book 2 */
+    letter-spacing: 3px; /* Adds some spacing between letters */
+}
+
 /* Section Title Styling */
 .section-title {
     width: 100%;
@@ -75,8 +87,8 @@
 
 /* Character Image */
 .character-card img {
-    width: 180px;
-    height: 180px;
+    width: 280px;
+    height: 280px;
     object-fit: cover;
     border-radius: 5px;
     border: 2px solid #7b0202;
@@ -95,22 +107,19 @@
 /* Character Description */
 .character-card p {
     font-size: 1.1em;
-    color: #a30000;
+    color: #c8c7c7;
     margin-top: 5px;
 }
 
-/* Character Traits List */
+/* Centered Character Traits */
 .character-traits {
     list-style: none;
     padding: 0;
     text-align: left;
-    max-width: 80%;
-    margin: 0 auto;
+    margin: 0;
 }
 
 .character-traits li {
-    display: flex;
-    align-items: center;
     font-size: 1em;
     color: #c5c5c5;
     margin-bottom: 5px;
@@ -123,105 +132,13 @@
     margin-right: 8px;
 }
 
-/* ================== Full-Page Overlay ================== */
-.character-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.9); 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
-    z-index: 1000;
+/* Custom Styling for Book 2 Character Cards */
+#book-2 .character-card {
+    background-color: rgba(0, 0, 0, 0.85); /* Slightly darker background for Book 2 cards */
+    border: 2px solid #ff4444; /* Custom border for Book 2 characters */
 }
 
-.character-overlay.visible {
-    opacity: 1;
-    visibility: visible;
-}
-
-/* Overlay Content Box */
-.overlay-content {
-    background: rgba(20, 20, 20, 0.95);
-    padding: 40px;
-    max-width: 90vw;
-    width: 90%;
-    border-radius: 10px;
-    text-align: center;
-    border: 2px solid #7b0202;
-    box-shadow: 0px 0px 20px rgba(139, 0, 0, 0.7);
-    overflow-y: auto;
-    max-height: 90vh; 
-    position: relative;
-}
-
-/* Make the full text readable */
-.overlay-content p {
-    color: #c5c5c5; 
-    font-size: 1.2em; 
-    line-height: 1.6; 
-    margin-top: 10px;
-}
-
-/* Overlay Character Image */
-.overlay-content img {
-    width: 200px; 
-    height: 180px;
-    object-fit: cover;
-    border-radius: 5px;
-    border: 2px solid #7b0202;
-    display: block;
-    margin: 0 auto 10px;
-}
-
-/* Close Button */
-.close-overlay {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    background: none;
-    border: none;
-    font-size: 2em;
-    color: #d62727;
-    cursor: pointer;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    .characters-container {
-        padding: 15px;
-    }
-
-    .characters-container h1 {
-        font-size: 2em;
-    }
-
-    .book-section {
-        font-size: 1.8em;
-        max-width: 90%;
-    }
-
-    .character-card {
-        padding: 15px;
-        width: 90%;
-    }
-
-    .character-card h3 {
-        font-size: 1.4em;
-    }
-
-    .character-traits li {
-        font-size: 0.9em;
-    }
-
-    .overlay-content {
-        max-width: 95vw; 
-        max-height: 95vh; 
-        padding: 20px; 
-    }
+#book-2 .character-card h3 {
+    font-size: 1.6em; /* Slightly larger text for Book 2 */
+    color: #ff4444; /* Red text for Book 2 */
 }
