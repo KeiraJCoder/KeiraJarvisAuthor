@@ -10,16 +10,17 @@
     width: 400px;
     height: 600px;
     padding: 20px;
-    background-color: rgba(20, 20, 20, 0.95); /* Dark, semi-transparent background */
-    border: 2px solid #8b0000; /* Deep red border for gothic theme */
-    border-radius: 12px; /* Slightly rounded edges */
-    font-family: 'Cinzel', serif; /* More fantasy-like font */
+    background-color: rgba(20, 20, 20, 0.95);
+    border: 2px solid #8b0000;
+    border-radius: 12px;
+    font-family: 'Cinzel', serif;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
     display: none;
-    z-index: 9999;
+    z-index: 99999 !important; /* Ensure it stays above everything */
     display: flex;
     flex-direction: column;
 }
+
 
 /* Header */
 #chatbot h2 {
@@ -137,7 +138,9 @@
     cursor: pointer;
     font-family: 'Cinzel Decorative', serif;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+    z-index: 10000; /* Add this line */
 }
+
 
 #open-chatbot:hover {
     background: linear-gradient(45deg, #6a0c0c, #a00000);
