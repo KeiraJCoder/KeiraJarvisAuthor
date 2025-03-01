@@ -24,6 +24,17 @@
     </header>
 
     <main>
+        <!-- Custom Spoiler Warning Modal -->
+<div id="spoilerModal" class="spoiler-modal" style="display: none;">
+    <div class="spoiler-modal-content">
+      <p>Warning: This section contains spoilers.<br>Are you sure you want to continue?</p>
+      <div class="spoiler-modal-buttons">
+        <button id="spoilerYesBtn">Yes</button>
+        <button id="spoilerNoBtn">No</button>
+      </div>
+    </div>
+  </div>
+  
         <!-- Book Selection Dropdown -->
         <div class="book-selection-container">
             <label for="book-select">Select Book:</label>
@@ -1348,7 +1359,8 @@
     
       <!-- Faye's Main Character Card (Book 2) -->
       <div class="character-card book2" onclick="openCharacterOverlay('faye-overlay')">
-        <img src="assets/images/characters/Faye/Faye.webp" alt="Faye">
+        <img id="faye-image" src="assets/images/characters/Faye/Faye.webp" alt="Faye">
+
         <h3>Faye</h3>
         <p class="short-description">
           The seductive and deadly queen of her own Vampyr empire.

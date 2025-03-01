@@ -1,6 +1,8 @@
-/* ================== Character Page Styles ================== */
+/* =========================================================
+   CHARACTER PAGE STYLES
+   ========================================================= */
 
-/* Main Container */
+/* ================== MAIN CONTAINER ================== */
 .characters-container {
     max-width: 1100px; /* Increase width for a more spacious layout */
     margin: 40px auto;
@@ -11,7 +13,7 @@
     box-shadow: 0px 0px 15px rgba(139, 0, 0, 0.6);
 }
 
-/* Page Title */
+/* ================== PAGE TITLE ================== */
 .characters-container h1 {
     text-align: center;
     color: #c5c5c5;
@@ -20,32 +22,20 @@
     letter-spacing: 2px;
 }
 
-/* Sections for Each Book */
+/* ================== BOOK SECTION TITLE ================== */
 .book-section {
-    text-align: center; 
-    font-size: 2em; 
-    color: #c5c5c5; 
+    text-align: center;
+    font-size: 2em;
+    color: #c5c5c5;
     margin: 50px auto 20px;
     font-weight: bold;
     text-transform: uppercase;
-    border-bottom: 2px solid #7b0202; 
+    border-bottom: 2px solid #7b0202;
     padding-bottom: 10px;
     max-width: 80%;
 }
 
-/* Custom Styling for Book 2 Section */
-#book-2 {
-    background-color: rgba(255, 0, 0, 0.15); /* Light red background */
-    color: #c5c5c5; /* Ensure the text remains readable */
-    border: 2px solid #ff4444; /* Red border to match the background */
-}
-
-#book-2 h2 {
-    font-size: 2.2em; /* Increase font size for Book 2 */
-    letter-spacing: 3px; /* Adds some spacing between letters */
-}
-
-/* Section Title Styling */
+/* ================== SECTION TITLE (e.g., "Main Characters") ================== */
 .section-title {
     width: 100%;
     text-align: center;
@@ -58,7 +48,7 @@
     padding-bottom: 10px;
 }
 
-/* Character Grid */
+/* ================== CHARACTER GRID ================== */
 .character-container {
     display: flex;
     flex-wrap: wrap;
@@ -67,11 +57,11 @@
     padding: 20px 0;
 }
 
-/* Character Card */
+/* ================== CHARACTER CARD ================== */
 .character-card {
     width: 280px; /* Fixed width to ensure uniform card size */
     margin: 10px;
-    background-color: rgba(0, 0, 0, 0.75); 
+    background-color: rgba(0, 0, 0, 0.75);
     padding: 20px;
     border-radius: 8px;
     border: 2px solid #7b0202;
@@ -85,7 +75,7 @@
     box-shadow: 0px 0px 12px rgba(139, 0, 0, 0.7);
 }
 
-/* Character Image */
+/* ================== CHARACTER IMAGE ================== */
 .character-card img {
     width: 280px;
     height: 280px;
@@ -96,7 +86,7 @@
     margin: 0 auto 10px;
 }
 
-/* Character Name */
+/* ================== CHARACTER NAME ================== */
 .character-card h3 {
     font-size: 1.5em;
     color: #c5c5c5;
@@ -104,14 +94,14 @@
     margin: 10px 0;
 }
 
-/* Character Description */
+/* ================== CHARACTER DESCRIPTION ================== */
 .character-card p {
     font-size: 1.1em;
     color: #c8c7c7;
     margin-top: 5px;
 }
 
-/* Centered Character Traits */
+/* ================== CHARACTER TRAITS ================== */
 .character-traits {
     list-style: none;
     padding: 0;
@@ -132,13 +122,110 @@
     margin-right: 8px;
 }
 
-/* Custom Styling for Book 2 Character Cards */
-#book-2 .character-card {
-    background-color: rgba(0, 0, 0, 0.85); /* Slightly darker background for Book 2 cards */
-    border: 2px solid #ff4444; /* Custom border for Book 2 characters */
+/* ================== BOOK SELECTION DROPDOWN ================== */
+.book-selection-container {
+    display: flex;
+    flex-direction: column;  /* Stacks label and dropdown vertically */
+    text-align: center;
+    align-items: center;
+    margin: 20px auto;       /* Centers the container with vertical spacing */
+    max-width: 350px;        /* Limit width for a neat appearance */
+    background: rgba(0, 0, 0, 0.6);  /* Semi-transparent dark background */
+    border: 2px solid #7b0202;      /* Blood-red border to match theme */
+    padding: 15px;
+    border-radius: 5px;
 }
 
-#book-2 .character-card h3 {
-    font-size: 1.6em; /* Slightly larger text for Book 2 */
-    color: #ff4444; /* Red text for Book 2 */
+.book-selection-container label {
+    font-size: 1em;
+    color: #c5c5c5;
+    margin-bottom: 8px;  /* Space between label and dropdown */
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
+
+.book-selection-container select {
+    background: #0d0d0d;
+    color: #c5c5c5;
+    border: 2px solid #7b0202;
+    border-radius: 5px;
+    padding: 8px 10px;
+    font-size: 1em;
+    width: 100%;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+
+    /* Centers the displayed text in most modern browsers */
+    text-align: center;      /* Fallback for older browsers */
+    text-align-last: center; /* Modern browsers */
+}
+
+/* Ensure each <option> is also centered */
+.book-selection-container select option {
+    text-align: center;
+}
+
+.book-selection-container select:focus,
+.book-selection-container select:hover {
+    outline: none;
+    border-color: #a30000;
+    box-shadow: 0 0 8px rgba(139, 0, 0, 0.7);
+}
+
+/* ====== Custom Spoiler Modal ====== */
+.spoiler-modal {
+    position: fixed;
+    top: 0; 
+    left: 0;
+    width: 100%; 
+    height: 100%;
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+    background: rgba(0, 0, 0, 0.8); /* Dark overlay */
+    z-index: 9999; /* Above all other elements */
+}
+
+.spoiler-modal-content {
+    background: rgba(20, 20, 20, 0.95);
+    padding: 20px;
+    border: 2px solid #7b0202;
+    border-radius: 5px;
+    text-align: center;
+    max-width: 400px;
+    width: 90%;
+    box-shadow: 0 0 20px rgba(139, 0, 0, 0.7);
+    color: #c5c5c5;
+    font-family: 'Cinzel Decorative', serif; /* Match your gothic theme font */
+}
+
+.spoiler-modal-content p {
+    margin-bottom: 20px;
+    font-size: 1.1em;
+    line-height: 1.4;
+}
+
+.spoiler-modal-buttons {
+    display: flex;
+    justify-content: space-evenly;
+    gap: 20px;
+}
+
+.spoiler-modal-buttons button {
+    background: #7b0202;
+    color: #fff;
+    border: 2px solid #a30000;
+    border-radius: 5px;
+    padding: 8px 16px;
+    cursor: pointer;
+    font-size: 1em;
+    font-family: inherit; /* Inherit from the parent so it matches the theme */
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.spoiler-modal-buttons button:hover {
+    background: #a30000;
+    box-shadow: 0 0 8px rgba(139, 0, 0, 0.7);
+}
+
+
