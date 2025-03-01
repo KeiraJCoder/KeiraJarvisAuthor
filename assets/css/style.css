@@ -9,16 +9,15 @@ html, body {
     padding: 0;
 }
 
-
 /* Global Styles */
 body {
-    height:100vh;
+    height: 100vh;
     background: url("../images/background2.webp") no-repeat center center fixed;
     background-size: cover;
     background-attachment: fixed;
-    font-family: 'Cinzel Decorative', serif; /* Change font */ /* Gothic-style font */
+    font-family: 'Cinzel Decorative', serif; /* Gothic-style font */
     margin: 0;
-    padding: 0;
+    padding-bottom: 0; /* Adjust if necessary */
     background-color: #0d0d0d; /* Deep black */
     color: #c5c5c5; /* Soft grey */
 }
@@ -86,7 +85,6 @@ nav ul li a {
     font-size: 1.1em;
     transition: color 0.3s ease-in-out;
     letter-spacing: 1px;
-
 }
 
 nav ul li a:hover {
@@ -94,43 +92,6 @@ nav ul li a:hover {
     transform: scale(1.1); /* Subtle hover animation */
 }
 
-
-/* Ensure hero section takes full viewport height */
-.hero {
-    background: url("../images/background.webp") no-repeat center center/cover;
-    height: 100vh; /* Force it to take up full viewport height */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    color: white;
-    text-shadow: 2px 2px 8px black;
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    height: calc(100vh - 80px); /* Adjusts for header/footer */
-}
-
-/* Ensuring the hero-content does not exceed the width */
-.hero-content {
-    background: rgba(0, 0, 0, 0.8);
-    
-    border-radius: 10px;
-    max-width: 600px;
-    text-align: center;
-}
-
-
-.hero h2 {
-    font-size: 2.5em;
-    margin-bottom: 10px;
-    letter-spacing: 2px;
-}
-
-.hero p {
-    font-size: 1.2em;
-    margin-bottom: 20px;
-}
 
 /* Contact Button */
 .button {
@@ -159,9 +120,10 @@ footer {
     padding: 10px;
     font-size: 0.9em;
     border-top: 2px solid #7b0202;
-    position: relative;
     bottom: 0;
     width: 100%;
+    position: relative !important;
+     /* Keeps it below everything */
 }
 
 /* Style for the scrollbar */
@@ -192,3 +154,74 @@ footer {
     height: 8px;
 }
 
+
+/* ========================================
+   Responsive Design Media Queries
+   ======================================== */
+
+/* Medium screens (laptops) */
+@media (max-width: 1200px) {
+    body {
+        font-size: 16px;
+    }
+    header {
+        padding: 15px;
+        font-size: 1.4em;
+    }
+    nav ul {
+        gap: 15px;
+    }
+    nav ul li a {
+        font-size: 1em;
+    }
+    .button {
+        padding: 10px 18px;
+        font-size: 1em;
+    }
+}
+
+/* Small screens (tablets) */
+@media (max-width: 768px) {
+    body {
+        font-size: 14px;
+        padding: 0 10px;
+    }
+    header {
+        padding: 10px;
+        font-size: 1.3em;
+    }
+    nav ul {
+        flex-direction: column;
+        gap: 10px;
+    }
+    nav ul li a {
+        font-size: 1em;
+    }
+    .button {
+        padding: 8px 16px;
+        font-size: 0.9em;
+    }
+}
+
+/* Extra small screens (phones) */
+@media (max-width: 576px) {
+    body {
+        font-size: 12px;
+        padding: 0 5px;
+    }
+    header {
+        padding: 8px;
+        font-size: 1.2em;
+    }
+    nav ul {
+        flex-direction: column;
+        gap: 8px;
+    }
+    nav ul li a {
+        font-size: 0.9em;
+    }
+    .button {
+        padding: 6px 12px;
+        font-size: 0.8em;
+    }
+}

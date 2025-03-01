@@ -367,15 +367,17 @@ function toggleChatbot() {
     const openChatbotButton = document.getElementById('open-chatbot');
 
     if (chatbot.style.display === 'none' || chatbot.style.display === '') {
-        resetOnOpenChatbot(); // Reset when opening chatbot
-        chatbot.style.display = 'block'; // Show chatbot
-        openChatbotButton.style.display = 'none'; // Hide "Chat with Me" button
+        resetOnOpenChatbot();
+        chatbot.style.display = 'block';
+        chatbot.style.zIndex = "99999"; // Ensure it's above everything
+        openChatbotButton.style.display = 'none';
     } else {
-        chatbot.style.display = 'none'; // Hide chatbot
-        openChatbotButton.style.display = 'block'; // Show "Chat with Me" button
-        resetChatbot(); // Reset fields when closed
+        chatbot.style.display = 'none';
+        openChatbotButton.style.display = 'block';
+        resetChatbot();
     }
 }
+
 
 
 // Function to reset chatbot fields

@@ -1,16 +1,8 @@
-/* Remove background from index page */
-body.index-page {
-    background: none;
-}
 
-body.index-page::before {
-    display: none;
-}
-
-/* Hero Section */
+/* Adjust Hero Section to Fit Viewport */
 .hero {
     background: url("../images/background.webp") no-repeat center center/cover;
-    min-height: 100vh;
+    min-height: 70vh; /* Ensures it fits within the screen */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -22,10 +14,47 @@ body.index-page::before {
     padding: 0;
 }
 
-/* Hero Content */
+/* Improved Hero Content */
 .hero-content {
-    background: rgba(0, 0, 0, 0.8);
-    border-radius: 10px;
-    max-width: 600px;
+    background: rgba(0, 0, 0, 0.85); /* Darker background */
+    border-radius: 15px;
+    padding: 30px 40px;
+    max-width: 700px;
     text-align: center;
+    box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.2); /* Soft glow effect */
+    border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Title inside hero */
+.hero-content h2 {
+    font-size: 2.8em;
+    margin-bottom: 15px;
+    letter-spacing: 1.5px;
+}
+
+/* Text inside hero */
+.hero-content p {
+    font-size: 1.2em;
+    margin-bottom: 25px;
+    line-height: 1.5;
+}
+
+/* Button inside hero */
+.hero-content .button {
+    display: inline-block;
+    padding: 12px 25px;
+    font-size: 1.2em;
+    font-weight: bold;
+    background: linear-gradient(45deg, #7b0202, #a30000);
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    border: 2px solid #a30000;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Button Hover Effect */
+.hero-content .button:hover {
+    background: #a30000;
+    box-shadow: 0px 0px 12px rgba(255, 0, 0, 0.8);
 }
