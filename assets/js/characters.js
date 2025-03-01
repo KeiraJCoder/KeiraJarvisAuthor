@@ -6,12 +6,10 @@ document.addEventListener("DOMContentLoaded", function () {
             console.error(`Overlay not found for ID: ${overlayId}`);
             return;
         }
-
         // Ensure only one overlay is visible at a time
         document.querySelectorAll(".character-overlay").forEach((overlay) => {
             overlay.classList.remove("visible");
         });
-
         // Show the correct overlay
         overlay.classList.add("visible");
     };
@@ -24,29 +22,48 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     };
 
-    // Filter characters based on selected book
+    // Set up the book selection change event with a single confirmation prompt for Book 2
     const bookSelect = document.getElementById('book-select');
-    bookSelect.addEventListener('change', filterCharacters);
+    bookSelect.addEventListener('change', function () {
+         if (bookSelect.value === 'book2') {
+             // Ask for confirmation once when switching to Book 2
+             if (!confirm("Warning: This section contains spoilers. Are you sure you want to continue?")) {
+                 // If the user cancels, revert to Book 1
+                 bookSelect.value = 'book1';
+             }
+         }
+         filterCharacters();
+    });
+
+    // Set default state on initial page load (show only Book 1)
+    filterCharacters();
 });
 
 function filterCharacters() {
     const selectedBook = document.getElementById('book-select').value;
-    // Show or hide Book 1 sections
-    const book1Sections = document.querySelectorAll('.character-section.book1, .character-card.book1, .section-title:not(.book2)');
-    book1Sections.forEach(el => {
-        if (selectedBook === 'book1') {
-            el.style.display = 'block';
-        } else {
-            el.style.display = 'none';
-        }
+    
+    // Toggle Book 1 elements
+    const book1Elements = document.querySelectorAll('.character-section.book1, .character-card.book1, .section-title:not(.book2)');
+    book1Elements.forEach(el => {
+        el.style.display = (selectedBook === 'book1') ? 'block' : 'none';
     });
-    // Show or hide Book 2 sections
-    const book2Sections = document.querySelectorAll('.character-section.book2, .character-card.book2, .section-title.book2');
-    book2Sections.forEach(el => {
-        if (selectedBook === 'book2') {
-            el.style.display = 'block';
-        } else {
-            el.style.display = 'none';
-        }
+    
+    // Toggle Book 2 elements (selecting section titles as descendants of .character-section.book2)
+    const book2Elements = document.querySelectorAll('.character-section.book2, .character-card.book2, .character-section.book2 .section-title');
+    book2Elements.forEach(el => {
+        el.style.display = (selectedBook === 'book2') ? 'block' : 'none';
     });
+    
+    // Update the heading text for the visible section based on selected book
+    if (selectedBook === 'book1') {
+        const heading = document.querySelector('.character-section.book1 .book-section');
+        if (heading) {
+            heading.textContent = "MEMOIRS OF A VAMPYR’S DAUGHTER: EDEN";
+        }
+    } else if (selectedBook === 'book2') {
+        const heading = document.querySelector('.character-section.book2 .book-section');
+        if (heading) {
+            heading.textContent = "MEMOIRS OF A VAMPYR’S DAUGHTER: WISDOM";
+        }
+    }
 }
