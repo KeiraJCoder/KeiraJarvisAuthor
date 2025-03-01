@@ -119,7 +119,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 if (fayeImage.src.indexOf("Faye.webp") !== -1) {
                     fayeImage.src = "assets/images/characters/Faye/Faye2.jpg";
                 } else {
-                    fayeImage.src = "assets/images/characters/Faye/Faye2.webp";
+                    fayeImage.src = "assets/images/characters/Faye/Faye.webp";
                 }
             });
         } else {
