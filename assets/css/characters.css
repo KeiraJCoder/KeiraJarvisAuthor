@@ -59,7 +59,9 @@
 
 /* ================== CHARACTER CARD ================== */
 .character-card {
-    width: 280px; /* Fixed width to ensure uniform card size */
+    /* Instead of width: 280px; use max-width and allow it to shrink */
+    max-width: 280px;
+    width: 100%;
     margin: 10px;
     background-color: rgba(0, 0, 0, 0.75);
     padding: 20px;
@@ -70,6 +72,8 @@
     cursor: pointer;
 }
 
+
+
 .character-card:hover {
     transform: scale(1.03);
     box-shadow: 0px 0px 12px rgba(139, 0, 0, 0.7);
@@ -77,14 +81,16 @@
 
 /* ================== CHARACTER IMAGE ================== */
 .character-card img {
-    width: 280px;
-    height: 280px;
+    /* Make the image scale with the card */
+    width: 100%;
+    height: auto;
     object-fit: cover;
     border-radius: 5px;
     border: 2px solid #7b0202;
     display: block;
     margin: 0 auto 10px;
 }
+
 
 /* ================== CHARACTER NAME ================== */
 .character-card h3 {
@@ -144,6 +150,7 @@
     letter-spacing: 1px;
 }
 
+/* ================== BOOK SELECTION DROPDOWN ================== */
 .book-selection-container select {
     background: #0d0d0d;
     color: #c5c5c5;
@@ -152,12 +159,15 @@
     padding: 8px 10px;
     font-size: 1em;
     width: 100%;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
     cursor: pointer;
-
-    /* Centers the displayed text in most modern browsers */
     text-align: center;      /* Fallback for older browsers */
     text-align-last: center; /* Modern browsers */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+
+    /* Removes default OS arrow in some browsers */
+    -webkit-appearance: none; 
+    -moz-appearance: none; 
+    appearance: none;
 }
 
 /* Ensure each <option> is also centered */
@@ -170,6 +180,15 @@
     outline: none;
     border-color: #a30000;
     box-shadow: 0 0 8px rgba(139, 0, 0, 0.7);
+}
+
+/* Option styling - might be partially or fully ignored on some OS/browsers */
+.book-selection-container select option {
+    background-color: #1a1a1a; /* Dark background for each option */
+    color: #c5c5c5;            /* Light text */
+    text-align: center;        /* Centered text */
+    padding: 5px;              /* Some spacing */
+    /* No transition or hover states typically apply here */
 }
 
 /* ====== Custom Spoiler Modal ====== */
