@@ -56,7 +56,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // === BOOK ROTATION (Fixing Layout Jumping & Smooth Transitions) ===
+    // === BOOK ROTATION (Smooth Image Transition Without Black Screen) ===
     const books = [
         {
             title: "Memoirs of a Vampyr's Daughter: Eden",
@@ -71,25 +71,20 @@ document.addEventListener("DOMContentLoaded", function () {
     ];
 
     let currentIndex = 0;
-    const bookCover = document.getElementById("book-cover");
-    const bookTitle = document.getElementById("book-title");
-    const bookLink = document.getElementById("book-link");
+    const bookCover = document.querySelector(".book-cover");
+    const bookTitle = document.querySelector(".book-title");
+    const bookLink = document.querySelector(".book-link");
 
     if (bookCover && bookTitle && bookLink) {
         function updateBook() {
             currentIndex = (currentIndex + 1) % books.length;
-
-            // Apply a fade-out effect before changing the image
-            bookCover.style.opacity = "0";
-
-            setTimeout(() => {
+            const newImage = new Image();
+            newImage.src = books[currentIndex].img;
+            newImage.onload = function () {
                 bookCover.src = books[currentIndex].img;
                 bookTitle.textContent = books[currentIndex].title;
                 bookLink.href = books[currentIndex].link;
-
-                // Fade-in effect after image change
-                bookCover.style.opacity = "1";
-            }, 400);
+            };
         }
 
         setInterval(updateBook, 4000); // Rotate every 4 seconds
@@ -125,13 +120,10 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
             });
         });
-
     } else {
         console.warn("No character cards found.");
     }
 });
-
-
 
 function toggleSection(id) {
     const section = document.getElementById(id);

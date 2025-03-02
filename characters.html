@@ -831,15 +831,119 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- Powerful Beings (Book 1) -->
+                <div class="section-title">
+                    <h2>Powerful Beings</h2>
+                </div>
+
+        <!-- Seraphyna & Sepherious Character Card (Book 1) -->
+            <div class="character-card book1" onclick="openCharacterOverlay('seraphyna-sepherious-overlay')">
+                <img src="assets/images/characters/Seraphyna/Seraphyna.webp" alt="Seraphyna & Sepherious">
+                <h3>Seraphyna & Sepherious</h3>
+                <p class="short-description">
+                    Eternal gods of fire and shadow, bound by fate yet forever kept apart.
+                </p>
             </div>
-        </section>
+
+            <!-- Seraphyna & Sepherious Full Bio Overlay (Book 1) -->
+            <div class="character-overlay" id="seraphyna-sepherious-overlay">
+                <div class="overlay-content">
+                    <button class="close-overlay" onclick="closeCharacterOverlay('seraphyna-sepherious-overlay')">&times;</button>
+
+                    <div class="overlay-header">
+                        <h2>Seraphyna & Sepherious – The Eternal Gods</h2>
+                    </div>
+
+                    <div class="overlay-intro">
+                        <img src="assets/images/characters/Seraphyna/Seraphyna.webp" alt="Seraphyna & Sepherious">
+                        <ul class="character-traits">
+                            <li><span class="trait">Bound by Fate</span></li>
+                            <li><span class="trait">Celestial Beings</span></li>
+                            <li><span class="trait">Fire & Shadow</span></li>
+                            <li><span class="trait">Tragic Lovers</span></li>
+                            <li><span class="trait">Eternal Longing</span></li>
+                        </ul>
+                    </div>
+
+                    <!-- Expandable Sections -->
+                    <div class="expandable-sections">
+                        <div class="expandable-sections-container">
+                            
+                            <details>
+                                <summary><strong>Appearance & Presence</strong></summary>
+                                <p>
+                                    <strong>Seraphyna:</strong> She glows with molten gold and ember-red hues, her black hair flowing like living smoke, streaked with fire. Her crimson gown flickers with golden sigils, its hem eternally ablaze. Flames coil around her wrists and fingers, casting radiant embers into the air.
+                                </p>
+                                <p>
+                                    <strong>Sepherious:</strong> Cloaked in shadows, he absorbs light around him, his deep indigo-black coat fraying into mist. His silvered skin glows faintly, appearing both solid and intangible. His long, midnight-black hair moves like a cosmic tide, streaked with spectral blue.
+                                </p>
+                            </details>
+
+                            <details>
+                                <summary><strong>Powers & Essence</strong></summary>
+                                <p>
+                                    <strong>Seraphyna:</strong> The Goddess of Fire, her presence ignites the air. Her flames do not destroy but are an extension of her soul, responding to her emotions. The space around her distorts with heat, and golden embers swirl in her wake.
+                                </p>
+                                <p>
+                                    <strong>Sepherious:</strong> The God of Shadows, his essence bends gravity. He absorbs the light near him, and his touch distorts reality. When he reaches for Seraphyna, his form fades into mist before contact can be made.
+                                </p>
+                            </details>
+
+                            <details>
+                                <summary><strong>Fate & Tragic Bond</strong></summary>
+                                <p>
+                                    For eternity, they have been drawn together, yet an invisible force keeps them apart. Their hands stretch toward each other, but fire and shadow can never truly merge. Their love is one of longing, a silent conversation across the void.
+                                </p>
+                            </details>
+                        </div>
+
+                <!-- Spoiler Section -->
+                <h3 class="spoiler-heading">⚠ Spoilers</h3>
+
+                <div class="spoiler-sections">
+                    <details>
+                        <summary><strong>Origins & Rebirth</strong></summary>
+                        <p>
+                            Seraphyna was once a noblewoman, promised to Count Vannay, but she fell in love with Sepherious, a mere kitchen hand.
+                            When Vannay discovered their affair, he had Sepherious executed before Seraphyna’s eyes.
+                        </p>
+                    </details>
+
+                    <details>
+                        <summary><strong>Book 1 – Final Confrontation</strong></summary>
+                        <p>
+                            In the current timeline, Seraphyna and Sepherious exist as **guardians of an ancient vault** that **Eden seeks to enter**.
+                            Seraphyna sees him as a threat, refusing to let him through, while Sepherious is conflicted.
+                        </p>
+                    </details>
+
+                    <!-- Ensuring a Third Section to Maintain Grid Layout -->
+                    <details>
+                        <summary><strong>Cycle of Rebirth</strong></summary>
+                            <p>
+                                Their curse ensures they are reborn again and again, always seeking each other but never allowed to remain together.
+                            </p>
+                        </details>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
 <!-- ----------------------------------------------------------- -->
+<!--                                                             -->
+<!--                                                             -->
 <!--         Book 2 Characters Section (Initially Hidden)        -->
+<!--                                                             -->
+<!--                                                             -->
 <!-- ----------------------------------------------------------- -->
 
- <!-- Book 1 Characters Section -->
- <section class="character-section book2">
+
+
+<!-- Book 1 Characters Section -->
+<section class="character-section book2">
     <div class="book-section">
         MEMOIRS OF A VAMPYR’S DAUGHTER: EDEN
     </div>
@@ -849,7 +953,7 @@
             <h2>Main Protagonist</h2>
         </div>
   
-      <!-- Sophie's Main Character Card (Book 2) -->
+<!-- Sophie's Main Character Card (Book 2) -->
 <div class="character-card book2" onclick="openCharacterOverlay('sophie2-overlay')">
     <img src="assets/images/characters/Sophie/Sophie.webp" alt="Sophie Munday">
     <h3>Sophie Munday</h3>
@@ -958,292 +1062,293 @@
 </div>
 
 
-  
-      <div class="section-title">
+
+    <div class="section-title">
         <h2>Main Characters</h2>
-      </div>
-  
+    </div>
+
             <!-- Eden's Main Character Card (Book 2) -->
             <div class="character-card book2" onclick="openCharacterOverlay('eden2-overlay')">
-                <img src="assets/images/characters/Eden/Eden.webp" alt="Eden">
+                <img id="eden-image" src="assets/images/characters/Eden/Eden.webp" alt="Eden">
                 <h3>Eden</h3>
                 <p class="short-description">
                     No longer just a shadow in the dark, Eden is a warrior fighting against fate itself—desperate to atone, yet unsure if redemption is even possible.
                 </p>
-              </div>
-          
-              <!-- Eden's Full Bio Overlay for Book 2 -->
-              <div class="character-overlay" id="eden2-overlay">
+            </div>
+        
+                <!-- Eden's Full Bio Overlay for Book 2 -->
+                <div class="character-overlay" id="eden2-overlay">
                 <div class="overlay-content">
-                  <button class="close-overlay" onclick="closeCharacterOverlay('eden2-overlay')">&times;</button>
-                  <div class="overlay-header">
+                    <button class="close-overlay" onclick="closeCharacterOverlay('eden2-overlay')">&times;</button>
+                <div class="overlay-header">
                     <h2>Eden</h2>
-                  </div>
-                  <div class="overlay-intro">
+                </div>
+                <div class="overlay-intro">
                     <img src="assets/images/characters/Eden/Eden.webp" alt="Eden">
                     <ul class="character-traits">
-                      <li><span class="trait">Haunted by Regret</span></li>
-                      <li><span class="trait">Determined Protector</span></li>
-                      <li><span class="trait">Struggling with Redemption</span></li>
-                      <li><span class="trait">Conflicted</span></li>
-                      <li><span class="trait">Resilient</span></li>
-                      <li><span class="trait">Courageous but Scarred</span></li>
-                      <li><span class="trait">Bound by Fate</span></li>
+                        <li><span class="trait">Haunted by Regret</span></li>
+                        <li><span class="trait">Determined Protector</span></li>
+                        <li><span class="trait">Struggling with Redemption</span></li>
+                        <li><span class="trait">Conflicted</span></li>
+                        <li><span class="trait">Resilient</span></li>
+                        <li><span class="trait">Courageous but Scarred</span></li>
+                        <li><span class="trait">Bound by Fate</span></li>
                     </ul>
-                  </div>
+                </div>
                   <!-- Expandable Sections for Book 2 Eden -->
-                  <div class="expandable-sections">
+                <div class="expandable-sections">
                     <div class="expandable-sections-container">
-                      <details>
+                        <details>
                         <summary><strong>New Character Overview</strong></summary>
                         <p>
-                          In Book Two, Eden is more than just a shadowy protector—he is a man at war with himself. The cost of his choices weighs heavily on him, and as the stakes in the Night World escalate, he is torn between duty and a desperate hope for redemption. The prophecy looms ever closer, and he begins to question whether he can truly protect Sophie from her fate—or if he is leading her toward it.
+                            In Book Two, Eden is more than just a shadowy protector—he is a man at war with himself. The cost of his choices weighs heavily on him, and as the stakes in the Night World escalate, he is torn between duty and a desperate hope for redemption. The prophecy looms ever closer, and he begins to question whether he can truly protect Sophie from her fate—or if he is leading her toward it.
                         </p>
-                      </details>
-                      <details>
+                    </details>
+                    <details>
                         <summary><strong>Reckoning with the Past</strong></summary>
                         <p>
                           Eden has spent centuries running from his past, but in *Wisdom*, he is forced to confront the darkest moments of his existence. The Master reveals secrets Eden thought long buried, shattering the fragile hope he clings to. His guilt over Sophie’s situation deepens, yet he must find the strength to keep fighting.
                         </p>
-                      </details>
-                      <details>
+                    </details>
+                    <details>
                         <summary><strong>Struggle for Redemption</strong></summary>
                         <p>
-                          As the weight of his past presses down on him, Eden embarks on a perilous journey toward redemption. With Sophie’s life in the balance, he must make impossible choices—choices that will define whether he can ever atone for his sins or if he is destined to be the very monster he has spent centuries trying not to become.
+                            As the weight of his past presses down on him, Eden embarks on a perilous journey toward redemption. With Sophie’s life in the balance, he must make impossible choices—choices that will define whether he can ever atone for his sins or if he is destined to be the very monster he has spent centuries trying not to become.
                         </p>
-                      </details>
+                    </details>
                     </div>
                     <!-- Spoiler Sections -->
                     <h2 class="spoiler-heading">⚠ Spoilers</h2>
                     <div class="spoiler-sections">
-                      <details>
+
+                    <details>
                         <summary><strong>Unforeseen Alliances</strong></summary>
                         <p>
-                          As the prophecy unfolds, Eden is faced with the most difficult challenge of all: trusting others. Unexpected alliances form, forcing him to confront his old loyalties and question everything he once believed. Can he accept help, or will his past betrayals doom them all?
+                            As the prophecy unfolds, Eden is faced with the most difficult challenge of all: trusting others. Unexpected alliances form, forcing him to confront his old loyalties and question everything he once believed. Can he accept help, or will his past betrayals doom them all?
                         </p>
-                      </details>
-                      <details>
+                    </details>
+                    <details>
                         <summary><strong>Ultimate Sacrifice?</strong></summary>
-                        <p>
-                          With the fate of the Night World hanging in the balance, Eden is faced with a heart-wrenching decision: risk everything to protect Sophie or let his past mistakes condemn them all. As Seraphyna’s fire consumes him and The Master tightens his grip, Eden may have to pay the ultimate price for the chance to save the ones he loves.
-                        </p>
-                      </details>
+                            <p>
+                            With the fate of the Night World hanging in the balance, Eden is faced with a heart-wrenching decision: risk everything to protect Sophie or let his past mistakes condemn them all. As Seraphyna’s fire consumes him and The Master tightens his grip, Eden may have to pay the ultimate price for the chance to save the ones he loves.
+                            </p>
+                        </details>
                     </div>
-                  </div>
                 </div>
-              </div>
+            </div>
+        </div>
         
-  
-      <!-- Blaine's Main Character Card (Book 2 Updated) -->
+<!-- Blaine's Main Character Card (Book 2 Updated) -->
 <div class="character-card book2" onclick="openCharacterOverlay('blaine2-overlay')">
-    <img src="assets/images/characters/Blaine/Blaine.webp" alt="Blaine">
+    <img id="blaine-image" src="assets/images/characters/Blaine/Blaine.webp" alt="Blaine">
     <h3>Blaine</h3>
     <p class="short-description">
         No longer just a pawn in Faye’s game, Blaine has severed his chains—but escaping the past is never that simple.
     </p>
-  </div>
-  
-  <!-- Blaine's Full Bio Overlay for Book 2 -->
-  <div class="character-overlay" id="blaine2-overlay">
+</div>
+
+<!-- Blaine's Full Bio Overlay for Book 2 -->
+<div class="character-overlay" id="blaine2-overlay">
     <div class="overlay-content">
-      <button class="close-overlay" onclick="closeCharacterOverlay('blaine2-overlay')">&times;</button>
-      <div class="overlay-header">
+        <button class="close-overlay" onclick="closeCharacterOverlay('blaine2-overlay')">&times;</button>
+    <div class="overlay-header">
         <h2>Blaine</h2>
         <h6>Otherwise Known As</h6>
             <p>Richard (formerly)</p>
-      </div>
-      <div class="overlay-intro">
+    </div>
+    <div class="overlay-intro">
         <img src="assets/images/characters/Blaine/Blaine.webp" alt="Blaine">
         <ul class="character-traits">
-          <li><span class="trait">Enigmatic</span></li>
-          <li><span class="trait">Conflicted</span></li>
-          <li><span class="trait">Struggling Against Control</span></li>
-          <li><span class="trait">Haunted by Guilt</span></li>
-          <li><span class="trait">Determined to Be Free</span></li>
+            <li><span class="trait">Enigmatic</span></li>
+            <li><span class="trait">Conflicted</span></li>
+            <li><span class="trait">Struggling Against Control</span></li>
+            <li><span class="trait">Haunted by Guilt</span></li>
+            <li><span class="trait">Determined to Be Free</span></li>
         </ul>
-      </div>
-  
-      <!-- Expandable Sections for Book 2 Blaine -->
-      <div class="expandable-sections">
-        <div class="expandable-sections-container">
-  
-          <details>
-            <summary><strong>Character Overview</strong></summary>
-            <p>
-              In <em>Memoirs of a Vampyr’s Daughter: Wisdom</em>, Blaine undergoes a transformation—not just in his actions, but in his very identity.
-              Once a loyal servant of Faye, he begins to question her control and <span class="emphasis">struggles to reclaim his autonomy</span>.
-            </p>
-            <p>
-              His once mischievous nature is overshadowed by a growing awareness of <span class="emphasis">how deeply Faye has manipulated him</span>.
-              The realization shakes him to his core, forcing him to decide—<span class="emphasis">stay in her grasp, or break free?</span>
-            </p>
-          </details>
-  
-          <details>
-            <summary><strong>Faye’s Hold on Him</strong></summary>
-            <p>
-              Blaine was not just turned by Faye—<span class="emphasis">he was shaped by her</span>. She controlled his thoughts, his emotions, even his desires.
-              For years, he believed his loyalty was his own choice, but in <em>Wisdom</em>, he uncovers the truth: <span class="emphasis">he was never truly free</span>.
-            </p>
-            <p>
-              He realizes that his feelings, his loyalty, and even his addiction to her approval <span class="emphasis">may have been a result of her influence over him</span>.
-              The moment he begins to resist, <span class="emphasis">he feels the full weight of her power against him</span>.
-            </p>
-          </details>
-  
-          <details>
-            <summary><strong>His Relationship with Sophie</strong></summary>
-            <p>
-              Meeting Sophie <span class="emphasis">changes everything</span>. She <span class="emphasis">sees him as more than just Faye’s pawn</span>, and for the first time, he begins to <span class="emphasis">see himself that way too</span>.
-            </p>
-            <p>
-              Their dynamic is one of push and pull—<span class="emphasis">he protects her, even when he doesn’t understand why</span>.
-              Sophie makes him realize that he has a choice. And <span class="emphasis">that choice terrifies him</span>.
-            </p>
-          </details>
-  
-          <details>
-            <summary><strong>The Moment of Defiance</strong></summary>
-            <p>
-              Throughout the book, Blaine struggles with his <span class="emphasis">instinct to obey</span> versus his <span class="emphasis">growing need to break free</span>.
-              But when Faye <span class="emphasis">orders him to harm Sophie</span>, he finally <span class="emphasis">makes a choice</span>.
-            </p>
-            <p>
-              Defying Faye is <span class="emphasis">the hardest thing he has ever done</span>—but it is also the first real decision <span class="emphasis">he makes for himself</span>.
-            </p>
-          </details>
-  
-          <details>
-            <summary><strong>What Comes Next?</strong></summary>
-            <p>
-              By the end of <em>Wisdom</em>, Blaine is <span class="emphasis">free from Faye’s control</span>, but <span class="emphasis">not free from his past</span>.
-              He has no idea <span class="emphasis">who he is without her</span>.
-            </p>
-            <p>
-              His journey is only beginning—he must now decide <span class="emphasis">what kind of Vampyr he truly wants to be</span>.
-            </p>
-          </details>
-  
-        </div>
-      </div>
     </div>
-  </div>
-  
-  
-      <!-- Aeryn's Main Character Card (Book 2) -->
-      <div class="character-card book2" onclick="openCharacterOverlay('aeryn2-overlay')">
-        <img id="aeryn-image" src="assets/images/characters/Aeryn/Aeryn.png" alt="Aeryn">
+
+    <!-- Expandable Sections for Book 2 Blaine -->
+        <div class="expandable-sections">
+            <div class="expandable-sections-container">
+
+                <details>
+                    <summary><strong>Character Overview</strong></summary>
+                    <p>
+                        In <em>Memoirs of a Vampyr’s Daughter: Wisdom</em>, Blaine undergoes a transformation—not just in his actions, but in his very identity.
+                        Once a loyal servant of Faye, he begins to question her control and <span class="emphasis">struggles to reclaim his autonomy</span>.
+                    </p>
+                    <p>
+                        His once mischievous nature is overshadowed by a growing awareness of <span class="emphasis">how deeply Faye has manipulated him</span>.
+                        The realization shakes him to his core, forcing him to decide—<span class="emphasis">stay in her grasp, or break free?</span>
+                    </p>
+                </details>
+
+                <details>
+                    <summary><strong>Faye’s Hold on Him</strong></summary>
+                    <p>
+                        Blaine was not just turned by Faye—<span class="emphasis">he was shaped by her</span>. She controlled his thoughts, his emotions, even his desires.
+                        For years, he believed his loyalty was his own choice, but in <em>Wisdom</em>, he uncovers the truth: <span class="emphasis">he was never truly free</span>.
+                    </p>
+                    <p>
+                        He realizes that his feelings, his loyalty, and even his addiction to her approval <span class="emphasis">may have been a result of her influence over him</span>.
+                        The moment he begins to resist, <span class="emphasis">he feels the full weight of her power against him</span>.
+                    </p>
+                </details>
+        
+                <details>
+                    <summary><strong>His Relationship with Sophie</strong></summary>
+                    <p>
+                        Meeting Sophie <span class="emphasis">changes everything</span>. She <span class="emphasis">sees him as more than just Faye’s pawn</span>, and for the first time, he begins to <span class="emphasis">see himself that way too</span>.
+                    </p>
+                    <p>
+                        Their dynamic is one of push and pull—<span class="emphasis">he protects her, even when he doesn’t understand why</span>.
+                        Sophie makes him realize that he has a choice. And <span class="emphasis">that choice terrifies him</span>.
+                    </p>
+                </details>
+
+                <details>
+                    <summary><strong>The Moment of Defiance</strong></summary>
+                    <p>
+                        Throughout the book, Blaine struggles with his <span class="emphasis">instinct to obey</span> versus his <span class="emphasis">growing need to break free</span>.
+                        But when Faye <span class="emphasis">orders him to harm Sophie</span>, he finally <span class="emphasis">makes a choice</span>.
+                    </p>
+                    <p>
+                        Defying Faye is <span class="emphasis">the hardest thing he has ever done</span>—but it is also the first real decision <span class="emphasis">he makes for himself</span>.
+                    </p>
+                </details>
+    
+                <details>
+                    <summary><strong>What Comes Next?</strong></summary>
+                    <p>
+                        By the end of <em>Wisdom</em>, Blaine is <span class="emphasis">free from Faye’s control</span>, but <span class="emphasis">not free from his past</span>.
+                        He has no idea <span class="emphasis">who he is without her</span>.
+                    </p>
+                    <p>
+                    His journey is only beginning—he must now decide <span class="emphasis">what kind of Vampyr he truly wants to be</span>.
+                    </p>
+                </details>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Aeryn's Main Character Card (Book 2) -->
+<div class="character-card book2" onclick="openCharacterOverlay('aeryn2-overlay')">
+    <img id="aeryn-image" src="assets/images/characters/Aeryn/Aeryn.png" alt="Aeryn">
 
         <h3>Aeryn</h3>
         <p class="short-description">
             A fierce survivor, once bound by loyalty and haunted by her past, now forced to forge her own path in a world that seeks to break her.
         </p>
-      </div>
-  
-      <!-- Aeryn's Full Bio Overlay for Book 2 -->
-      <div class="character-overlay" id="aeryn2-overlay">
+    </div>
+
+    <!-- Aeryn's Full Bio Overlay for Book 2 -->
+    <div class="character-overlay" id="aeryn2-overlay">
         <div class="overlay-content">
-          <button class="close-overlay" onclick="closeCharacterOverlay('aeryn2-overlay')">&times;</button>
-          <div class="overlay-header">
+            <button class="close-overlay" onclick="closeCharacterOverlay('aeryn2-overlay')">&times;</button>
+            <div class="overlay-header">
             <h2>Aeryn</h2>
             <h6>Otherwise Known As</h6>
             <p>Elspeth Mary (formerly)</p>
-          </div>
-          <div class="overlay-intro">
+        </div>
+
+        <div class="overlay-intro">
             <img src="assets/images/characters/Aeryn/Aeryn.jpg" alt="Aeryn">
             <ul class="character-traits">
-              <li><span class="trait">Resilient</span></li>
-              <li><span class="trait">Haunted</span></li>
-              <li><span class="trait">Loyal</span></li>
-              <li><span class="trait">Fiercely Independent</span></li>
-              <li><span class="trait">Secretive</span></li>
-              <li><span class="trait">Emotionally Guarded</span></li>
+                <li><span class="trait">Resilient</span></li>
+                <li><span class="trait">Haunted</span></li>
+                <li><span class="trait">Loyal</span></li>
+                <li><span class="trait">Fiercely Independent</span></li>
+                <li><span class="trait">Secretive</span></li>
+                <li><span class="trait">Emotionally Guarded</span></li>
             </ul>
-          </div>
-          <!-- Expandable Sections for Aeryn -->
-          <div class="expandable-sections">
+        </div>
+
+<!-- Expandable Sections for Aeryn -->
+        <div class="expandable-sections">
             <div class="expandable-sections-container">
-              <details>
+            <details>
                 <summary><strong>Overview</strong></summary>
-                <p>
-                  Aeryn is a Vampyr bound by pain, loyalty, and a past she cannot escape. She was turned in 1888 but has never fully given in to the darkness within her.
-                  Though she stands by Eden, she begins to question her place in the war that looms ahead.
-                </p>
-              </details>
-              <details>
+                    <p>
+                        Aeryn is a Vampyr bound by pain, loyalty, and a past she cannot escape. She was turned in 1888 but has never fully given in to the darkness within her.
+                        Though she stands by Eden, she begins to question her place in the war that looms ahead.
+                    </p>
+            </details>
+            <details>
                 <summary><strong>Her Captivity & Torture</strong></summary>
-                <p>
-                  When <em>Wisdom</em> begins, Aeryn is a prisoner of <strong>The Master</strong>. Subjected to physical and psychological torment, 
-                  she is kept in absolute darkness, where time and reality blur. The Master intends to break her spirit, but Aeryn clings to her will to survive.
-                </p>
-              </details>
-              <details>
+                    <p>
+                        When <em>Wisdom</em> begins, Aeryn is a prisoner of <strong>The Master</strong>. Subjected to physical and psychological torment, 
+                        she is kept in absolute darkness, where time and reality blur. The Master intends to break her spirit, but Aeryn clings to her will to survive.
+                    </p>
+            </details>
+            <details>
                 <summary><strong>Her Escape & Mischa's Role</strong></summary>
-                <p>
-                  Aeryn's escape comes through <strong>Mischa</strong>, a mysterious and seemingly unhinged figure with extraordinary Magickal abilities.
-                  Mischa not only releases her from captivity but also protects her from Werewolves as they flee.
-                </p>
-              </details>
-              <details>
+                    <p>
+                        Aeryn's escape comes through <strong>Mischa</strong>, a mysterious and seemingly unhinged figure with extraordinary Magickal abilities.
+                        Mischa not only releases her from captivity but also protects her from Werewolves as they flee.
+                    </p>
+            </details>
+            <details>
                 <summary><strong>The High Order & Hailzy the White</strong></summary>
-                <p>
-                  Seeking refuge, Aeryn finds herself entangled with <strong>Hailzy the White</strong> and the <strong>High Order</strong>, a powerful Witch faction.
-                  Though they offer protection, Aeryn senses ulterior motives. As tensions rise, Hailzy interrogates Sophie and threatens Aeryn with her Magick.
-                </p>
-              </details>
+                    <p>
+                        Seeking refuge, Aeryn finds herself entangled with <strong>Hailzy the White</strong> and the <strong>High Order</strong>, a powerful Witch faction.
+                        Though they offer protection, Aeryn senses ulterior motives. As tensions rise, Hailzy interrogates Sophie and threatens Aeryn with her Magick.
+                    </p>
+            </details>
             </div>
             <!-- Spoiler Sections for Aeryn -->
             <h2 class="spoiler-heading">⚠ Spoilers</h2>
             <div class="spoiler-sections">
-              <details>
+            <details>
                 <summary><strong>Confronting Her Past</strong></summary>
-                <p>
-                  Aeryn reveals the truth about her past—Eden turned her after murdering her parents. Though she once resented him, she realizes he has changed, especially due to his love for Sophie.
-                </p>
-              </details>
-              <details>
+                    <p>
+                        Aeryn reveals the truth about her past—Eden turned her after murdering her parents. Though she once resented him, she realizes he has changed, especially due to his love for Sophie.
+                    </p>
+            </details>
+            <details>
                 <summary><strong>A Growing Threat</strong></summary>
-                <p>
-                  Aeryn discovers Faye’s corpse, realizing that a power shift is coming.
-                  With The Master tightening his grip and the prophecy unfolding, Aeryn is forced to reconsider her loyalties.
-                </p>
-              </details>
-              <details>
+                    <p>
+                        Aeryn discovers Faye’s corpse, realizing that a power shift is coming.
+                        With The Master tightening his grip and the prophecy unfolding, Aeryn is forced to reconsider her loyalties.
+                    </p>
+            </details>
+            <details>
                 <summary><strong>A New Purpose</strong></summary>
-                <p>
-                  By the end of <em>Wisdom</em>, Aeryn is no longer just Eden’s ally—she is a force of her own.
-                  Her suffering and survival have changed her, and she must now decide whether to remain in Eden’s shadow or forge her own destiny.
-                </p>
-              </details>
+                    <p>
+                        By the end of <em>Wisdom</em>, Aeryn is no longer just Eden’s ally—she is a force of her own.
+                        Her suffering and survival have changed her, and she must now decide whether to remain in Eden’s shadow or forge her own destiny.
+                    </p>
+                </details>
             </div>
-          </div>
         </div>
-      </div>
+    </div>
+</div>
 
     
-      <div class="section-title">
-        <h2>Family Connections</h2>
-      </div>
+<div class="section-title">
+    <h2>Family Connections</h2>
+</div>
     
-      <!-- Jean's Main Character Card (Book 2) -->
-      <div class="character-card book2" onclick="openCharacterOverlay('jean2-overlay')">
+<!-- Jean's Main Character Card (Book 2) -->
+    <div class="character-card book2" onclick="openCharacterOverlay('jean2-overlay')">
         <img src="assets/images/characters/Jean/JeanMunday.webp" alt="Jean">
         <h3>Jean Munday</h3>
         <p class="short-description">
-          A mother bound by love, secrets, and the power she can no longer deny.
+            A mother bound by love, secrets, and the power she can no longer deny.
         </p>
-      </div>
+    </div>
     
-      <!-- Jean's Full Bio Overlay -->
-      <div class="character-overlay" id="jean2-overlay">
-        <div class="overlay-content">
-          <button class="close-overlay" onclick="closeCharacterOverlay('jean2-overlay')">&times;</button>
-          <div class="overlay-header">
+<!-- Jean's Full Bio Overlay -->
+<div class="character-overlay" id="jean2-overlay">
+    <div class="overlay-content">
+        <button class="close-overlay" onclick="closeCharacterOverlay('jean2-overlay')">&times;</button>
+        <div class="overlay-header">
             <h2>Jean Munday</h2>
             <h6>Otherwise Known As</h6>
             <p>Jean Amelia Munday</p>
-          </div>
-          <div class="overlay-intro">
+        </div>
+        <div class="overlay-intro">
             <img src="assets/images/characters/Jean/JeanMunday.webp" alt="Jean">
             <ul class="character-traits">
               <li><span class="trait">Fiercely Protective</span></li>
@@ -1505,101 +1610,6 @@
         <h2>The Witches</h2>
       </div>
     
-      <!-- Mischa's Main Character Card (Book 2) -->
-      <div class="character-card book2" onclick="openCharacterOverlay('mischa-overlay')">
-        <img src="assets/images/characters/Mischa/Mischa.webp" alt="Mischa">
-        <h3>Mischa</h3>
-        <p class="short-description">
-          The enigmatic and unpredictable outcast, wielding magic beyond comprehension.
-        </p>
-      </div>
-    
-      <!-- Mischa's Full Bio Overlay -->
-      <div class="character-overlay" id="mischa-overlay">
-        <div class="overlay-content">
-          <button class="close-overlay" onclick="closeCharacterOverlay('mischa-overlay')">&times;</button>
-          <div class="overlay-header">
-            <h2>Mischa</h2>
-            <h6>Otherwise Known As</h6>
-            <p>"The Unfathomable Witch"</p>
-          </div>
-          <div class="overlay-intro">
-            <img src="assets/images/characters/Mischa/Mischa.webp" alt="Mischa">
-            <ul class="character-traits">
-              <li><span class="trait">Mysterious</span></li>
-              <li><span class="trait">Powerful</span></li>
-              <li><span class="trait">Detached</span></li>
-              <li><span class="trait">Unpredictable</span></li>
-              <li><span class="trait">Outcast</span></li>
-              <li><span class="trait">Loyal in her own way</span></li>
-            </ul>
-          </div>
-          <!-- Expandable Sections for Mischa -->
-          <div class="expandable-sections">
-            <div class="expandable-sections-container">
-              <details>
-                <summary><strong>Character Overview</strong></summary>
-                <p>
-                  Mischa is an enigma—a witch of immense power, feared even by her own kind. Though she is loosely affiliated with a coven, she is considered an outcast due to the sheer magnitude of her abilities. Her speech is often fragmented, making her difficult to understand at first, but those who spend time with her find her words slowly becoming clearer—as if reality itself bends around her. Some whisper that she is not entirely bound by the normal flow of time, that she exists partially in a different plane of existence.
-                </p>
-              </details>
-              <details>
-                <summary><strong>Her Appearance</strong></summary>
-                <p>
-                  Mischa is hauntingly thin, yet not grotesquely skeletal. Her long, flowing light blonde hair cascades in soft waves, framing her sharp, delicate features. Her large, wide-set blue eyes possess an unnatural vibrance, as though she is always seeing something beyond what is in front of her. Her skin is pale, almost porcelain, devoid of blemishes, freckles, or any signs of exposure to the elements, adding to her eerie presence. Despite her fragile appearance, she moves with an unnatural grace, almost gliding rather than walking, and she never makes a sound unless she intends to.
-                </p>
-              </details>
-              <details>
-                <summary><strong>Personality & Mannerisms</strong></summary>
-                <p>
-                  Mischa is aloof and unpredictable, her motivations often unclear. She speaks in a cryptic manner, rarely giving direct answers, and often seems amused by the confusion she causes. She enjoys observing others, especially when they struggle to comprehend her presence. Her detached nature makes her difficult to befriend, but those who manage to earn her trust find that she is fiercely loyal in her own strange way. Though she rarely shows overt emotion, there are fleeting moments of something deeper—perhaps loneliness, or even sadness, buried beneath her enigmatic exterior.
-                </p>
-              </details>
-              <details>
-                <summary><strong>Her Connection to the Witches</strong></summary>
-                <p>
-                  Though technically a member of a coven, Mischa is treated as an outcast. The other witches view her with suspicion and fear, knowing that if she ever turned against them, she could <span class="emphasis">annihilate their entire order</span>. It is whispered that she remains among them <span class="emphasis">not out of loyalty, but because it amuses her</span>. There are rumors that the coven once tried to cast her out completely, but the attempt ended in disaster. None speak of what happened, but the scars of that failure remain within the coven's hierarchy.
-                </p>
-              </details>
-              <details>
-                <summary><strong>Her Unique Abilities</strong></summary>
-                <p>
-                  Mischa’s magic is unlike that of any other witch. She does not rely on incantations, rituals, or potions. Instead, reality itself seems to shift in response to her presence. Her abilities include:
-                </p>
-                <ul>
-                  <li><span class="emphasis">Perception Warping:</span> People around her begin to hear her words more clearly over time, as if <span class="emphasis">the world itself adjusts to accommodate her presence</span>. Those who spend enough time near her sometimes report seeing glimpses of things that should not exist.</li>
-                  <li><span class="emphasis">Vanishing & Appearing:</span> She moves <span class="emphasis">without sound</span>, appearing and disappearing at will. It is unclear whether she actually teleports or if she simply steps into another plane of existence.</li>
-                  <li><span class="emphasis">Unknowable Knowledge:</span> She seems to <span class="emphasis">know things she should not</span>—as if she can see past, present, and future all at once. When questioned, she rarely explains how she knows what she does, only offering vague smiles or cryptic responses.</li>
-                </ul>
-              </details>
-            </div>
-            <!-- Spoiler Sections for Mischa -->
-            <h2 class="spoiler-heading">⚠ Spoilers</h2>
-            <div class="spoiler-sections">
-              <details>
-                <summary><strong>Her Connection to Aeryn</strong></summary>
-                <p>
-                  Mischa rescues Aeryn from imprisonment, offering her new clothes and safe passage. Though Aeryn is initially wary, Mischa <span class="emphasis">proves both unpredictable and invaluable</span>. It is unclear whether Mischa acts out of kindness or if she simply <span class="emphasis">enjoys playing with fate</span>. Despite Aeryn’s reservations, Mischa appears to have an interest in her that extends beyond mere curiosity.
-                </p>
-              </details>
-              <details>
-                <summary><strong>The Secret She Knows</strong></summary>
-                <p>
-                  Mischa speaks cryptically about an event <span class="emphasis">that has not yet happened</span>. When confronted, she simply says: "It will. You will see." Her words hint at an approaching disaster, yet she seems neither eager nor afraid—it is as if she exists <span class="emphasis">outside the consequences</span> of time. Some believe she is an agent of fate itself, guiding events toward an outcome only she understands.
-                </p>
-              </details>
-              <details>
-                <summary><strong>Her True Purpose</strong></summary>
-                <p>
-                  Near the end of Book 2, Mischa <span class="emphasis">vanishes without a trace</span>, leaving behind only a single, cryptic message. The meaning of her departure remains <span class="emphasis">one of the greatest mysteries</span> in the story—was she simply a traveler through time and space, or was she guiding events toward an inevitable conclusion? If she ever returns, it will not be by accident.
-                </p>
-              </details>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    
       <!-- Hailzy the White Character Card (Book 2 Update) -->
 <div class="character-card book2" onclick="openCharacterOverlay('hailzy2-overlay')">
     <img src="assets/images/characters/Hailzy/Hailzy.webp" alt="Hailzy the White">
@@ -1684,9 +1694,9 @@
     </div>
 </div>
     
-      
+
     
-      <!-- Murwill Character Card (Book 2 Update) -->
+<!-- Murwill Character Card (Book 2 Update) -->
 <div class="character-card book2" onclick="openCharacterOverlay('murwill-overlay')">
     <img src="assets/images/characters/Murwill/Murwill.webp" alt="Murwill">
     <h3>Murwill</h3>
@@ -1776,7 +1786,7 @@
     </div>
 </div>
     
-      <!-- Bronwyn Character Card (Book 2 Update) -->
+<!-- Bronwyn Character Card (Book 2 Update) -->
 <div class="character-card book2" onclick="openCharacterOverlay('bronwyn-overlay')">
     <img src="assets/images/characters/Bronwyn/Bronwyn.webp" alt="Bronwyn">
     <h3>Bronwyn</h3>
@@ -1787,8 +1797,10 @@
 
 <!-- Bronwyn's Full Bio Overlay for Book 2 (Single version) -->
 <div class="character-overlay" id="bronwyn-overlay">
+
     <div class="overlay-content">
         <button class="close-overlay" onclick="closeCharacterOverlay('bronwyn-overlay')">&times;</button>
+
         <div class="overlay-header">
             <h2>Bronwyn</h2>
         </div>
@@ -1802,6 +1814,7 @@
                 <li><span class="trait">A Voice of Reason</span></li>
             </ul>
         </div>
+
         <div class="expandable-sections">
             <div class="expandable-sections-container">
                 <details>
@@ -1857,13 +1870,205 @@
                             Though she remains outwardly neutral, Bronwyn has her own hidden agenda. Unlike Hailzy, who seeks control, and Murwill, who 
                             values destiny, Bronwyn believes in preparing for the worst. She has already put countermeasures in place in case the 
                             prophecy turns against them. But the question remains—who is she truly protecting?
-                        </p>
-                    </details>
+                            </p>
+                        </details>
+                    </div>
                 </div>
             </div>
         </div>
+
+<!-- Powerful Beings (Book 2) -->
+<div class="section-title">
+    <h2>Powerful Beings</h2>
+</div>
+
+<!-- Mischa's Main Character Card (Book 2) -->
+<div class="character-card book2" onclick="openCharacterOverlay('mischa-overlay')">
+    <img src="assets/images/characters/Mischa/Mischa.webp" alt="Mischa">
+    <h3>Mischa</h3>
+    <p class="short-description">
+      The enigmatic and unpredictable outcast, wielding magic beyond comprehension.
+    </p>
+  </div>
+
+  <!-- Mischa's Full Bio Overlay -->
+  <div class="character-overlay" id="mischa-overlay">
+    <div class="overlay-content">
+      <button class="close-overlay" onclick="closeCharacterOverlay('mischa-overlay')">&times;</button>
+      <div class="overlay-header">
+        <h2>Mischa</h2>
+        <h6>Otherwise Known As</h6>
+        <p>"The Unfathomable Witch"</p>
+      </div>
+      <div class="overlay-intro">
+        <img src="assets/images/characters/Mischa/Mischa.webp" alt="Mischa">
+        <ul class="character-traits">
+          <li><span class="trait">Mysterious</span></li>
+          <li><span class="trait">Powerful</span></li>
+          <li><span class="trait">Detached</span></li>
+          <li><span class="trait">Unpredictable</span></li>
+          <li><span class="trait">Outcast</span></li>
+          <li><span class="trait">Loyal in her own way</span></li>
+        </ul>
+      </div>
+      <!-- Expandable Sections for Mischa -->
+      <div class="expandable-sections">
+        <div class="expandable-sections-container">
+          <details>
+            <summary><strong>Character Overview</strong></summary>
+            <p>
+              Mischa is an enigma—a witch of immense power, feared even by her own kind. Though she is loosely affiliated with a coven, she is considered an outcast due to the sheer magnitude of her abilities. Her speech is often fragmented, making her difficult to understand at first, but those who spend time with her find her words slowly becoming clearer—as if reality itself bends around her. Some whisper that she is not entirely bound by the normal flow of time, that she exists partially in a different plane of existence.
+            </p>
+          </details>
+          <details>
+            <summary><strong>Her Appearance</strong></summary>
+            <p>
+              Mischa is hauntingly thin, yet not grotesquely skeletal. Her long, flowing light blonde hair cascades in soft waves, framing her sharp, delicate features. Her large, wide-set blue eyes possess an unnatural vibrance, as though she is always seeing something beyond what is in front of her. Her skin is pale, almost porcelain, devoid of blemishes, freckles, or any signs of exposure to the elements, adding to her eerie presence. Despite her fragile appearance, she moves with an unnatural grace, almost gliding rather than walking, and she never makes a sound unless she intends to.
+            </p>
+          </details>
+          <details>
+            <summary><strong>Personality & Mannerisms</strong></summary>
+            <p>
+              Mischa is aloof and unpredictable, her motivations often unclear. She speaks in a cryptic manner, rarely giving direct answers, and often seems amused by the confusion she causes. She enjoys observing others, especially when they struggle to comprehend her presence. Her detached nature makes her difficult to befriend, but those who manage to earn her trust find that she is fiercely loyal in her own strange way. Though she rarely shows overt emotion, there are fleeting moments of something deeper—perhaps loneliness, or even sadness, buried beneath her enigmatic exterior.
+            </p>
+          </details>
+          <details>
+            <summary><strong>Her Connection to the Witches</strong></summary>
+            <p>
+              Though technically a member of a coven, Mischa is treated as an outcast. The other witches view her with suspicion and fear, knowing that if she ever turned against them, she could <span class="emphasis">annihilate their entire order</span>. It is whispered that she remains among them <span class="emphasis">not out of loyalty, but because it amuses her</span>. There are rumors that the coven once tried to cast her out completely, but the attempt ended in disaster. None speak of what happened, but the scars of that failure remain within the coven's hierarchy.
+            </p>
+          </details>
+          <details>
+            <summary><strong>Her Unique Abilities</strong></summary>
+            <p>
+              Mischa’s magic is unlike that of any other witch. She does not rely on incantations, rituals, or potions. Instead, reality itself seems to shift in response to her presence. Her abilities include:
+            </p>
+            <ul>
+              <li><span class="emphasis">Perception Warping:</span> People around her begin to hear her words more clearly over time, as if <span class="emphasis">the world itself adjusts to accommodate her presence</span>. Those who spend enough time near her sometimes report seeing glimpses of things that should not exist.</li>
+              <li><span class="emphasis">Vanishing & Appearing:</span> She moves <span class="emphasis">without sound</span>, appearing and disappearing at will. It is unclear whether she actually teleports or if she simply steps into another plane of existence.</li>
+              <li><span class="emphasis">Unknowable Knowledge:</span> She seems to <span class="emphasis">know things she should not</span>—as if she can see past, present, and future all at once. When questioned, she rarely explains how she knows what she does, only offering vague smiles or cryptic responses.</li>
+            </ul>
+          </details>
+        </div>
+        <!-- Spoiler Sections for Mischa -->
+        <h2 class="spoiler-heading">⚠ Spoilers</h2>
+        <div class="spoiler-sections">
+          <details>
+            <summary><strong>Her Connection to Aeryn</strong></summary>
+            <p>
+              Mischa rescues Aeryn from imprisonment, offering her new clothes and safe passage. Though Aeryn is initially wary, Mischa <span class="emphasis">proves both unpredictable and invaluable</span>. It is unclear whether Mischa acts out of kindness or if she simply <span class="emphasis">enjoys playing with fate</span>. Despite Aeryn’s reservations, Mischa appears to have an interest in her that extends beyond mere curiosity.
+            </p>
+          </details>
+          <details>
+            <summary><strong>The Secret She Knows</strong></summary>
+            <p>
+              Mischa speaks cryptically about an event <span class="emphasis">that has not yet happened</span>. When confronted, she simply says: "It will. You will see." Her words hint at an approaching disaster, yet she seems neither eager nor afraid—it is as if she exists <span class="emphasis">outside the consequences</span> of time. Some believe she is an agent of fate itself, guiding events toward an outcome only she understands.
+            </p>
+          </details>
+          <details>
+            <summary><strong>Her True Purpose</strong></summary>
+            <p>
+              Near the end of Book 2, Mischa <span class="emphasis">vanishes without a trace</span>, leaving behind only a single, cryptic message. The meaning of her departure remains <span class="emphasis">one of the greatest mysteries</span> in the story—was she simply a traveler through time and space, or was she guiding events toward an inevitable conclusion? If she ever returns, it will not be by accident.
+            </p>
+          </details>
+        </div>
+      </div>
     </div>
-    </section>
+  </div>
+
+<!-- Seraphyna & Sepherious Character Card (Book 2) -->
+<div class="character-card book2" onclick="openCharacterOverlay('seraphyna-sepherious2-overlay')">
+    <img src="assets/images/characters/Seraphyna/Seraphyna.webp" alt="Seraphyna & Sepherious">
+    <h3>Seraphyna & Sepherious</h3>
+    <p class="short-description">
+        Eternal gods of fire and shadow, bound by fate yet forever kept apart.
+    </p>
+    </div>
+    
+    <!-- Seraphyna & Sepherious Full Bio Overlay (Book 2) -->
+    <div class="character-overlay" id="seraphyna-sepherious2-overlay">
+
+    <div class="overlay-content">
+        <button class="close-overlay" onclick="closeCharacterOverlay('seraphyna-sepherious2-overlay')">&times;</button>
+    
+        <div class="overlay-header">
+            <h2>Seraphyna & Sepherious – The Eternal Gods</h2>
+        </div>
+    
+        <div class="overlay-intro">
+            <img src="assets/images/characters/Seraphyna/Seraphyna.webp" alt="Seraphyna & Sepherious">
+            <ul class="character-traits">
+                <li><span class="trait">Bound by Fate</span></li>
+                <li><span class="trait">Celestial Beings</span></li>
+                <li><span class="trait">Fire & Shadow</span></li>
+                <li><span class="trait">Tragic Lovers</span></li>
+                <li><span class="trait">Eternal Longing</span></li>
+            </ul>
+        </div>
+    
+        <!-- Expandable Sections -->
+        <div class="expandable-sections">
+            <div class="expandable-sections-container">
+                
+                <details>
+                    <summary><strong>Appearance & Presence</strong></summary>
+                    <p>
+                        <strong>Seraphyna:</strong> She glows with molten gold and ember-red hues, her black hair flowing like living smoke, streaked with fire. Her crimson gown flickers with golden sigils, its hem eternally ablaze. Flames coil around her wrists and fingers, casting radiant embers into the air.
+                    </p>
+                    <p>
+                        <strong>Sepherious:</strong> Cloaked in shadows, he absorbs light around him, his deep indigo-black coat fraying into mist. His silvered skin glows faintly, appearing both solid and intangible. His long, midnight-black hair moves like a cosmic tide, streaked with spectral blue.
+                    </p>
+                </details>
+    
+                <details>
+                    <summary><strong>Powers & Essence</strong></summary>
+                    <p>
+                        <strong>Seraphyna:</strong> The Goddess of Fire, her presence ignites the air. Her flames do not destroy but are an extension of her soul, responding to her emotions. The space around her distorts with heat, and golden embers swirl in her wake.
+                    </p>
+                    <p>
+                        <strong>Sepherious:</strong> The God of Shadows, his essence bends gravity. He absorbs the light near him, and his touch distorts reality. When he reaches for Seraphyna, his form fades into mist before contact can be made.
+                    </p>
+                </details>
+    
+                <details>
+                    <summary><strong>Fate & Tragic Bond</strong></summary>
+                    <p>
+                        For eternity, they have been drawn together, yet an invisible force keeps them apart. Their hands stretch toward each other, but fire and shadow can never truly merge. Their love is one of longing, a silent conversation across the void.
+                    </p>
+                </details>
+            </div>
+    
+    <!-- Spoiler Section -->
+    <h2 class="spoiler-heading">⚠ Spoilers</h3>
+    
+    <div class="spoiler-sections">
+        <details>
+            <summary><strong>Book 2 – The Breaking Point</strong></summary>
+            <p>
+                After Seraphyna nearly kills Eden, Sepherious intervenes, forcing her to stop. Eden reveals the full truth of their curse, making them relive their past lives through his words.
+            </p>
+            <p>
+                Seraphyna is shaken by the memories, and for the first time, she questions whether her rage is truly justified. Sepherious, ever the voice of reason, urges her to consider breaking their cycle rather than continuing it.
+            </p>
+        </details>
+    
+        <details>
+            <summary><strong>The Vault & Their Sacrifice</strong></summary>
+            <p>
+                With Eden granted access to the vaults, Seraphyna and Sepherious face a terrible choice: remain as they are, or sacrifice their physical forms to unlock the truth.
+            </p>
+            <p>
+                In a final act of defiance against fate, they allow themselves to fade once again, knowing they will forget each other but hoping this time will be different.
+            </p>
+        </details>
+    </div>
+    </div>
+    </div>
+    </div>
+    
+
+    </div>
+</section>
 </main>
 
     <!-- Character Overlay (Hidden initially) -->
@@ -1875,12 +2080,13 @@
     </div>
 
 <!-- ================================================ -->
-<!-- =================== CHATBOT ================= -->
+<!-- =================== CHATBOT =================    -->
 <!-- ================================================ -->
 
 
 <div id="chatbot" style="display: none;"> <!-- Hidden initially -->
     <button id="minimize-button" onclick="closeChatbot()">×</button>
+
     <h2>FAQ Chatbot</h2>
     <p>Hi! How can I assist you today?</p>
   
@@ -1928,4 +2134,4 @@
     
 
 </body>
-</html>
+</html

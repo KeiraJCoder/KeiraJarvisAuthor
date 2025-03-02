@@ -61,20 +61,22 @@
     font-style: italic;
 }
 
+
 /* Options buttons */
 #options {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    gap: 10px;
+    gap: 15px; /* Increased spacing */
+    margin-top: 10px; /* Added margin for better spacing */
 }
 
 #options button {
-    flex: 1 1 48%;
-    padding: 10px;
+    flex: 1 1 calc(50% - 10px); /* Ensures even spacing with gap */
+    padding: 12px; /* Increased padding for better touchability */
     border: 1px solid #8b0000;
-    border-radius: 5px;
-    background-color: #7b0202; /* Deep blood-red */
+    border-radius: 8px; /* Slightly more rounded corners */
+    background-color: #7b0202;
     color: #fff;
     font-size: 1rem;
     cursor: pointer;
@@ -84,35 +86,36 @@
 }
 
 #options button:hover {
-    background-color: #a30000; /* Slightly brighter red on hover */
+    background-color: #a30000;
     border-color: #d4af37;
 }
+
 
 /* Input section */
 #input-container {
     display: flex;
-    gap: 15px;
+    gap: 10px; /* Increased spacing */
+    margin-top: 15px; /* Added margin for spacing */
+    align-items: center; /* Aligns the input and button */
 }
 
+/* User input field */
 #user-input {
     flex-grow: 1;
-    padding: 10px;
+    padding: 12px; /* Increased padding for better usability */
     font-size: 1rem;
     border: 1px solid #8b0000;
-    border-radius: 5px;
+    border-radius: 8px; /* More rounded for better aesthetics */
     background-color: #1a1a1a;
     color: #c0c0c0;
 }
 
-#user-input::placeholder {
-    color: #b3b3b3; /* Lighter grey for better readability */
-}
-
+/* Submit button */
 #submit-button {
-    padding: 10px 20px;
+    padding: 12px 20px;
     font-size: 1rem;
     border: 1px solid #d4af37;
-    border-radius: 5px;
+    border-radius: 8px; /* Consistency with input */
     background-color: #8b0000;
     color: white;
     cursor: pointer;
@@ -247,8 +250,11 @@
     margin-bottom: 10px;
 }
 
-/* Mobile responsiveness */
-@media only screen and (max-width: 768px) {
+/* ======================= */
+/* MOBILE RESPONSIVENESS   */
+/* ======================= */
+@media only screen and (max-width: 767px) {  /* BELOW 768px */
+    /* Chatbot Container */
     #chatbot {
         width: 90%;
         height: 80%;
@@ -256,6 +262,22 @@
         right: 5%;
     }
 
+    /* Chatbot Button */
+    #open-chatbot {
+        bottom: 15px;
+        right: 15px;
+        width: 60px;
+        height: 60px;
+        font-size: 0.9rem;
+        padding: 8px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+
+    /* Options Section */
     #options {
         flex-direction: column;
         gap: 5px;
@@ -267,6 +289,7 @@
         font-size: 0.9rem;
     }
 
+    /* Input Section */
     #input-container {
         flex-direction: column;
         gap: 5px;
@@ -284,7 +307,9 @@
     }
 }
 
-/* Fullscreen for very small screens */
+/* ======================= */
+/* SMALL SCREENS (≤ 480px) */
+/* ======================= */
 @media only screen and (max-width: 480px) {
     #chatbot {
         width: 100%;
@@ -297,9 +322,10 @@
     #open-chatbot {
         bottom: 10px;
         right: 10px;
-        width: 90px;
-        height: 40px;
-        font-size: 0.8rem;
+        width: 50px;
+        height: 50px;
+        font-size: 0.7rem;
+        padding: 6px;
     }
 
     #options button {
@@ -307,3 +333,4 @@
         padding: 6px;
     }
 }
+
