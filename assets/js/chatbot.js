@@ -490,7 +490,7 @@ function resetChatbotState() {
 document.addEventListener('DOMContentLoaded', () => {
     resetChatbotState();
     // Add the event listener for the "Other Questions" button here
-    document.getElementById('other-questions-button').addEventListener('click', handleOtherQuestions);
+    // document.getElementById('other-questions-button').addEventListener('click', handleOtherQuestions);
 });
 
 // Function to reset the chatbot state when opening
@@ -503,3 +503,21 @@ function resetOnOpenChatbot() {
     userInput.value = ''; // Clear input field
     optionsContainer.style.display = 'flex'; // Show question buttons again
 }
+
+document.addEventListener("DOMContentLoaded", function () {
+    function updateChatbotButtonText() {
+        const chatButton = document.getElementById("open-chatbot");
+        if (window.innerWidth < 768) { // Change button text on ANY screen below 768px
+            chatButton.textContent = "Chat";
+        } else {
+            chatButton.textContent = "Chat with Me";
+        }
+    }
+
+    // Run function on page load
+    updateChatbotButtonText();
+
+    // Update on window resize
+    window.addEventListener("resize", updateChatbotButtonText);
+});
+
