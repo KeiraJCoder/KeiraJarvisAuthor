@@ -1,15 +1,14 @@
 document.addEventListener("DOMContentLoaded", function () {
     console.log("✅ Characters.js loaded successfully.");
 
-    // ==============================
-    // 📌 1. SPOILER WARNING MODAL
-    // ==============================
+    // ========== MODAL ELEMENTS ==========
     const spoilerModal = document.getElementById("spoilerModal");
     const yesBtn = document.getElementById("spoilerYesBtn");
     const noBtn = document.getElementById("spoilerNoBtn");
 
+    // A helper function that displays the spoiler modal and returns a Promise
     function showSpoilerWarningModal() {
-        spoilerModal.style.display = "flex";
+        spoilerModal.style.display = "flex"; // Show the modal
         return new Promise((resolve) => {
             yesBtn.onclick = () => {
                 spoilerModal.style.display = "none";
@@ -22,9 +21,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // ==============================
-    // 📌 2. CHARACTER OVERLAY FUNCTIONS
-    // ==============================
+    // ========== OVERLAY FUNCTIONS ==========
     window.openCharacterOverlay = function (overlayId) {
         const overlay = document.getElementById(overlayId);
         if (!overlay) {
@@ -46,11 +43,8 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     };
 
-    // ==============================
-    // 📌 3. BOOK SELECTION FILTER
-    // ==============================
+    // ========== BOOK SELECT ==========
     const bookSelect = document.getElementById('book-select');
-
     bookSelect.addEventListener('change', function () {
         if (bookSelect.value === 'book2') {
             showSpoilerWarningModal().then((confirmed) => {
@@ -64,37 +58,38 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
+    filterCharacters();
+
     function filterCharacters() {
         const selectedBook = bookSelect.value;
         document.querySelectorAll('.character-section.book1, .character-card.book1, .section-title:not(.book2)')
             .forEach(el => el.style.display = (selectedBook === 'book1') ? 'block' : 'none');
-
         document.querySelectorAll('.character-section.book2, .character-card.book2, .character-section.book2 .section-title')
             .forEach(el => el.style.display = (selectedBook === 'book2') ? 'block' : 'none');
-
-        console.log("Characters filtered for:", selectedBook);
     }
+});
 
-    filterCharacters();
-
-    // ==============================
-    // 📌 4. IMAGE TOGGLE FUNCTIONALITY (DESKTOP & MOBILE)
-    // ==============================
+// ==========================
+// IMAGE BEHAVIOR FOR CHARACTERS
+// ==========================
+document.addEventListener("DOMContentLoaded", function () {
     let isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
 
-    document.querySelectorAll(".toggle-image").forEach(image => {
-        const defaultSrc = image.getAttribute("data-default");
-        const hoverSrc = image.getAttribute("data-hover");
+    function setupCharacterImageBehavior(imageId, defaultSrc, hoverSrc, overlayId) {
+        const image = document.getElementById(imageId);
+        if (!image) return;
+        image.src = defaultSrc;
 
         if (isTouchDevice) {
-            // 📌 MOBILE FUNCTIONALITY: Toggle Image on Click
-            let toggled = false;
-            image.addEventListener("click", function () {
-                toggled = !toggled;
-                image.src = toggled ? hoverSrc : defaultSrc;
-            });
+            const characterCard = document.querySelector(`.character-card[onclick*='${overlayId}']`);
+            if (characterCard) {
+                characterCard.removeAttribute("onclick");
+                characterCard.addEventListener("click", function () {
+                    image.src = hoverSrc;
+                    setTimeout(() => openCharacterOverlay(overlayId), 500);
+                });
+            }
         } else {
-            // 📌 DESKTOP FUNCTIONALITY: Hover Effect
             image.addEventListener("mouseenter", function () {
                 image.src = hoverSrc;
             });
@@ -102,7 +97,10 @@ document.addEventListener("DOMContentLoaded", function () {
                 image.src = defaultSrc;
             });
         }
-    });
+    }
 
-    console.log("✅ Image behavior configured for desktop & mobile.");
+    setupCharacterImageBehavior("faye-image", "assets/images/characters/Faye/Faye.webp", "assets/images/characters/Faye/Faye2.png", "faye-overlay");
+    setupCharacterImageBehavior("aeryn-image", "assets/images/characters/Aeryn/Aeryn.jpg", "assets/images/characters/Aeryn/Aeryn2.png", "aeryn-overlay");
+    setupCharacterImageBehavior("eden-image", "assets/images/characters/Eden/Eden.webp", "assets/images/characters/Eden/Eden2.webp", "eden-overlay");
+    setupCharacterImageBehavior("blaine-image", "assets/images/characters/Blaine/Blaine.webp", "assets/images/characters/Blaine/Blaine2.webp", "blaine-overlay");
 });
