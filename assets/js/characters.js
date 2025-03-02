@@ -1,6 +1,21 @@
 document.addEventListener("DOMContentLoaded", function () {
     console.log("✅ Characters.js loaded successfully.");
 
+    // ========== PRELOAD ALTERNATE IMAGES ==========
+    function preloadImages(sources) {
+        sources.forEach(function(src) {
+            const img = new Image();
+            img.src = src;
+        });
+    }
+
+    preloadImages([
+        "assets/images/characters/Faye/Faye2.png",
+        "assets/images/characters/Aeryn/Aeryn2.png",
+        "assets/images/characters/Eden/Eden2.webp",
+        "assets/images/characters/Blaine/Blaine2.webp"
+    ]);
+
     // ========== MODAL ELEMENTS ==========
     const spoilerModal = document.getElementById("spoilerModal");
     const yesBtn = document.getElementById("spoilerYesBtn");
