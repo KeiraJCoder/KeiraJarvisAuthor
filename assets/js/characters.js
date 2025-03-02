@@ -84,42 +84,46 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // ========== IMAGE BEHAVIOR FOR CHARACTERS ==========
+    // Determine if the device is a touch device.
     let isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
 
+    // Determine mobile view based on viewport width.
+    function isMobileView() {
+        return window.innerWidth < 768;
+    }
+
     /**
-     * Sets up image behavior for a character.
+     * Sets up image behavior for a character element.
      *
-     * On desktop, hover events change the image source.
-     * On mobile, if toggleOnMobile is true, a click on the image toggles its source.
-     * Otherwise, the card's onclick will open the overlay.
+     * When in mobile view (viewport width < 768), if toggleOnMobile is true, tapping the image toggles its source.
+     * When in desktop view, hover events swap the image.
      *
      * @param {string} imageId - The ID of the image element.
      * @param {string} defaultSrc - The default image source.
      * @param {string} hoverSrc - The alternate image source.
-     * @param {string} overlayId - The overlay ID to open.
-     * @param {boolean} [toggleOnMobile=false] - If true, on mobile devices clicking the image toggles its source.
+     * @param {string} overlayId - The overlay ID (for reference).
+     * @param {boolean} [toggleOnMobile=false] - If true, in mobile view tapping toggles the image.
      */
     function setupCharacterImageBehavior(imageId, defaultSrc, hoverSrc, overlayId, toggleOnMobile = false) {
         const image = document.getElementById(imageId);
         if (!image) return;
         image.src = defaultSrc;
 
-        if (isTouchDevice) {
+        if (isTouchDevice && isMobileView()) {
             if (toggleOnMobile) {
-                // On mobile, clicking the image toggles its source.
-                image.addEventListener("click", function(e) {
-                    e.stopPropagation(); // Prevent the card's click event from firing.
-                    if (image.getAttribute("src") === defaultSrc) {
+                image.addEventListener("touchstart", function(e) {
+                    e.preventDefault();
+                    e.stopPropagation(); // Prevent the card's click from firing.
+                    if (image.src.indexOf(defaultSrc) !== -1) {
                         image.src = hoverSrc;
                     } else {
                         image.src = defaultSrc;
                     }
-                });
+                }, { passive: false });
             }
-            // For mobile devices without toggleOnMobile enabled,
-            // tapping the card (including the image) will trigger the card's onclick.
+            // If toggleOnMobile is false, tapping the image triggers the card's onclick as usual.
         } else {
-            // Desktop behavior: use hover effects for all characters.
+            // Desktop (or larger view on touch devices): attach hover events.
             image.addEventListener("mouseenter", function () {
                 image.src = hoverSrc;
             });
@@ -129,41 +133,42 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    // Set up image behavior for all characters.
+    // Global configuration for all character images.
+    const imageConfigs = [
+        // Book 2 characters
+        { id: "faye-image", defaultSrc: "assets/images/characters/Faye/Faye.webp", hoverSrc: "assets/images/characters/Faye/Faye2.png", overlayId: "faye-overlay", toggleOnMobile: true },
+        { id: "aeryn-image", defaultSrc: "assets/images/characters/Aeryn/Aeryn.jpg", hoverSrc: "assets/images/characters/Aeryn/Aeryn2.png", overlayId: "aeryn2-overlay", toggleOnMobile: true },
+        { id: "eden-image", defaultSrc: "assets/images/characters/Eden/Eden.webp", hoverSrc: "assets/images/characters/Eden/Eden2.webp", overlayId: "eden2-overlay", toggleOnMobile: true },
+        { id: "blaine-image", defaultSrc: "assets/images/characters/Blaine/Blaine.webp", hoverSrc: "assets/images/characters/Blaine/Blaine2.webp", overlayId: "blaine-overlay", toggleOnMobile: true },
+        // Book 1 characters
+        { id: "aeryn-book1-image", defaultSrc: "assets/images/characters/Aeryn/Aeryn.jpg", hoverSrc: "assets/images/characters/Aeryn/Aeryn2.png", overlayId: "aeryn-overlay", toggleOnMobile: true },
+        { id: "blaine-book1-image", defaultSrc: "assets/images/characters/Blaine/Blaine.webp", hoverSrc: "assets/images/characters/Blaine/Blaine2.webp", overlayId: "blaine-overlay", toggleOnMobile: true },
+        { id: "eden-book1-image", defaultSrc: "assets/images/characters/Eden/Eden.webp", hoverSrc: "assets/images/characters/Eden/Eden2.webp", overlayId: "eden-overlay", toggleOnMobile: true }
+    ];
 
-    // Faye: Mobile image toggling enabled.
-    setupCharacterImageBehavior(
-        "faye-image", 
-        "assets/images/characters/Faye/Faye.webp", 
-        "assets/images/characters/Faye/Faye2.png", 
-        "faye-overlay", 
-        true
-    );
-    
-    // Aeryn: Mobile image toggling enabled.
-    setupCharacterImageBehavior(
-        "aeryn-image", 
-        "assets/images/characters/Aeryn/Aeryn.jpg", 
-        "assets/images/characters/Aeryn/Aeryn2.png", 
-        "aeryn2-overlay", 
-        true
-    );
-    
-    // Eden: Mobile image toggling enabled.
-    setupCharacterImageBehavior(
-        "eden-image", 
-        "assets/images/characters/Eden/Eden.webp", 
-        "assets/images/characters/Eden/Eden2.webp", 
-        "eden2-overlay", 
-        true
-    );
-    
-    // Blaine: Mobile image toggling enabled.
-    setupCharacterImageBehavior(
-        "blaine-image", 
-        "assets/images/characters/Blaine/Blaine.webp", 
-        "assets/images/characters/Blaine/Blaine2.webp", 
-        "blaine-overlay", 
-        true
-    );
+    // Initializes (or re-initializes) image behaviors for all characters.
+    function initImageBehaviors() {
+        imageConfigs.forEach(function(config) {
+            const elem = document.getElementById(config.id);
+            if (elem) {
+                // Replace the element with a clone to remove old event listeners.
+                const newElem = elem.cloneNode(true);
+                elem.parentNode.replaceChild(newElem, elem);
+            }
+            setupCharacterImageBehavior(config.id, config.defaultSrc, config.hoverSrc, config.overlayId, config.toggleOnMobile);
+        });
+    }
+
+    // Initialize behaviors on first load.
+    initImageBehaviors();
+
+    // ========== HANDLE VIEWPORT CHANGES ==========
+    // Reinitialize image behaviors if the window is resized (debounced).
+    let resizeTimer;
+    window.addEventListener("resize", function () {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(function () {
+            initImageBehaviors();
+        }, 200);
+    });
 });
