@@ -70,15 +70,14 @@
     border: 2px solid #7b0202;
 }
 
-/* Centered Character Traits */
+/* ================== Character Traits ================== */
 .character-traits {
     list-style: none;
     padding: 0;
-    text-align: left;
+    text-align: left; /* Default to left-aligned on larger screens */
     margin: 0;
 }
 
-/* Character Traits Styling */
 .character-traits li {
     font-size: 1em;
     color: #c5c5c5;
@@ -226,7 +225,9 @@
     justify-self: center;
 }
 
-/* ================== RESPONSIVE QUERIES ================== */
+/* =========================================================
+   RESPONSIVE QUERIES
+   ========================================================= */
 
 /* For screens 768px and below, switch the layout to flex and reduce text size */
 @media (max-width: 768px) {
@@ -249,9 +250,21 @@
         font-size: 0.9em;
         padding: 8px 0;
     }
+
+    /* Center the character traits on mobile */
+    .character-traits {
+        text-align: center;
+    }
+    .character-traits li {
+        text-align: center;
+    }
+    .character-traits li::before {
+        position: static;   /* Inline bullet */
+        margin-right: 5px;
+    }
 }
 
-/* Extra adjustments for very small screens */
+/* Extra adjustments for very small screens (≤ 480px) */
 @media (max-width: 480px) {
     .overlay-content {
         padding: 20px;
@@ -264,7 +277,7 @@
         height: 120px;
     }
     .character-traits li {
-        font-size: 0.9em;
+        font-size: 0.9em; /* Slightly smaller text on very narrow screens */
     }
     .expandable-sections details,
     .spoiler-sections details {
@@ -272,5 +285,3 @@
         font-size: 0.9em;
     }
 }
-
-

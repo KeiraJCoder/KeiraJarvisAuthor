@@ -35,3 +35,22 @@ input:focus, textarea:focus {
     border-color: #a30000;
     box-shadow: 0px 0px 8px rgba(139, 0, 0, 0.7);
 }
+
+/* Contact Button */
+.button {
+    display: inline-block;
+    padding: 12px 20px;
+    background: #7b0202;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: background 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    border: 2px solid #a30000;
+    font-family: 'Cinzel Decorative', serif;
+}
+
+.button:hover {
+    background: #a30000;
+    box-shadow: 0px 0px 12px rgba(139, 0, 0, 0.9);
+}

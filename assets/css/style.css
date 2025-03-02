@@ -1,3 +1,7 @@
+/* ========================================
+   GLOBAL IMPORTS & DEFAULTS
+   ======================================== */
+
 /* Import Gothic Font */
 @import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&display=swap');
 
@@ -41,6 +45,10 @@ body::before {
     background: rgba(0, 0, 0, 0.6); /* Adjust opacity if needed */
     z-index: -1;
 }
+
+/* ========================================
+   HEADER & NAVBAR
+   ======================================== */
 
 /* Header */
 header {
@@ -92,27 +100,10 @@ nav ul li a:hover {
     transform: scale(1.1); /* Subtle hover animation */
 }
 
+/* ========================================
+   FOOTER
+   ======================================== */
 
-/* Contact Button */
-.button {
-    display: inline-block;
-    padding: 12px 20px;
-    background: #7b0202;
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-    border-radius: 5px;
-    transition: background 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-    border: 2px solid #a30000;
-    font-family: 'Cinzel Decorative', serif;
-}
-
-.button:hover {
-    background: #a30000;
-    box-shadow: 0px 0px 12px rgba(139, 0, 0, 0.9);
-}
-
-/* Ensure the footer is positioned correctly */
 footer {
     background: #111;
     color: #c5c5c5;
@@ -122,9 +113,12 @@ footer {
     border-top: 2px solid #7b0202;
     bottom: 0;
     width: 100%;
-    position: relative !important;
-     /* Keeps it below everything */
+    position: relative !important; /* Keeps it below everything */
 }
+
+/* ========================================
+   SCROLLBAR STYLES
+   ======================================== */
 
 /* Style for the scrollbar */
 ::-webkit-scrollbar {
@@ -154,9 +148,8 @@ footer {
     height: 8px;
 }
 
-
 /* ========================================
-   Responsive Design Media Queries
+   RESPONSIVE DESIGN MEDIA QUERIES
    ======================================== */
 
 /* Medium screens (laptops) */
@@ -214,12 +207,44 @@ footer {
         font-size: 1.2em;
     }
     nav ul {
+        /* Stack items vertically, center them horizontally */
         flex-direction: column;
         gap: 8px;
+        align-items: center; /* Ensures the list items themselves are centered */
     }
+    
+    /* Override li display to block (not flex) for better centering */
+    nav ul li {
+        display: block;
+    }
+    
+    /* Remove the default diamond after <li> for mobile and reset margin */
+    nav ul li::after {
+        content: none;
+        margin: 0;
+    }
+    
+    /* Center each link and add diamonds before & after */
     nav ul li a {
+        display: inline-block; /* Ensures text + diamonds align together */
+        text-align: center;    /* Center the text within the link */
         font-size: 0.9em;
+        position: relative;    /* If needed for advanced styling */
     }
+    
+    nav ul li a::before {
+        content: "◆";
+        color: #a30000;
+        margin-right: 5px;
+    }
+    
+    nav ul li a::after {
+        content: "◆";
+        color: #a30000;
+        margin-left: 5px;
+    }
+    
+    /* If you have a ".button" class, shrink it on mobile */
     .button {
         padding: 6px 12px;
         font-size: 0.8em;
