@@ -29,7 +29,6 @@ const funFacts = [
     "I create detailed character profiles and gather images that represent them to me before writing.",
 ];
 
-
 // Function to select a random fun fact
 function getRandomFunFact() {
     const randomIndex = Math.floor(Math.random() * funFacts.length);
@@ -96,11 +95,9 @@ const faqKeywords = [
         keywords: ["writing process", "how do you write", "how long does it take", "writing routine"],
         answer: `
             <p>I write as if the characters are telling me their story. I have a rough idea of how it ends, but not necessarily how we get there.</p>
-            
             <p>To stay consistent, I create detailed character profiles and collect images that represent them. I also document key elements—like the prophecy—to refer to throughout the story.</p>
         `
-    }
-    ,
+    },
     {
         keywords: ["world-building", "create", "magic systems"],
         answer: `
@@ -213,10 +210,6 @@ const faqKeywords = [
     }
 ];
 
-
-
-
-
 //====================================================================================================
 
 // Function to display messages in the chatbot
@@ -234,8 +227,7 @@ function displayMessage(message, isBot = true) {
     responseContainer.scrollTop = responseContainer.scrollHeight; // Auto-scroll to the latest message
 }
 
-
-// Function to handle responses
+// Function to handle responses based on FAQ keywords
 function getResponse(question) {
     const lowerCaseQuestion = question.toLowerCase();
     const faq = faqKeywords.find(faq =>
@@ -250,6 +242,7 @@ function getResponse(question) {
     }
 }
 
+//====================================================================================================
 
 // Function to generate email form for unknown queries
 function generateEmailForm(initialQuery) {
@@ -306,12 +299,12 @@ function submitEmailForm(email, query) {
     })
         .then(() => {
             alert("Your question has been sent! I'll get back to you shortly.");
-            resetChatbot(); // Reset chatbot after successful submission
+            resetChatbot();
         })
         .catch(() => {
-            alert("Your question has been sent! I'll get back to you shortly."); // Handle Formspree's no-cors limitation
+            alert("Your question has been sent! I'll get back to you shortly.");
             console.error("Fetch error occurred, likely due to CORS.");
-            resetChatbot(); // Reset chatbot even if there's an error
+            resetChatbot();
         });
 }
 
@@ -343,10 +336,7 @@ function sendQuestion() {
         if (answer) {
             displayMessage(answer); // Display matched response
         } else {
-            // Display a message indicating no answer was found
             displayMessage("I'm sorry, I couldn't find an answer to your question.");
-            
-            // Automatically load the email form
             generateEmailForm(question);
         }
 
@@ -354,14 +344,19 @@ function sendQuestion() {
     }
 }
 
-
-
-// Function to handle "Other Questions" button separately
-function handleOtherQuestions() {
-    generateEmailForm(""); // Display email form for "Other Questions" button
+// Function to hide the question buttons
+function hideQuestionButtons() {
+    const optionsContainer = document.getElementById('options');
+    optionsContainer.style.display = 'none';
 }
 
-// Function to toggle chatbot visibility (keeps original functionality)
+// Function to handle "Other Questions" button by hiding buttons and showing the email form
+function handleOtherQuestions() {
+    hideQuestionButtons();
+    generateEmailForm("");
+}
+
+// Function to toggle chatbot visibility
 function toggleChatbot() {
     const chatbot = document.getElementById('chatbot');
     const openChatbotButton = document.getElementById('open-chatbot');
@@ -378,146 +373,72 @@ function toggleChatbot() {
     }
 }
 
-
-
-// Function to reset chatbot fields
+// Function to reset chatbot fields (clears messages and user input)
 function resetChatbot() {
     const responseContainer = document.getElementById('response');
-    responseContainer.innerHTML = ''; // Clear messages
-
-    const userInput = document.getElementById('user-input');
-    userInput.value = ''; // Clear input field
+    responseContainer.innerHTML = '';
+    document.getElementById('user-input').value = '';
 }
 
-// Attach event listeners on DOM load
+// Function to reset the chatbot to its idle state on page load
+function resetChatbotState() {
+    const responseContainer = document.getElementById('response');
+    responseContainer.innerHTML = '';
+}
+
+// Function to reset chatbot state when opening (shows question buttons)
+function resetOnOpenChatbot() {
+    const responseContainer = document.getElementById('response');
+    const userInput = document.getElementById('user-input');
+    const optionsContainer = document.getElementById('options');
+    
+    responseContainer.innerHTML = '';
+    userInput.value = '';
+    optionsContainer.style.display = 'flex';
+}
+
+//====================================================================================================
+
+// Combined DOMContentLoaded event listener for all initial setups
 document.addEventListener('DOMContentLoaded', () => {
+    // Attach event listeners to question buttons
     document.querySelectorAll('#options button').forEach(button => {
         button.addEventListener('click', () => {
             const buttonText = button.textContent.trim().toLowerCase();
             if (buttonText.includes("other questions")) {
-                handleOtherQuestions(); // Handle "Other Questions" button
+                handleOtherQuestions();
             } else {
-                getResponse(buttonText); // Handle other predefined questions
+                getResponse(buttonText);
             }
         });
     });
 
+    // Attach event listener for user input submit button
     document.getElementById('submit-button').addEventListener('click', sendQuestion);
+    
+    // Send question on Enter key press
     document.getElementById('user-input').addEventListener('keyup', (event) => {
         if (event.key === 'Enter') {
             sendQuestion();
         }
     });
 
+    // Attach event listeners for opening and minimizing the chatbot
     document.getElementById('open-chatbot').addEventListener('click', toggleChatbot);
     document.getElementById('minimize-button').addEventListener('click', toggleChatbot);
-});
 
-
-//====================================================================================================
-
-// Function to reset the chatbot to its idle state on page load
-function resetChatbotState() {
-    // Reset the response container to empty (to avoid showing any form or response)
-    const responseContainer = document.getElementById('response');
-    responseContainer.innerHTML = '';
-
-}
-
-// Call the reset function when the page loads
-document.addEventListener('DOMContentLoaded', () => {
+    // Reset the chatbot state on page load
     resetChatbotState();
-});
 
-//====================================================================================================
-
-// Function to hide the question buttons when "Other Questions" is clicked
-function hideQuestionButtons() {
-    const optionsContainer = document.getElementById('options');
-    optionsContainer.style.display = 'none'; // Hide the question buttons
-}
-
-// Function to handle "Other Questions" button separately
-function handleOtherQuestions() {
-    hideQuestionButtons(); // Hide the question buttons
-    generateEmailForm(""); // Display email form for "Other Questions" button
-}
-
-// Existing code for handling responses, form submission, etc.
-function generateEmailForm(initialQuery) {
-    const responseContainer = document.getElementById('response');
-    responseContainer.innerHTML = ''; // Clear previous messages
-
-    const message = document.createElement('p');
-    message.textContent = "I couldn't find an answer to your question. Please provide your email, and I'll get back to you shortly!";
-    responseContainer.appendChild(message);
-
-    const form = document.createElement('form');
-    form.id = "email-form";
-
-    const emailInput = document.createElement('input');
-    emailInput.type = 'email';
-    emailInput.placeholder = 'Your email address';
-    emailInput.required = true;
-    form.appendChild(emailInput);
-
-    const queryTextarea = document.createElement('textarea');
-    queryTextarea.placeholder = 'Your question';
-    queryTextarea.value = initialQuery;
-    queryTextarea.required = true;
-    form.appendChild(queryTextarea);
-
-    const submitButton = document.createElement('button');
-    submitButton.type = 'button';
-    submitButton.textContent = 'Send';
-    submitButton.addEventListener('click', () => submitEmailForm(emailInput.value, queryTextarea.value));
-    form.appendChild(submitButton);
-
-    responseContainer.appendChild(form);
-}
-
-//====================================================================================================
-
-// Function to reset the chatbot to its idle state on page load
-function resetChatbotState() {
-    // Reset the response container to empty (to avoid showing any form or response)
-    const responseContainer = document.getElementById('response');
-    responseContainer.innerHTML = '';
-
-}
-
-// Call the reset function when the page loads
-document.addEventListener('DOMContentLoaded', () => {
-    resetChatbotState();
-    // Add the event listener for the "Other Questions" button here
-    // document.getElementById('other-questions-button').addEventListener('click', handleOtherQuestions);
-});
-
-// Function to reset the chatbot state when opening
-function resetOnOpenChatbot() {
-    const responseContainer = document.getElementById('response');
-    const userInput = document.getElementById('user-input');
-    const optionsContainer = document.getElementById('options');
-    
-    responseContainer.innerHTML = ''; // Clear messages
-    userInput.value = ''; // Clear input field
-    optionsContainer.style.display = 'flex'; // Show question buttons again
-}
-
-document.addEventListener("DOMContentLoaded", function () {
+    // Update chatbot button text based on window width
     function updateChatbotButtonText() {
         const chatButton = document.getElementById("open-chatbot");
-        if (window.innerWidth < 768) { // Change button text on ANY screen below 768px
+        if (window.innerWidth < 768) { // For screens below 768px
             chatButton.textContent = "Chat";
         } else {
             chatButton.textContent = "Chat with Me";
         }
     }
-
-    // Run function on page load
     updateChatbotButtonText();
-
-    // Update on window resize
     window.addEventListener("resize", updateChatbotButtonText);
 });
-
