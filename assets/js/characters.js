@@ -67,29 +67,44 @@ document.addEventListener("DOMContentLoaded", function () {
         document.querySelectorAll('.character-section.book2, .character-card.book2, .character-section.book2 .section-title')
             .forEach(el => el.style.display = (selectedBook === 'book2') ? 'block' : 'none');
     }
-});
 
-// ==========================
-// IMAGE BEHAVIOR FOR CHARACTERS
-// ==========================
-document.addEventListener("DOMContentLoaded", function () {
+    // ========== IMAGE BEHAVIOR FOR CHARACTERS ==========
     let isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
 
-    function setupCharacterImageBehavior(imageId, defaultSrc, hoverSrc, overlayId) {
+    /**
+     * Sets up image behavior for a character.
+     *
+     * On desktop, hover events change the image source.
+     * On mobile, if toggleOnMobile is true, a click on the image toggles its source.
+     * Otherwise, the card's onclick will open the overlay.
+     *
+     * @param {string} imageId - The ID of the image element.
+     * @param {string} defaultSrc - The default image source.
+     * @param {string} hoverSrc - The alternate image source.
+     * @param {string} overlayId - The overlay ID to open.
+     * @param {boolean} [toggleOnMobile=false] - If true, on mobile devices clicking the image toggles its source.
+     */
+    function setupCharacterImageBehavior(imageId, defaultSrc, hoverSrc, overlayId, toggleOnMobile = false) {
         const image = document.getElementById(imageId);
         if (!image) return;
         image.src = defaultSrc;
 
         if (isTouchDevice) {
-            const characterCard = document.querySelector(`.character-card[onclick*='${overlayId}']`);
-            if (characterCard) {
-                characterCard.removeAttribute("onclick");
-                characterCard.addEventListener("click", function () {
-                    image.src = hoverSrc;
-                    setTimeout(() => openCharacterOverlay(overlayId), 500);
+            if (toggleOnMobile) {
+                // On mobile, clicking the image toggles its source.
+                image.addEventListener("click", function(e) {
+                    e.stopPropagation(); // Prevent the card's click event from firing.
+                    if (image.getAttribute("src") === defaultSrc) {
+                        image.src = hoverSrc;
+                    } else {
+                        image.src = defaultSrc;
+                    }
                 });
             }
+            // For mobile devices without toggleOnMobile enabled,
+            // tapping the card (including the image) will trigger the card's onclick.
         } else {
+            // Desktop behavior: use hover effects for all characters.
             image.addEventListener("mouseenter", function () {
                 image.src = hoverSrc;
             });
@@ -99,8 +114,41 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    setupCharacterImageBehavior("faye-image", "assets/images/characters/Faye/Faye.webp", "assets/images/characters/Faye/Faye2.png", "faye-overlay");
-    setupCharacterImageBehavior("aeryn-image", "assets/images/characters/Aeryn/Aeryn.jpg", "assets/images/characters/Aeryn/Aeryn2.png", "aeryn-overlay");
-    setupCharacterImageBehavior("eden-image", "assets/images/characters/Eden/Eden.webp", "assets/images/characters/Eden/Eden2.webp", "eden-overlay");
-    setupCharacterImageBehavior("blaine-image", "assets/images/characters/Blaine/Blaine.webp", "assets/images/characters/Blaine/Blaine2.webp", "blaine-overlay");
+    // Set up image behavior for all characters.
+
+    // Faye: Mobile image toggling enabled.
+    setupCharacterImageBehavior(
+        "faye-image", 
+        "assets/images/characters/Faye/Faye.webp", 
+        "assets/images/characters/Faye/Faye2.png", 
+        "faye-overlay", 
+        true
+    );
+    
+    // Aeryn: Mobile image toggling enabled.
+    setupCharacterImageBehavior(
+        "aeryn-image", 
+        "assets/images/characters/Aeryn/Aeryn.jpg", 
+        "assets/images/characters/Aeryn/Aeryn2.png", 
+        "aeryn2-overlay", 
+        true
+    );
+    
+    // Eden: Mobile image toggling enabled.
+    setupCharacterImageBehavior(
+        "eden-image", 
+        "assets/images/characters/Eden/Eden.webp", 
+        "assets/images/characters/Eden/Eden2.webp", 
+        "eden2-overlay", 
+        true
+    );
+    
+    // Blaine: Mobile image toggling enabled.
+    setupCharacterImageBehavior(
+        "blaine-image", 
+        "assets/images/characters/Blaine/Blaine.webp", 
+        "assets/images/characters/Blaine/Blaine2.webp", 
+        "blaine-overlay", 
+        true
+    );
 });
