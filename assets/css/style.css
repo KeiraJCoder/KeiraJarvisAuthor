@@ -148,6 +148,13 @@ footer {
     height: 8px;
 }
 
+.emphasis {
+    font-weight: bold;
+    font-style:italic;
+    text-shadow: 1px 1px 3px rgba(255, 68, 68, 0.5); /* Soft glow effect */
+}
+
+
 /* ========================================
    RESPONSIVE DESIGN MEDIA QUERIES
    ======================================== */

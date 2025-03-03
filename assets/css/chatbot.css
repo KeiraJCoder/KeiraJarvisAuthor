@@ -265,6 +265,17 @@
     margin-bottom: 10px;
 }
 
+.custom-link {
+    color: #FF6347; /* Change to your preferred color */
+    text-decoration: none;
+    /* Add any additional styling as needed */
+}
+
+.custom-link:hover {
+    text-decoration: underline;
+}
+
+
 
 /* ================================================== */
 /* MOBILE RESPONSIVENESS                            */
