@@ -197,6 +197,16 @@
     border-radius: 10px;
     transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
     opacity: 1;
+    
+}
+
+/* Ensure bullet points in expandable and spoiler sections use ❖ */
+.expandable-sections details[open] ul li::before,
+.spoiler-sections details[open] ul li::before {
+    content: "❖";
+    color: #7b0202;
+    font-size: 1.2em;
+    margin-right: 8px;
 }
 
 /* ================== Spoiler Section Heading ================== */
