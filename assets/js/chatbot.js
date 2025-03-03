@@ -1,23 +1,23 @@
 //====================================================================================================
 
 const funFacts = [
-    "I have written a trilogy of books, *Memoirs of a Vampyr’s Daughter*. Two are currently published, and the third is in progress.",
+    "I have written a trilogy of books, <em>Memoirs of a Vampyr’s Daughter</em>. Two are currently published, and the third is in progress.",
     "My love for writing started in childhood, fuelled by fantasy novels and the idea of creating my own worlds.",
-    "My favourite book series is *The Gunslinger* by Stephen King. The blend of fantasy, western, and horror completely captivated me.",
-    "I adore books that blend magic and mystery, like *His Dark Materials* by Philip Pullman and *The Daughter of the Empire* series by Raymond E. Feist and Janny Wurts.",
+    "My favourite book series is <em>The Gunslinger</em> by Stephen King. The blend of fantasy, western, and horror completely captivated me.",
+    "I adore books that blend magic and mystery, like <em>His Dark Materials</em> by Philip Pullman and <em>The Daughter of the Empire</em> series by Raymond E. Feist and Janny Wurts.",
     "I prefer fantasy over sci-fi, but I love stories with deep lore, intricate characters, and immersive world-building.",
     "I enjoy creating morally complex characters—ones who exist in shades of grey rather than clear heroes and villains.",
     "Writing is my way of exploring the unknown—both the supernatural and the psychological depths of my characters.",
     "I find inspiration in folklore, mythology, and historical events, weaving these elements into my stories.",
-    "I once designed a website that translated text into Elvish from *The Lord of the Rings*! Tolkien’s world-building is something I truly admire.",
+    "I once designed a website that translated text into Elvish from <em>The Lord of the Rings</em>! Tolkien’s world-building is something I truly admire.",
     "World-building is one of my favourite aspects of writing. I love crafting deep histories, unique cultures, and complex magic systems.",
     "I have a degree in Counselling-Skills with Psychology, which helps me develop characters with realistic emotions and struggles.",
     "My writing is heavily influenced by gothic literature, with eerie atmospheres and dark, poetic storytelling.",
-    "I love the *Miss Peregrine’s Home for Peculiar Children* series for its mix of history, magic, and mystery.",
+    "I love the <em>Miss Peregrine’s Home for Peculiar Children</em> series for its mix of history, magic, and mystery.",
     "My writing often explores themes of identity, destiny, and the blurred line between good and evil.",
     "I love exploring historical sites and megaliths—they fuel my imagination and often find their way into my stories.",
     "I have a deep appreciation for Wiccan and pagan folklore, which influences the way I write about magick and rituals.",
-    "I enjoy gaming and love titles like *Skyrim*, *Fallout*, and *Cyberpunk 2077* for their immersive storytelling. Narrative-driven games inspire my approach to storytelling.",
+    "I enjoy gaming and love titles like <em>Skyrim</em>, <em>Fallout</em>, and <em>Cyberpunk 2077</em> for their immersive storytelling. Narrative-driven games inspire my approach to storytelling.",
     "I have an entire shelf dedicated to books on mythology, folklore, and old superstitions—endless inspiration for my writing!",
     "I believe a well-written villain is just as important as a strong protagonist. Some of my favourite antagonists have tragic backstories.",
     "I often write late at night when the world is quiet—it feels like stepping into a space where reality and fiction blur together.",
@@ -28,6 +28,7 @@ const funFacts = [
     "I don’t listen to music when I write—I just sit down and let the words come.",
     "I create detailed character profiles and gather images that represent them to me before writing.",
 ];
+
 
 // Function to select a random fun fact
 function getRandomFunFact() {
@@ -79,11 +80,12 @@ const faqKeywords = [
         answer: `
             <p>You can purchase my books online:</p>
             <ul>
-                <li><strong><i>Eden</i></strong> – <a href="https://www.lulu.com/shop/keira-jarvis/memoirs-of-a-vampyrs-daughter-eden/paperback/product-1vg9vgp8.html" target="_blank">Buy here</a></li>
-                <li><strong><i>Wisdom</i></strong> – <a href="https://www.lulu.com/shop/keira-jarvis/memoirs-of-a-vampyrs-daughter-wisdom/paperback/product-wmkzv2.html" target="_blank">Buy here</a></li>
+                <li><strong><em>Eden</em></strong> – <a href="https://www.lulu.com/shop/keira-jarvis/memoirs-of-a-vampyrs-daughter-eden/paperback/product-1vg9vgp8.html" target="_blank" class="custom-link">Buy here</a></li>
+                <li><strong><em>Wisdom</em></strong> – <a href="https://www.lulu.com/shop/keira-jarvis/memoirs-of-a-vampyrs-daughter-wisdom/paperback/product-wmkzv2.html" target="_blank" class="custom-link">Buy here</a></li>
             </ul>
         `
     },
+    
     {
         keywords: ["genre", "YA", "type of books"],
         answer: `

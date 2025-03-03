@@ -172,3 +172,47 @@ document.addEventListener("DOMContentLoaded", function () {
         }, 200);
     });
 });
+
+
+document.addEventListener('DOMContentLoaded', function () {
+  // Select all details elements in your expandable sections
+  const detailsElements = document.querySelectorAll('.expandable-sections details');
+
+  detailsElements.forEach(detail => {
+    // Create the close button
+    const closeBtn = document.createElement('button');
+    closeBtn.textContent = '×';
+    closeBtn.className = 'close-details';
+
+    // Style the close button (alternatively, use CSS)
+    closeBtn.style.position = 'absolute';
+    closeBtn.style.top = '5px';
+    closeBtn.style.right = '5px';
+    closeBtn.style.background = 'none';
+    closeBtn.style.border = 'none';
+    closeBtn.style.fontSize = '1.5em';
+    closeBtn.style.color = '#d62727';
+    closeBtn.style.cursor = 'pointer';
+
+    // Append the close button inside the details element
+    detail.appendChild(closeBtn);
+
+    // Close the details when the button is clicked
+    closeBtn.addEventListener('click', function (e) {
+      e.preventDefault();
+      detail.removeAttribute('open');
+    });
+
+    // Listen for the toggle event to ensure only one details is open
+    detail.addEventListener('toggle', function () {
+      if (detail.open) {
+        // Loop through all other details and close them
+        detailsElements.forEach(otherDetail => {
+          if (otherDetail !== detail && otherDetail.hasAttribute('open')) {
+            otherDetail.removeAttribute('open');
+          }
+        });
+      }
+    });
+  });
+});
