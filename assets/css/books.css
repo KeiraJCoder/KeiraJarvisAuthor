@@ -48,7 +48,7 @@
 }
 
 /* ========================= FIXED RESPONSIVE BOOK TITLE ========================= */
-.book-title {
+#book-title {
     font-weight: bold;
     color: #ffffff;
     text-shadow: 2px 2px 6px black;
