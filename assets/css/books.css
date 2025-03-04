@@ -1,8 +1,4 @@
-/* ==========================
-   BOOK SECTION STYLES
-   ========================== */
-
-/* Primary container for the book items */
+/* ================== Book Section Styles ================== */
 .book-container {
     background: #111;
     padding: 20px;
@@ -14,70 +10,29 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    position: relative; /* Enables absolute positioning for .book-item */
+    overflow: hidden; /* Prevents accidental scrolling issues */
 }
 
-/* Responsive adjustments for .book-container */
-@media (max-width: 768px) {
-    .book-container {
-        padding: 15px;
-    }
-}
-
-/* ==========================
-   BOOK CAROUSEL CONTAINER
-   ========================== */
-
-/* Container for the overall carousel */
-#book-carousel {
-    text-align: center;
-    padding: 20px;
-    background: #1a1a1a;
-    border-radius: 10px;
-    box-shadow: 0px 0px 20px rgba(139, 0, 0, 0.7);
-    max-width: 95%;
-    margin: 20px auto;
-    height: auto;
+/* Ensure the book wrapper allows smooth sliding */
+.book-wrapper {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    position: relative; /* To contain absolutely positioned elements */
+    transition: transform 0.5s ease-in-out;
+    width: 200%; /* Enough space for both books */
+    overflow: hidden;
 }
 
-/* Responsive adjustments for #book-carousel */
-@media (max-width: 768px) {
-    #book-carousel {
-        padding: 15px;
-    }
-}
-
-/* ==========================
-   BOOK ITEM & CONTENT STYLES
-   ========================== */
-
-/* Each book item (image, title, etc.) is stacked and fades in/out */
+/* Make each book take full width */
 .book-item {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 1s ease-in-out;
+    flex: 0 0 100%;
+    text-align: center;
+    display: block;
 }
 
-/* The active book item is visible and interactive */
-.book-item.active {
-    opacity: 1;
-    pointer-events: auto;
-}
-
-/* Book Cover Image */
+/* Book Cover */
 .book-cover {
-    width: 300px;  /* Fixed width */
+    width: 300px; /* Fixed width */
     height: 450px; /* Fixed height */
-    object-fit: cover; /* Crops image instead of stretching */
+    object-fit: cover; /* Ensures images are cropped, not stretched */
     transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
@@ -86,7 +41,13 @@
     box-shadow: 0px 0px 15px rgba(139, 0, 0, 0.7);
 }
 
-/* Book Title (Clickable heading) */
+/* Ensure the carousel has smooth transitions */
+#book-carousel {
+    position: relative;
+    text-align: center;
+}
+
+/* Book Title */
 .book-title {
     font-size: 1.8em;
     font-weight: bold;
@@ -94,6 +55,14 @@
     text-shadow: 2px 2px 6px black;
     letter-spacing: 1px;
     margin-top: 10px;
+    word-wrap: break-word;
+    max-width: 80%; /* Prevents title from being wider than container */
+    text-align: center;
+    overflow-wrap: break-word; /* Ensures long words break */
+    white-space: normal; /* Allows multi-line text */
+    line-height: 1.4; /* Improves readability */
+    margin-left: auto;
+    margin-right: auto;
 }
 
 /* Book Subtitle */
@@ -132,126 +101,68 @@
     box-shadow: 0px 0px 15px rgba(139, 0, 0, 0.9);
 }
 
-/* ==========================
-   NAVIGATION STYLES
-   ========================== */
-nav ul {
-    list-style: none;
-    padding: 0;
+/* Book Carousel */
+#book-carousel {
+    text-align: center;
+    padding: 20px;
+    background: #1a1a1a;
+    border-radius: 10px;
+    box-shadow: 0px 0px 20px rgba(139, 0, 0, 0.7);
+    max-width: 95%;
+    margin: 20px auto;
+    height: auto;
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    gap: 15px;
-    flex-wrap: wrap;
-}
-
-nav ul li a {
-    color: #c5c5c5;
-    font-weight: bold;
-    font-size: 1.1em;
-    transition: color 0.3s ease-in-out;
-}
-
-nav ul li a:hover {
-    color: #a30000;
-}
-
-/* ==========================
-   SWIPE INDICATORS (MOBILE ONLY)
-   ========================== */
-
-/* Container for swipe indicators (dots, arrows, text hint) */
-.swipe-indicator {
-    position: absolute;
-    bottom: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
     align-items: center;
-    gap: 10px;
-    opacity: 0;
-    animation: fadeInOut 4s forwards;
 }
 
-/* Dots to indicate which book is active */
-.swipe-indicator .dot {
-    font-size: 1.5em;
-    color: #ccc;
-    transition: color 0.3s ease-in-out;
-}
-
-.swipe-indicator .dot.active {
-    color: #a30000;
-}
-
-/* Subtle arrow hints at the left and right edges */
-.swipe-arrows {
-    display: flex;
-    justify-content: space-between;
-    position: absolute;
-    top: 50%;
-    width: 100%;
-    transform: translateY(-50%);
-    padding: 0 20px;
-    opacity: 0;
-    animation: fadeInOut 4s forwards;
-}
-
-.swipe-arrows .arrow {
-    font-size: 2em;
-    color: rgba(255, 255, 255, 0.7);
-}
-
-/* Text hint to indicate swipe functionality */
-.swipe-text-hint {
-    position: absolute;
-    bottom: 50px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: rgba(0, 0, 0, 0.6);
+/* Swipe Indicator (Hidden on Desktop) */
+.swipe-indicator {
+    display: none; /* Default: Hidden */
     color: #fff;
-    padding: 5px 10px;
-    border-radius: 5px;
     font-size: 1em;
-    opacity: 0;
-    animation: fadeInOut 4s forwards;
+    text-align: center;
+    margin-bottom: 10px;
+    opacity: 0.7;
 }
 
-/* Animation for swipe hints (appear briefly then fade out) */
-@keyframes fadeInOut {
-    0% { opacity: 0; }
-    10% { opacity: 1; }
-    90% { opacity: 1; }
-    100% { opacity: 0; }
-}
-
-/* Mobile Overrides: Display swipe UI elements */
+/* ========================= Mobile-Specific Styling ========================= */
 @media (max-width: 768px) {
-    .swipe-indicator,
-    .swipe-arrows,
-    .swipe-text-hint {
+    /* Show Swipe Indicator on Mobile */
+    .swipe-indicator {
+        display: block; /* Show swipe hint */
+        animation: fadeOut 3s ease-in-out forwards;
+    }
+
+    /* Animation to fade out swipe indicator */
+    @keyframes fadeOut {
+        0% { opacity: 1; }
+        100% { opacity: 0; }
+    }
+
+    /* Ensure swipe functionality only applies on mobile */
+    .book-wrapper {
+        display: flex;
+        overflow: hidden;
+        touch-action: pan-y; /* Prevent scrolling conflicts */
+    }
+
+    /* Adjust book size for smooth swipe */
+    .book-item {
         display: block;
+        width: 100%;
     }
-}
 
-/* Desktop Overrides: Hide swipe UI elements */
-@media (min-width: 769px) {
-    .swipe-indicator,
-    .swipe-arrows,
-    .swipe-text-hint {
-        display: none;
-    }
-}
-
-/* ==========================
-   CHATBOT RESPONSIVENESS
-   ========================== */
-@media (max-width: 500px) {
-    #chatbot {
-        width: 90%;
-        right: 5%;
-        bottom: 10px;
-        height: auto;
-        max-height: 80vh;
+    /* Adjust container for better spacing */
+    .book-container {
         padding: 15px;
+    }
+
+    /* Responsive Fixes for Mobile - Resize Book Title */
+    .book-title {
+        font-size: 1.2em; /* Reduce size for mobile */
+        max-width: 90%; /* Ensures it remains contained */
+        padding: 0 10px; /* Adds spacing on sides */
     }
 }
