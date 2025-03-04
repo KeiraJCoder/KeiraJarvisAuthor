@@ -20,59 +20,74 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
-// === BOOK ROTATION (Smooth Image Transition Without Black Screen) ===
-const books = [
-    {
-        title: "Memoirs of a Vampyr's Daughter: Eden",
-        img: "assets/images/Book1.png",
-        link: "https://www.lulu.com/shop/keira-jarvis/memoirs-of-a-vampyrs-daughter-eden/paperback/product-1vg9vgp8.html"
-    },
-    {
-        title: "Memoirs of a Vampyr's Daughter: Wisdom",
-        img: "assets/images/Book2.png",
-        link: "https://www.lulu.com/shop/keira-jarvis/memoirs-of-a-vampyrs-daughter-wisdom/paperback/product-wmkzv2.html"
-    }
-];
+// === BOOK ROTATION (Desktop Auto-Switch, Mobile Swipe) ===
+const books = document.querySelectorAll(".book-item"); // Select both books
+const bookWrapper = document.getElementById("book-wrapper"); // Wrapper for swiping
+const isMobile = window.matchMedia("(max-width: 768px)").matches; // Detect mobile
 
 let currentIndex = 0;
-const bookCover = document.querySelector(".book-cover");
-const bookTitle = document.querySelector(".book-title");
-const bookLink = document.querySelector(".book-link");
+let autoRotateInterval; // To store the auto-rotation interval
 
-let autoSwitch;
-
-// Function to update book details with fade effect
+// === Desktop Auto-Rotation Function ===
 function updateBook() {
-    // Fade-out effect for the book cover and title
-    bookCover.style.opacity = 0;
-    bookTitle.style.opacity = 0;
+    if (isMobile) return; // Stop auto-rotation on mobile
 
-    // After the fade-out, update the book details
-    setTimeout(() => {
-        currentIndex = (currentIndex + 1) % books.length;
-        bookCover.src = books[currentIndex].img;
-        bookCover.alt = books[currentIndex].title;
-        bookTitle.textContent = books[currentIndex].title;
-        bookLink.href = books[currentIndex].link;
+    books.forEach((book, index) => {
+        book.style.display = index === currentIndex ? "block" : "none";
+    });
 
-        // Fade-in effect for the book cover and title
-        bookCover.style.opacity = 1;
-        bookTitle.style.opacity = 1;
-    }, 1000); // Wait for the fade-out to complete before updating
+    currentIndex = (currentIndex + 1) % books.length;
 }
 
-// Start the auto-rotation with smooth fade transition
+// === Start Auto-Rotation for Desktop ===
 function startAutoRotation() {
-    autoSwitch = setInterval(updateBook, 4000); // Rotate every 4 seconds
+    if (!isMobile) {
+        updateBook(); // Ensure correct book is shown initially
+        autoRotateInterval = setInterval(updateBook, 4000); // Rotate every 4 seconds
+    }
 }
 
-// Trigger auto-rotation for both mobile and desktop
-if (bookCover && bookTitle && bookLink) {
-    startAutoRotation(); // Enable auto-rotation for both desktop and mobile
+// === Mobile Swipe Functionality ===
+let touchStartX = 0;
+let touchEndX = 0;
+
+// Function to handle swipe gestures
+function handleSwipe() {
+    const swipeThreshold = 50; // Minimum swipe distance to trigger
+
+    if (touchStartX - touchEndX > swipeThreshold) {
+        // Swipe Left → Next Book
+        currentIndex = (currentIndex + 1) % books.length;
+    } else if (touchEndX - touchStartX > swipeThreshold) {
+        // Swipe Right → Previous Book
+        currentIndex = (currentIndex - 1 + books.length) % books.length;
+    }
+
+    updateMobileBook();
+}
+
+// Function to update books on mobile swipe
+function updateMobileBook() {
+    bookWrapper.style.transform = `translateX(-${currentIndex * 100}%)`;
+}
+
+// Event Listeners for Mobile Swiping
+if (isMobile) {
+    bookWrapper.addEventListener("touchstart", (e) => {
+        touchStartX = e.touches[0].clientX;
+    });
+
+    bookWrapper.addEventListener("touchend", (e) => {
+        touchEndX = e.changedTouches[0].clientX;
+        handleSwipe();
+    });
+} else {
+    // Start auto-rotation if not on mobile
+    startAutoRotation();
 }
 
 
-    
+
 
     // === CHARACTER EXPANSION (Ensuring One Expansion at a Time) ===
     const characterCards = document.querySelectorAll(".character-card");
