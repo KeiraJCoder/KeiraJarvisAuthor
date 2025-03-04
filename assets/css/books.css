@@ -1,61 +1,175 @@
-/* ================== Book Section Styles ================== / .book-container { background: #111; padding: 20px; border-radius: 10px; box-shadow: 0px 0px 20px rgba(139, 0, 0, 0.7); max-width: 90%; margin: 40px auto; text-align: center; display: flex; flex-direction: column; align-items: center; overflow: hidden; / Prevents accidental scrolling issues */ }
-
-/* Ensure the book wrapper allows smooth sliding / .book-wrapper { display: flex; transition: transform 0.5s ease-in-out; width: 200%; / Enough space for both books */ overflow: hidden; }
-
-/* Make each book take full width */ .book-item { flex: 0 0 100%; text-align: center; display: block; }
-
-/* Book Cover / .book-cover { width: 300px; / Fixed width / height: 450px; / Fixed height / object-fit: cover; / Ensures images are cropped, not stretched */ transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; }
-
-.book-cover:hover { transform: scale(1.05); box-shadow: 0px 0px 15px rgba(139, 0, 0, 0.7); }
-
-/* Ensure the carousel has smooth transitions */ #book-carousel { position: relative; text-align: center; }
-
-/* Book Title / .book-title { font-size: 1.8em; font-weight: bold; color: #ffffff; text-shadow: 2px 2px 6px black; letter-spacing: 1px; margin-top: 10px; word-wrap: break-word; max-width: 80%; / Prevents title from being wider than container / text-align: center; overflow-wrap: break-word; / Ensures long words break / white-space: normal; / Allows multi-line text / line-height: 1.4; / Improves readability */ margin-left: auto; margin-right: auto; }
-
-/* Book Subtitle */ .book-subtitle { font-size: 1.4em; color: #a30000; text-shadow: 1px 1px 5px black; margin-bottom: 10px; }
-
-/* Book Description */ .book-description { font-size: 1.1em; line-height: 1.8; color: #c5c5c5; margin-bottom: 15px; text-align: center; }
-
-/* Buy Button */ .buy-button { display: inline-block; padding: 12px 20px; font-size: 1.2em; font-weight: bold; background: #7b0202; color: white; border-radius: 5px; text-decoration: none; border: 2px solid #a30000; transition: background 0.3s ease-in-out, box-shadow 0.3s ease-in-out; }
-
-.buy-button:hover { background: #a30000; box-shadow: 0px 0px 15px rgba(139, 0, 0, 0.9); }
-
-/* Book Carousel */ #book-carousel { text-align: center; padding: 20px; background: #1a1a1a; border-radius: 10px; box-shadow: 0px 0px 20px rgba(139, 0, 0, 0.7); max-width: 95%; margin: 20px auto; height: auto; display: flex; flex-direction: column; justify-content: center; align-items: center; }
-
-/* Swipe Indicator (Hidden on Desktop) / .swipe-indicator { display: none; / Default: Hidden */ color: #fff; font-size: 1em; text-align: center; margin-bottom: 10px; opacity: 0.7; }
-
-/* ========================= Mobile-Specific Styling ========================= / @media (max-width: 768px) { / Show Swipe Indicator on Mobile / .swipe-indicator { display: block; / Show swipe hint */ animation: fadeOut 3s ease-in-out forwards; }
-
-/* Animation to fade out swipe indicator */
-@keyframes fadeOut {
-    0% { opacity: 1; }
-    100% { opacity: 0; }
+/* ================== Book Section Styles ================== */
+.book-container {
+    background: #111;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 20px rgba(139, 0, 0, 0.7);
+    max-width: 90%;
+    margin: 40px auto;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden; /* Prevents accidental scrolling issues */
 }
 
-/* Ensure swipe functionality only applies on mobile */
+/* Ensure the book wrapper allows smooth sliding */
 .book-wrapper {
     display: flex;
+    transition: transform 0.5s ease-in-out;
+    width: 200%; /* Enough space for both books */
     overflow: hidden;
-    touch-action: pan-y; /* Prevent scrolling conflicts */
 }
 
-/* Adjust book size for smooth swipe */
+/* Make each book take full width */
 .book-item {
+    flex: 0 0 100%;
+    text-align: center;
     display: block;
-    width: 100%;
 }
 
-/* Adjust container for better spacing */
-.book-container {
-    padding: 15px;
+/* Book Cover */
+.book-cover {
+    width: 300px; /* Fixed width */
+    height: 450px; /* Fixed height */
+    object-fit: cover; /* Ensures images are cropped, not stretched */
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
-/* Responsive Fixes for Mobile - Resize Book Title */
+.book-cover:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 0px 15px rgba(139, 0, 0, 0.7);
+}
+
+/* Ensure the carousel has smooth transitions */
+#book-carousel {
+    position: relative;
+    text-align: center;
+}
+
+/* ========================= FIXED RESPONSIVE BOOK TITLE ========================= */
 .book-title {
-    font-size: 1.2em; /* Reduce size for mobile */
-    max-width: 90%; /* Ensures it remains contained */
-    padding: 0 10px; /* Adds spacing on sides */
+    font-weight: bold;
+    color: #ffffff;
+    text-shadow: 2px 2px 6px black;
+    letter-spacing: 1px;
+    margin-top: 10px;
+    text-align: center;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal; /* Allows multi-line text */
+    line-height: 1.4; /* Improves readability */
+    max-width: 90%; /* Ensures it does not overflow */
+    margin-left: auto;
+    margin-right: auto;
+    font-size: clamp(1.2em, 4vw, 1.8em); /* Dynamically resizes between 1.2em and 1.8em */
 }
 
+/* Responsive Subtitle */
+.book-subtitle {
+    font-size: clamp(1em, 3vw, 1.4em); /* Adjusts based on screen size */
+    color: #a30000;
+    text-shadow: 1px 1px 5px black;
+    margin-bottom: 10px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    text-align: center;
+    max-width: 90%;
 }
 
+/* Book Description */
+.book-description {
+    font-size: 1.1em;
+    line-height: 1.8;
+    color: #c5c5c5;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+/* Buy Button */
+.buy-button {
+    display: inline-block;
+    padding: 12px 20px;
+    font-size: 1.2em;
+    font-weight: bold;
+    background: #7b0202;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+    border: 2px solid #a30000;
+    transition: background 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.buy-button:hover {
+    background: #a30000;
+    box-shadow: 0px 0px 15px rgba(139, 0, 0, 0.9);
+}
+
+/* Book Carousel */
+#book-carousel {
+    text-align: center;
+    padding: 20px;
+    background: #1a1a1a;
+    border-radius: 10px;
+    box-shadow: 0px 0px 20px rgba(139, 0, 0, 0.7);
+    max-width: 95%;
+    margin: 20px auto;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ========================= SWIPE INDICATOR (ONLY ON MOBILE) ========================= */
+
+/* Hide swipe instructions on desktop */
+.swipe-indicator {
+    display: none;
+}
+
+/* Make swipe instructions always visible on mobile */
+@media (max-width: 768px) {
+    .swipe-indicator {
+        display: block; /* Show only on mobile */
+        color: #fff;
+        font-size: 1em;
+        text-align: center;
+        margin-top: 10px;
+        opacity: 0.8;
+        font-weight: bold;
+    }
+}
+
+/* ========================= Mobile-Specific Styling ========================= */
+@media (max-width: 768px) {
+    /* Ensure swipe functionality only applies on mobile */
+    .book-wrapper {
+        display: flex;
+        overflow: hidden;
+        touch-action: pan-y; /* Prevent scrolling conflicts */
+    }
+
+    /* Adjust book size for smooth swipe */
+    .book-item {
+        display: block;
+        width: 100%;
+    }
+
+    /* Adjust container for better spacing */
+    .book-container {
+        padding: 15px;
+    }
+
+    /* Smaller Title on Mobile */
+    .book-title {
+        font-size: clamp(1em, 3.5vw, 1.4em); /* Adjusts between 1em and 1.4em */
+        max-width: 90%; /* Ensures it remains contained */
+        padding: 0 10px; /* Adds spacing on sides */
+    }
+
+    /* Subtitle also resizes */
+    .book-subtitle {
+        font-size: clamp(0.9em, 3vw, 1.2em);
+    }
+}
