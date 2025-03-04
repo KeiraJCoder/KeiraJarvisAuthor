@@ -20,6 +20,9 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
+const repoName = window.location.hostname.includes("github.io")
+    ? "/KeiraJarvisAuthor" 
+    : "";
 
 // === BOOK CAROUSEL FUNCTIONALITY (Desktop Auto-Rotate & Mobile Swipe) === 
 
@@ -27,13 +30,13 @@ const books = [
     {
         title: "Memoirs of a Vampyr's Daughter",
         subtitle: "Eden",
-        img: "/KeiraJarvisAuthor/assets/images/book-images/Book1.png",
+        img: `${repoName}/assets/images/book-images/Book1.png`,
         link: "https://www.lulu.com/shop/keira-jarvis/memoirs-of-a-vampyrs-daughter-eden/paperback/product-1vg9vgp8.html"
     },
     {
         title: "Memoirs of a Vampyr's Daughter",
         subtitle: "Wisdom",
-        img: "/KeiraJarvisAuthor/assets/images/book-images/Book2.png",
+        img: `${repoName}/assets/images/book-images/Book2.png`,
         link: "https://www.lulu.com/shop/keira-jarvis/memoirs-of-a-vampyrs-daughter-wisdom/paperback/product-wmkzv2.html"
     }
 ];
