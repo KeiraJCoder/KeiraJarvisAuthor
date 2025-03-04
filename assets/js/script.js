@@ -20,34 +20,35 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
-// === BOOK ROTATION (Desktop Auto-Switch, Mobile Swipe) ===
-const books = document.querySelectorAll(".book-item"); // Select both books
+// === BOOK CAROUSEL FUNCTIONALITY (Desktop Auto-Rotate & Mobile Swipe) ===
+
+const bookItems = document.querySelectorAll(".book-item"); // Select all books
 const bookWrapper = document.getElementById("book-wrapper"); // Wrapper for swiping
 const isMobile = window.matchMedia("(max-width: 768px)").matches; // Detect mobile
 
 let currentIndex = 0;
-let autoRotateInterval; // To store the auto-rotation interval
+let autoRotateInterval; // Store auto-rotation interval
 
-// === Desktop Auto-Rotation Function ===
+// === DESKTOP AUTO-ROTATION FUNCTION ===
 function updateBook() {
     if (isMobile) return; // Stop auto-rotation on mobile
 
-    books.forEach((book, index) => {
-        book.style.display = index === currentIndex ? "block" : "none";
+    bookItems.forEach((book, index) => {
+        book.classList.toggle("active", index === currentIndex);
     });
 
-    currentIndex = (currentIndex + 1) % books.length;
+    currentIndex = (currentIndex + 1) % bookItems.length;
 }
 
-// === Start Auto-Rotation for Desktop ===
+// === START AUTO-ROTATION FOR DESKTOP ===
 function startAutoRotation() {
     if (!isMobile) {
         updateBook(); // Ensure correct book is shown initially
-        autoRotateInterval = setInterval(updateBook, 4000); // Rotate every 4 seconds
+        autoRotateInterval = setInterval(updateBook, 4000); // Rotate every 4s
     }
 }
 
-// === Mobile Swipe Functionality ===
+// === MOBILE SWIPE FUNCTIONALITY ===
 let touchStartX = 0;
 let touchEndX = 0;
 
@@ -57,10 +58,10 @@ function handleSwipe() {
 
     if (touchStartX - touchEndX > swipeThreshold) {
         // Swipe Left → Next Book
-        currentIndex = (currentIndex + 1) % books.length;
+        currentIndex = (currentIndex + 1) % bookItems.length;
     } else if (touchEndX - touchStartX > swipeThreshold) {
         // Swipe Right → Previous Book
-        currentIndex = (currentIndex - 1 + books.length) % books.length;
+        currentIndex = (currentIndex - 1 + bookItems.length) % bookItems.length;
     }
 
     updateMobileBook();
@@ -71,7 +72,7 @@ function updateMobileBook() {
     bookWrapper.style.transform = `translateX(-${currentIndex * 100}%)`;
 }
 
-// Event Listeners for Mobile Swiping
+// Attach event listeners for touch events (Mobile Swipe)
 if (isMobile) {
     bookWrapper.addEventListener("touchstart", (e) => {
         touchStartX = e.touches[0].clientX;
@@ -81,10 +82,13 @@ if (isMobile) {
         touchEndX = e.changedTouches[0].clientX;
         handleSwipe();
     });
+
+    updateMobileBook(); // Set initial position
 } else {
     // Start auto-rotation if not on mobile
     startAutoRotation();
 }
+
 
 
 
