@@ -13,8 +13,7 @@ document.addEventListener("DOMContentLoaded", function () {
         "assets/images/characters/Faye/Faye2.png",
         "assets/images/characters/Aeryn/Aeryn2.png",
         "assets/images/characters/Eden/Eden2.webp",
-        "assets/images/characters/Blaine/Blaine2.webp",
-        "assets/images/characters/Hailzy/Hailzy2.webp"
+        "assets/images/characters/Blaine/Blaine2.webp"
     ]);
 
     // ========== MODAL ELEMENTS ==========
@@ -22,8 +21,9 @@ document.addEventListener("DOMContentLoaded", function () {
     const yesBtn = document.getElementById("spoilerYesBtn");
     const noBtn = document.getElementById("spoilerNoBtn");
 
+    // A helper function that displays the spoiler modal and returns a Promise
     function showSpoilerWarningModal() {
-        spoilerModal.style.display = "flex";
+        spoilerModal.style.display = "flex"; // Show the modal
         return new Promise((resolve) => {
             yesBtn.onclick = () => {
                 spoilerModal.style.display = "none";
@@ -36,6 +36,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
+    // ========== OVERLAY FUNCTIONS ==========
     window.openCharacterOverlay = function (overlayId) {
         const overlay = document.getElementById(overlayId);
         if (!overlay) {
@@ -57,6 +58,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     };
 
+    // ========== BOOK SELECT ==========
     const bookSelect = document.getElementById('book-select');
     bookSelect.addEventListener('change', function () {
         if (bookSelect.value === 'book2') {
@@ -81,12 +83,27 @@ document.addEventListener("DOMContentLoaded", function () {
             .forEach(el => el.style.display = (selectedBook === 'book2') ? 'block' : 'none');
     }
 
+    // ========== IMAGE BEHAVIOR FOR CHARACTERS ==========
+    // Determine if the device is a touch device.
     let isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
 
+    // Determine mobile view based on viewport width.
     function isMobileView() {
         return window.innerWidth < 768;
     }
 
+    /**
+     * Sets up image behavior for a character element.
+     *
+     * When in mobile view (viewport width < 768), if toggleOnMobile is true, tapping the image toggles its source.
+     * When in desktop view, hover events swap the image.
+     *
+     * @param {string} imageId - The ID of the image element.
+     * @param {string} defaultSrc - The default image source.
+     * @param {string} hoverSrc - The alternate image source.
+     * @param {string} overlayId - The overlay ID (for reference).
+     * @param {boolean} [toggleOnMobile=false] - If true, in mobile view tapping toggles the image.
+     */
     function setupCharacterImageBehavior(imageId, defaultSrc, hoverSrc, overlayId, toggleOnMobile = false) {
         const image = document.getElementById(imageId);
         if (!image) return;
@@ -96,7 +113,7 @@ document.addEventListener("DOMContentLoaded", function () {
             if (toggleOnMobile) {
                 image.addEventListener("touchstart", function(e) {
                     e.preventDefault();
-                    e.stopPropagation();
+                    e.stopPropagation(); // Prevent the card's click from firing.
                     if (image.src.indexOf(defaultSrc) !== -1) {
                         image.src = hoverSrc;
                     } else {
@@ -104,7 +121,9 @@ document.addEventListener("DOMContentLoaded", function () {
                     }
                 }, { passive: false });
             }
+            // If toggleOnMobile is false, tapping the image triggers the card's onclick as usual.
         } else {
+            // Desktop (or larger view on touch devices): attach hover events.
             image.addEventListener("mouseenter", function () {
                 image.src = hoverSrc;
             });
@@ -114,18 +133,26 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
+    // Global configuration for all character images.
     const imageConfigs = [
+        // Book 2 characters
         { id: "faye-image", defaultSrc: "assets/images/characters/Faye/Faye.webp", hoverSrc: "assets/images/characters/Faye/Faye2.png", overlayId: "faye-overlay", toggleOnMobile: true },
         { id: "aeryn-image", defaultSrc: "assets/images/characters/Aeryn/Aeryn.jpg", hoverSrc: "assets/images/characters/Aeryn/Aeryn2.png", overlayId: "aeryn2-overlay", toggleOnMobile: true },
         { id: "eden-image", defaultSrc: "assets/images/characters/Eden/Eden.webp", hoverSrc: "assets/images/characters/Eden/Eden2.webp", overlayId: "eden2-overlay", toggleOnMobile: true },
         { id: "blaine-image", defaultSrc: "assets/images/characters/Blaine/Blaine.webp", hoverSrc: "assets/images/characters/Blaine/Blaine2.webp", overlayId: "blaine-overlay", toggleOnMobile: true },
+        // Book 1 characters
+        { id: "aeryn-book1-image", defaultSrc: "assets/images/characters/Aeryn/Aeryn.jpg", hoverSrc: "assets/images/characters/Aeryn/Aeryn2.png", overlayId: "aeryn-overlay", toggleOnMobile: true },
+        { id: "blaine-book1-image", defaultSrc: "assets/images/characters/Blaine/Blaine.webp", hoverSrc: "assets/images/characters/Blaine/Blaine2.webp", overlayId: "blaine-overlay", toggleOnMobile: true },
+        { id: "eden-book1-image", defaultSrc: "assets/images/characters/Eden/Eden.webp", hoverSrc: "assets/images/characters/Eden/Eden2.webp", overlayId: "eden-overlay", toggleOnMobile: true },
         { id: "hailzy-image", defaultSrc: "assets/images/characters/Hailzy/Hailzy.png", hoverSrc: "assets/images/characters/Hailzy/Hailzy.webp", overlayId: "hailzy2-overlay", toggleOnMobile: true }
     ];
 
+    // Initializes (or re-initializes) image behaviors for all characters.
     function initImageBehaviors() {
         imageConfigs.forEach(function(config) {
             const elem = document.getElementById(config.id);
             if (elem) {
+                // Replace the element with a clone to remove old event listeners.
                 const newElem = elem.cloneNode(true);
                 elem.parentNode.replaceChild(newElem, elem);
             }
@@ -133,8 +160,11 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
+    // Initialize behaviors on first load.
     initImageBehaviors();
 
+    // ========== HANDLE VIEWPORT CHANGES ==========
+    // Reinitialize image behaviors if the window is resized (debounced).
     let resizeTimer;
     window.addEventListener("resize", function () {
         clearTimeout(resizeTimer);
@@ -142,4 +172,48 @@ document.addEventListener("DOMContentLoaded", function () {
             initImageBehaviors();
         }, 200);
     });
+});
+
+
+document.addEventListener('DOMContentLoaded', function () {
+  // Select all details elements in your expandable sections
+  const detailsElements = document.querySelectorAll('.expandable-sections details');
+
+  detailsElements.forEach(detail => {
+    // Create the close button
+    const closeBtn = document.createElement('button');
+    closeBtn.textContent = '×';
+    closeBtn.className = 'close-details';
+
+    // Style the close button (alternatively, use CSS)
+    closeBtn.style.position = 'absolute';
+    closeBtn.style.top = '5px';
+    closeBtn.style.right = '5px';
+    closeBtn.style.background = 'none';
+    closeBtn.style.border = 'none';
+    closeBtn.style.fontSize = '1.5em';
+    closeBtn.style.color = '#d62727';
+    closeBtn.style.cursor = 'pointer';
+
+    // Append the close button inside the details element
+    detail.appendChild(closeBtn);
+
+    // Close the details when the button is clicked
+    closeBtn.addEventListener('click', function (e) {
+      e.preventDefault();
+      detail.removeAttribute('open');
+    });
+
+    // Listen for the toggle event to ensure only one details is open
+    detail.addEventListener('toggle', function () {
+      if (detail.open) {
+        // Loop through all other details and close them
+        detailsElements.forEach(otherDetail => {
+          if (otherDetail !== detail && otherDetail.hasAttribute('open')) {
+            otherDetail.removeAttribute('open');
+          }
+        });
+      }
+    });
+  });
 });
