@@ -12,23 +12,18 @@
     align-items: center;
 }
 
-/* Book Wrapper - Enables swipe transition */
+/* Ensure the book wrapper allows smooth sliding */
 .book-wrapper {
     display: flex;
     transition: transform 0.5s ease-in-out;
-    width: 100%;
+    width: 200%; /* Enough space for both books */
     overflow: hidden;
 }
 
-/* Ensure book items take full width for sliding effect */
+/* Make each book take full width */
 .book-item {
     flex: 0 0 100%;
     text-align: center;
-    display: none; /* Hide all books by default */
-}
-
-/* Show only the active book */
-.book-item.active {
     display: block;
 }
 
@@ -70,6 +65,14 @@
     text-shadow: 2px 2px 6px black;
     letter-spacing: 1px;
     margin-top: 10px;
+    word-wrap: break-word;
+    max-width: 80%; /* Prevents title from being wider than container */
+    text-align: center;
+    overflow-wrap: break-word; /* Ensures long words break */
+    white-space: normal; /* Allows multi-line text */
+    line-height: 1.4; /* Improves readability */
+    margin-left: auto;
+    margin-right: auto;
 }
 
 /* Book Subtitle */
@@ -148,21 +151,30 @@
         100% { opacity: 0; }
     }
 
-    /* Allow books to slide left/right */
+/* Ensure swipe functionality only applies on mobile */
+@media (max-width: 768px) {
     .book-wrapper {
         display: flex;
         overflow: hidden;
         touch-action: pan-y; /* Prevent scrolling conflicts */
     }
 
-    /* Show all books for swipe functionality */
+    /* Adjust book size for smooth swipe */
     .book-item {
         display: block;
         width: 100%;
     }
+}
     
     /* Adjust container for better spacing */
     .book-container {
         padding: 15px;
+    }
+
+    /* Responsive Fixes for Mobile - Resize Book Title */
+    .book-title {
+        font-size: 1.2em; /* Reduce size for mobile */
+        max-width: 90%; /* Ensures it remains contained */
+        padding: 0 10px; /* Adds spacing on sides */
     }
 }
