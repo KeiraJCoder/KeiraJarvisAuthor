@@ -10,6 +10,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    overflow: hidden; /* Prevents accidental scrolling issues */
 }
 
 /* Ensure the book wrapper allows smooth sliding */
@@ -32,6 +33,7 @@
     width: 300px; /* Fixed width */
     height: 450px; /* Fixed height */
     object-fit: cover; /* Ensures images are cropped, not stretched */
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
 .book-cover:hover {
@@ -43,18 +45,6 @@
 #book-carousel {
     position: relative;
     text-align: center;
-}
-
-/* Fade animation for the book cover */
-.book-cover {
-    opacity: 1;
-    transition: opacity 1s ease-in-out;
-}
-
-/* Fade animation for the book title */
-.book-title {
-    opacity: 1;
-    transition: opacity 1s ease-in-out;
 }
 
 /* Book Title */
@@ -145,14 +135,13 @@
         animation: fadeOut 3s ease-in-out forwards;
     }
 
-    /* Animation to fade out swipe indicator
+    /* Animation to fade out swipe indicator */
     @keyframes fadeOut {
         0% { opacity: 1; }
         100% { opacity: 0; }
-    } */
+    }
 
-/* Ensure swipe functionality only applies on mobile */
-@media (max-width: 768px) {
+    /* Ensure swipe functionality only applies on mobile */
     .book-wrapper {
         display: flex;
         overflow: hidden;
@@ -164,8 +153,7 @@
         display: block;
         width: 100%;
     }
-}
-    
+
     /* Adjust container for better spacing */
     .book-container {
         padding: 15px;
