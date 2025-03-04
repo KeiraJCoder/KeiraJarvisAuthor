@@ -1,8 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-
-    // ==========================================================
-    // === SMOOTH SCROLL FUNCTIONALITY FOR INTERNAL LINKS ===
-    // ==========================================================
+    // === Smooth Scroll for Internal Links ===
     const links = document.querySelectorAll("nav ul li a");
 
     links.forEach(link => {
@@ -21,19 +18,12 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
-    // ==========================================================
-    // === DETECT REPO NAME FOR GITHUB HOSTING ===
-    // ==========================================================
     const repoName = window.location.hostname.includes("github.io")
         ? "/KeiraJarvisAuthor"
         : "";
     console.log("Repository Name:", repoName);
 
-    // ==========================================================
     // === BOOK CAROUSEL FUNCTIONALITY (Desktop Auto-Rotate & Mobile Swipe) ===
-    // ==========================================================
-    
-    // === BOOK DATA ARRAY ===
     const books = [
         {
             title: "Memoirs of a Vampyr's Daughter",
@@ -49,7 +39,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     ];
 
-    // === SELECT DOM ELEMENTS ===
     const bookWrapper = document.getElementById("book-wrapper");
     const bookCover = document.getElementById("book-cover");
     const bookLink = document.getElementById("book-link");
@@ -60,9 +49,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let currentIndex = 0;
     let autoRotateInterval;
 
-    // ==========================================================
-    // === PRELOAD BOOK IMAGES TO PREVENT LAG ===
-    // ==========================================================
+    // === Preload Images to Prevent Lag on Swipe ===
     function preloadImages() {
         books.forEach(book => {
             const img = new Image();
@@ -70,43 +57,17 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // ==========================================================
-    // === FUNCTION: UPDATE BOOK CONTENT DYNAMICALLY ===
-    // ==========================================================
+    // === Function to Update Book Content Dynamically ===
     function updateBookContent() {
         const book = books[currentIndex];
-
-        // Update Image & Link
         bookCover.src = book.img;
-        bookCover.alt = `${book.title} - ${book.subtitle}`;
+        bookCover.alt = book.title + " " + book.subtitle;
         bookLink.href = book.link;
-
-        // Update Title & Subtitle
         bookTitle.textContent = book.title;
         bookSubtitle.textContent = book.subtitle;
-
-        // === Ensure Responsive Title & Subtitle Styling ===
-        bookTitle.style.fontSize = "clamp(1em, 3vw, 1.5em)";
-        bookTitle.style.maxWidth = "90%";
-        bookTitle.style.wordWrap = "break-word";
-        bookTitle.style.overflowWrap = "break-word";
-        bookTitle.style.textAlign = "center";
-
-        bookSubtitle.style.fontSize = "clamp(0.9em, 2.5vw, 1.2em)";
-        bookSubtitle.style.maxWidth = "90%";
-
-        // === Animate Transition Smoothly ===
-        bookWrapper.style.transition = "opacity 0.5s ease-in-out";
-        bookWrapper.style.opacity = 0; // Fade out
-
-        setTimeout(() => {
-            bookWrapper.style.opacity = 1; // Fade in after update
-        }, 500);
     }
 
-    // ==========================================================
-    // === FUNCTION: AUTO-ROTATION (ONLY FOR DESKTOP) ===
-    // ==========================================================
+    // === DESKTOP AUTO-ROTATION FUNCTION ===
     function startAutoRotation() {
         if (!isMobile) {
             autoRotateInterval = setInterval(() => {
@@ -116,12 +77,11 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    // ==========================================================
-    // === FUNCTION: HANDLE MOBILE SWIPE FUNCTIONALITY ===
-    // ==========================================================
+    // === MOBILE SWIPE FUNCTIONALITY (Infinite Loop) ===
     let touchStartX = 0;
     let touchEndX = 0;
 
+    // Function to handle swipe gestures
     function handleSwipe() {
         const swipeThreshold = 50; // Minimum swipe distance to trigger
 
@@ -130,36 +90,126 @@ document.addEventListener("DOMContentLoaded", function () {
             currentIndex = (currentIndex + 1) % books.length;
         } else if (touchEndX - touchStartX > swipeThreshold) {
             // Swipe Right → Show Previous Book
-            currentIndex = (currentIndex - 1 + books.length) % books.length;
+// === BOOK DATA (Dynamically Injected) ===
+const books = [
+    {
+        title: "Memoirs of a Vampyr's Daughter: Eden",
+        subtitle: "Eden",
+        img: "assets/images/Book1.png",
+        link: "https://www.lulu.com/shop/keira-jarvis/memoirs-of-a-vampyrs-daughter-eden/paperback/product-1vg9vgp8.html"
+    },
+    {
+        title: "Memoirs of a Vampyr's Daughter: Wisdom",
+        subtitle: "Wisdom",
+        img: "assets/images/Book2.png",
+        link: "https://www.lulu.com/shop/keira-jarvis/memoirs-of-a-vampyrs-daughter-wisdom/paperback/product-wmkzv2.html"
+    }
+];
+
+// === SELECT DOM ELEMENTS ===
+const bookCover = document.getElementById("book-cover");
+const bookTitle = document.getElementById("book-title");
+const bookSubtitle = document.getElementById("book-subtitle");
+const bookLink = document.getElementById("book-link");
+const bookWrapper = document.getElementById("book-wrapper");
+const swipeIndicator = document.querySelector(".swipe-indicator");
+
+let currentIndex = 0;
+let autoRotate; // Store interval reference
+
+// === FUNCTION: UPDATE BOOK DISPLAY ===
+function updateBookDisplay(book) {
+    // Update Image & Link
+    bookCover.src = book.img;
+    bookCover.alt = book.title;
+    bookLink.href = book.link;
+
+    // Update Title & Subtitle
+    bookTitle.innerText = book.title;
+    bookSubtitle.innerText = book.subtitle || "";
+
+    // Ensure responsive title & subtitle styling
+    bookTitle.style.fontSize = "clamp(1.2em, 4vw, 1.8em)";
+    bookTitle.style.maxWidth = "90%";
+    bookTitle.style.wordWrap = "break-word";
+    bookTitle.style.overflowWrap = "break-word";
+    bookTitle.style.textAlign = "center";
+
+    bookSubtitle.style.fontSize = "clamp(1em, 3vw, 1.4em)";
+    bookSubtitle.style.maxWidth = "90%";
+
+    // Animate transition smoothly
+    bookWrapper.style.transition = "opacity 0.5s ease-in-out";
+    bookWrapper.style.opacity = 0; // Fade out
+
+    setTimeout(() => {
+        bookWrapper.style.opacity = 1; // Fade in after update
+    }, 500);
+}
+
+// === FUNCTION: SWITCH TO NEXT BOOK ===
+function nextBook() {
+    currentIndex = (currentIndex + 1) % books.length;
+    updateBookDisplay(books[currentIndex]);
+}
+
+// === FUNCTION: AUTO-ROTATE ON DESKTOP ===
+function startAutoRotation() {
+    if (window.innerWidth > 768) { // Only run on desktop
+        autoRotate = setInterval(nextBook, 4000); // Rotate every 4 seconds
+    }
+}
+
+// === FUNCTION: STOP AUTO-ROTATION ON MOBILE ===
+function stopAutoRotation() {
+    clearInterval(autoRotate);
+}
+
+// === FUNCTION: HANDLE SWIPE EVENTS (MOBILE) ===
+function handleSwipe() {
+    let startX;
+
+    bookWrapper.addEventListener("touchstart", (e) => {
+        startX = e.touches[0].clientX; // Store starting X position
+    });
+
+    bookWrapper.addEventListener("touchend", (e) => {
+        let endX = e.changedTouches[0].clientX; // Store ending X position
+
+        if (startX > endX + 50) {
+            nextBook(); // Swipe left = Next Book
+        } else if (startX < endX - 50) {
+            currentIndex = (currentIndex - 1 + books.length) % books.length; // Swipe right = Previous Book
+            updateBookDisplay(books[currentIndex]);
         }
+    });
+}
 
-        updateBookContent();
-    }
+// === FUNCTION: INITIATE THE BOOK CAROUSEL ===
+function initCarousel() {
+    updateBookDisplay(books[currentIndex]); // Load first book
 
-    // === ATTACH SWIPE EVENT LISTENERS (ONLY FOR MOBILE) ===
-    if (isMobile) {
-        bookWrapper.addEventListener("touchstart", (e) => {
-            touchStartX = e.touches[0].clientX;
-        });
-
-        bookWrapper.addEventListener("touchend", (e) => {
-            touchEndX = e.changedTouches[0].clientX;
-            handleSwipe();
-        });
-
-        updateBookContent(); // Load first book initially
+    if (window.innerWidth > 768) {
+        startAutoRotation(); // Enable auto-rotation on desktop
     } else {
-        // Start auto-rotation if not on mobile
-        updateBookContent(); // Ensure first book is displayed
-        startAutoRotation();
+        stopAutoRotation(); // Disable auto-rotation on mobile
+        handleSwipe(); // Enable swipe on mobile
     }
+}
 
-    // Preload images on page load
-    preloadImages();
+// === LISTEN FOR SCREEN RESIZE TO SWITCH BETWEEN AUTO-ROTATION & SWIPE ===
+window.addEventListener("resize", () => {
+    if (window.innerWidth > 768) {
+        startAutoRotation(); // Enable auto-rotation when switching to desktop
+    } else {
+        stopAutoRotation(); // Disable auto-rotation when switching to mobile
+    }
+});
 
-    // ==========================================================
-    // === CHARACTER EXPANSION FUNCTIONALITY (Ensuring One Expansion at a Time) ===
-    // ==========================================================
+// === START THE CAROUSEL WHEN PAGE LOADS ===
+initCarousel();
+
+    // === CHARACTER EXPANSION (Ensuring One Expansion at a Time) ===
     const characterCards = document.querySelectorAll(".character-card");
 
     if (characterCards.length > 0) {
@@ -191,9 +241,6 @@ document.addEventListener("DOMContentLoaded", function () {
         console.warn("No character cards found.");
     }
 
-    // ==========================================================
-    // === FUNCTION: TOGGLE SECTIONS VISIBILITY ===
-    // ==========================================================
     function toggleSection(id) {
         const section = document.getElementById(id);
         if (section.style.display === "none" || section.style.display === "") {
