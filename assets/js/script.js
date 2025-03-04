@@ -20,48 +20,12 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
-    // === FORM VALIDATION (Only if form exists) ===
-    const form = document.querySelector("form");
-    if (form) {
-        const nameInput = document.getElementById("name");
-        const emailInput = document.getElementById("email");
-        const messageInput = document.getElementById("message");
-
-        form.addEventListener("submit", function (e) {
-            let valid = true;
-
-            if (!nameInput || !emailInput || !messageInput) {
-                console.error("Form fields not found.");
-                return;
-            }
-
-            if (nameInput.value.trim() === "") {
-                alert("Please enter your name.");
-                valid = false;
-            }
-
-            if (!emailInput.value.includes("@") || emailInput.value.trim() === "") {
-                alert("Please enter a valid email.");
-                valid = false;
-            }
-
-            if (messageInput.value.trim() === "") {
-                alert("Please enter a message.");
-                valid = false;
-            }
-
-            if (!valid) {
-                e.preventDefault(); // Prevent form submission if validation fails
-            }
-        });
-    }
-
     // === BOOK ROTATION (Smooth Image Transition Without Black Screen) ===
     const books = [
         {
             title: "Memoirs of a Vampyr's Daughter: Eden",
             img: "assets/images/Book1.png",
-            link: "https://www.lulu.com/shop/keira-jarvis/memoirs-of-a-vampyrs-daughter-eden/paperback/product-1vg9vgp8.html?q=&page=1&pageSize=4"
+            link: "https://www.lulu.com/shop/keira-jarvis/memoirs-of-a-vampyrs-daughter-eden/paperback/product-1vg9vgp8.html"
         },
         {
             title: "Memoirs of a Vampyr's Daughter: Wisdom",
@@ -73,8 +37,8 @@ document.addEventListener("DOMContentLoaded", function () {
     let currentIndex = 0;
     const bookCover = document.querySelector(".book-cover");
     const bookTitle = document.querySelector(".book-title");
-    const bookLink = document.querySelector(".book-link");
     const bookContainer = document.getElementById("book-carousel");
+    const swipeInstruction = document.getElementById("swipe-instruction");
     let autoSwitch;
 
     // Function to update book details
@@ -83,7 +47,6 @@ document.addEventListener("DOMContentLoaded", function () {
         bookCover.src = books[currentIndex].img;
         bookCover.alt = books[currentIndex].title;
         bookTitle.textContent = books[currentIndex].title;
-        bookLink.href = books[currentIndex].link;
     }
 
     // Auto-rotate books on desktop
@@ -132,15 +95,21 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // Attach event listeners
-    if (bookCover) {
+    if (bookCover && bookContainer) {
         if (isMobile()) {
-            stopAutoRotation();
+            stopAutoRotation(); // Disable auto-rotation on mobile
             bookContainer.addEventListener("touchstart", handleTouchStart);
             bookContainer.addEventListener("touchmove", handleTouchMove);
             bookContainer.addEventListener("touchend", handleTouchEnd);
             bookContainer.addEventListener("click", handleBookTap);
+
+            // Show swipe instruction on mobile
+            swipeInstruction.style.display = "block";
         } else {
-            startAutoRotation();
+            startAutoRotation(); // Enable auto-rotation on desktop
+
+            // Hide swipe instruction on desktop
+            swipeInstruction.style.display = "none";
         }
     }
 
