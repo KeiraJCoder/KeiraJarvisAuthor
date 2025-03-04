@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-    console.log("Script loaded successfully.");
+    
 
     // === Smooth Scroll for Internal Links ===
     const links = document.querySelectorAll("nav ul li a");
