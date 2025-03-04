@@ -20,35 +20,55 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
+
 // === BOOK CAROUSEL FUNCTIONALITY (Desktop Auto-Rotate & Mobile Swipe) ===
 
-const bookItems = document.querySelectorAll(".book-item"); // Select all books
-const bookWrapper = document.getElementById("book-wrapper"); // Wrapper for swiping
+const books = [
+    {
+        title: "Memoirs of a Vampyr's Daughter",
+        subtitle: "Eden",
+        img: "assets/images/Book1.png",
+        link: "https://www.lulu.com/shop/keira-jarvis/memoirs-of-a-vampyrs-daughter-eden/paperback/product-1vg9vgp8.html"
+    },
+    {
+        title: "Memoirs of a Vampyr's Daughter",
+        subtitle: "Wisdom",
+        img: "assets/images/Book2.png",
+        link: "https://www.lulu.com/shop/keira-jarvis/memoirs-of-a-vampyrs-daughter-wisdom/paperback/product-wmkzv2.html"
+    }
+];
+
+const bookWrapper = document.getElementById("book-wrapper");
+const bookCover = document.getElementById("book-cover");
+const bookLink = document.getElementById("book-link");
+const bookTitle = document.getElementById("book-title");
+const bookSubtitle = document.getElementById("book-subtitle");
+
 const isMobile = window.matchMedia("(max-width: 768px)").matches; // Detect mobile
-
 let currentIndex = 0;
-let autoRotateInterval; // Store auto-rotation interval
+let autoRotateInterval;
 
-// === DESKTOP AUTO-ROTATION FUNCTION ===
-function updateBook() {
-    if (isMobile) return; // Stop auto-rotation on mobile
-
-    bookItems.forEach((book, index) => {
-        book.classList.toggle("active", index === currentIndex);
-    });
-
-    currentIndex = (currentIndex + 1) % bookItems.length;
+// === Function to Update Book Content Dynamically ===
+function updateBookContent() {
+    const book = books[currentIndex];
+    bookCover.src = book.img;
+    bookCover.alt = book.title + " " + book.subtitle;
+    bookLink.href = book.link;
+    bookTitle.textContent = book.title;
+    bookSubtitle.textContent = book.subtitle;
 }
 
-// === START AUTO-ROTATION FOR DESKTOP ===
+// === DESKTOP AUTO-ROTATION FUNCTION ===
 function startAutoRotation() {
     if (!isMobile) {
-        updateBook(); // Ensure correct book is shown initially
-        autoRotateInterval = setInterval(updateBook, 4000); // Rotate every 4s
+        autoRotateInterval = setInterval(() => {
+            currentIndex = (currentIndex + 1) % books.length;
+            updateBookContent();
+        }, 4000);
     }
 }
 
-// === MOBILE SWIPE FUNCTIONALITY ===
+// === MOBILE SWIPE FUNCTIONALITY (Infinite Loop) ===
 let touchStartX = 0;
 let touchEndX = 0;
 
@@ -57,19 +77,14 @@ function handleSwipe() {
     const swipeThreshold = 50; // Minimum swipe distance to trigger
 
     if (touchStartX - touchEndX > swipeThreshold) {
-        // Swipe Left → Next Book
-        currentIndex = (currentIndex + 1) % bookItems.length;
+        // Swipe Left → Show Next Book
+        currentIndex = (currentIndex + 1) % books.length;
     } else if (touchEndX - touchStartX > swipeThreshold) {
-        // Swipe Right → Previous Book
-        currentIndex = (currentIndex - 1 + bookItems.length) % bookItems.length;
+        // Swipe Right → Show Previous Book
+        currentIndex = (currentIndex - 1 + books.length) % books.length;
     }
 
-    updateMobileBook();
-}
-
-// Function to update books on mobile swipe
-function updateMobileBook() {
-    bookWrapper.style.transform = `translateX(-${currentIndex * 100}%)`;
+    updateBookContent();
 }
 
 // Attach event listeners for touch events (Mobile Swipe)
@@ -83,12 +98,12 @@ if (isMobile) {
         handleSwipe();
     });
 
-    updateMobileBook(); // Set initial position
+    updateBookContent(); // Load first book initially
 } else {
     // Start auto-rotation if not on mobile
+    updateBookContent(); // Ensure first book is displayed
     startAutoRotation();
 }
-
 
 
 
