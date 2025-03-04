@@ -47,9 +47,9 @@
     text-align: center;
 }
 
-/* Book Title */
+/* Book Title - Made Smaller */
 .book-title {
-    font-size: 1.8em;
+    font-size: 1.5em; /* Reduced from 1.8em */
     font-weight: bold;
     color: #ffffff;
     text-shadow: 2px 2px 6px black;
@@ -117,30 +117,19 @@
     align-items: center;
 }
 
-/* Swipe Indicator (Hidden on Desktop) */
+/* Swipe Indicator - Always Visible */
 .swipe-indicator {
-    display: none; /* Default: Hidden */
+    display: block; /* Always visible */
     color: #fff;
     font-size: 1em;
     text-align: center;
-    margin-bottom: 10px;
-    opacity: 0.7;
+    margin-top: 10px;
+    opacity: 0.8;
+    font-weight: bold;
 }
 
 /* ========================= Mobile-Specific Styling ========================= */
 @media (max-width: 768px) {
-    /* Show Swipe Indicator on Mobile */
-    .swipe-indicator {
-        display: block; /* Show swipe hint */
-        animation: fadeOut 3s ease-in-out forwards;
-    }
-
-    /* Animation to fade out swipe indicator */
-    @keyframes fadeOut {
-        0% { opacity: 1; }
-        100% { opacity: 0; }
-    }
-
     /* Ensure swipe functionality only applies on mobile */
     .book-wrapper {
         display: flex;
@@ -159,9 +148,9 @@
         padding: 15px;
     }
 
-    /* Responsive Fixes for Mobile - Resize Book Title */
+    /* Smaller Title on Mobile */
     .book-title {
-        font-size: 1.2em; /* Reduce size for mobile */
+        font-size: 1.2em; /* Reduced from 1.5em */
         max-width: 90%; /* Ensures it remains contained */
         padding: 0 10px; /* Adds spacing on sides */
     }
