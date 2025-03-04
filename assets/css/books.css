@@ -66,7 +66,7 @@
     letter-spacing: 1px;
     margin-top: 10px;
     word-wrap: break-word;
-    max-width: 60%; /* Prevents title from being wider than container */
+    max-width: 40%; /* Prevents title from being wider than container */
     text-align: center;
     overflow-wrap: break-word; /* Ensures long words break */
     white-space: normal; /* Allows multi-line text */
