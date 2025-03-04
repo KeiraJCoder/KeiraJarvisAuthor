@@ -145,11 +145,11 @@
         animation: fadeOut 3s ease-in-out forwards;
     }
 
-    /* Animation to fade out swipe indicator */
+    /* Animation to fade out swipe indicator
     @keyframes fadeOut {
         0% { opacity: 1; }
         100% { opacity: 0; }
-    }
+    } */
 
 /* Ensure swipe functionality only applies on mobile */
 @media (max-width: 768px) {
