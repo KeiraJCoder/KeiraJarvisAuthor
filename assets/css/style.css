@@ -1,6 +1,7 @@
-/* ========================================
-   GLOBAL IMPORTS & DEFAULTS
-   ======================================== */
+/* 
+========================================
+GLOBAL IMPORTS & DEFAULTS
+======================================== */
 
 /* Import Gothic Font */
 @import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&display=swap');
@@ -159,15 +160,6 @@ ul {
     list-style: none; /* Removes default bullets */
     padding-left: 0; /* Ensures no extra indentation */
 }
-
-/* Apply custom bullet formatting to all list items */
-li::before {
-    content: "❖";
-    color: #7b0202;
-    font-size: 1.2em;
-    margin-right: 8px;
-}
-
 
 
 /* ========================================
