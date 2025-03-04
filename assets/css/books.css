@@ -10,7 +10,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    overflow: hidden; /* Prevents accidental scrolling issues */
 }
 
 /* Ensure the book wrapper allows smooth sliding */
@@ -33,7 +32,6 @@
     width: 300px; /* Fixed width */
     height: 450px; /* Fixed height */
     object-fit: cover; /* Ensures images are cropped, not stretched */
-    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
 .book-cover:hover {
@@ -47,34 +45,42 @@
     text-align: center;
 }
 
-/* ========================= FIXED RESPONSIVE BOOK TITLE ========================= */
+/* Fade animation for the book cover */
+.book-cover {
+    opacity: 1;
+    transition: opacity 1s ease-in-out;
+}
+
+/* Fade animation for the book title */
 .book-title {
+    opacity: 1;
+    transition: opacity 1s ease-in-out;
+}
+
+/* Book Title */
+.book-title {
+    font-size: 1.8em;
     font-weight: bold;
     color: #ffffff;
     text-shadow: 2px 2px 6px black;
     letter-spacing: 1px;
     margin-top: 10px;
-    text-align: center;
     word-wrap: break-word;
-    overflow-wrap: break-word;
+    max-width: 80%; /* Prevents title from being wider than container */
+    text-align: center;
+    overflow-wrap: break-word; /* Ensures long words break */
     white-space: normal; /* Allows multi-line text */
     line-height: 1.4; /* Improves readability */
-    max-width: 90%; /* Ensures it does not overflow */
     margin-left: auto;
     margin-right: auto;
-    font-size: clamp(1.2em, 4vw, 1.8em); /* Dynamically resizes between 1.2em and 1.8em */
 }
 
-/* Responsive Subtitle */
+/* Book Subtitle */
 .book-subtitle {
-    font-size: clamp(1em, 3vw, 1.4em); /* Adjusts based on screen size */
+    font-size: 1.4em;
     color: #a30000;
     text-shadow: 1px 1px 5px black;
     margin-bottom: 10px;
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-    text-align: center;
-    max-width: 90%;
 }
 
 /* Book Description */
@@ -121,29 +127,32 @@
     align-items: center;
 }
 
-/* ========================= SWIPE INDICATOR (ONLY ON MOBILE) ========================= */
-
-/* Hide swipe instructions on desktop */
+/* Swipe Indicator (Hidden on Desktop) */
 .swipe-indicator {
-    display: none;
-}
-
-/* Make swipe instructions always visible on mobile */
-@media (max-width: 768px) {
-    .swipe-indicator {
-        display: block; /* Show only on mobile */
-        color: #fff;
-        font-size: 1em;
-        text-align: center;
-        margin-top: 10px;
-        opacity: 0.8;
-        font-weight: bold;
-    }
+    display: none; /* Default: Hidden */
+    color: #fff;
+    font-size: 1em;
+    text-align: center;
+    margin-bottom: 10px;
+    opacity: 0.7;
 }
 
 /* ========================= Mobile-Specific Styling ========================= */
 @media (max-width: 768px) {
-    /* Ensure swipe functionality only applies on mobile */
+    /* Show Swipe Indicator on Mobile */
+    .swipe-indicator {
+        display: block; /* Show swipe hint */
+        animation: fadeOut 3s ease-in-out forwards;
+    }
+
+    /* Animation to fade out swipe indicator
+    @keyframes fadeOut {
+        0% { opacity: 1; }
+        100% { opacity: 0; }
+    } */
+
+/* Ensure swipe functionality only applies on mobile */
+@media (max-width: 768px) {
     .book-wrapper {
         display: flex;
         overflow: hidden;
@@ -155,21 +164,17 @@
         display: block;
         width: 100%;
     }
-
+}
+    
     /* Adjust container for better spacing */
     .book-container {
         padding: 15px;
     }
 
-    /* Smaller Title on Mobile */
+    /* Responsive Fixes for Mobile - Resize Book Title */
     .book-title {
-        font-size: clamp(1em, 3.5vw, 1.4em); /* Adjusts between 1em and 1.4em */
+        font-size: 1.2em; /* Reduce size for mobile */
         max-width: 90%; /* Ensures it remains contained */
         padding: 0 10px; /* Adds spacing on sides */
-    }
-
-    /* Subtitle also resizes */
-    .book-subtitle {
-        font-size: clamp(0.9em, 3vw, 1.2em);
     }
 }
