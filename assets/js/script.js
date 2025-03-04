@@ -1,6 +1,4 @@
 document.addEventListener("DOMContentLoaded", function () {
-    
-
     // === Smooth Scroll for Internal Links ===
     const links = document.querySelectorAll("nav ul li a");
 
@@ -20,110 +18,104 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
-const repoName = window.location.hostname.includes("github.io")
-    ? "/KeiraJarvisAuthor" 
-    : "";
+    const repoName = window.location.hostname.includes("github.io")
+        ? "/KeiraJarvisAuthor"
+        : "";
     console.log("Repository Name:", repoName);
 
+    // === BOOK CAROUSEL FUNCTIONALITY (Desktop Auto-Rotate & Mobile Swipe) ===
+    const books = [
+        {
+            title: "Memoirs of a Vampyr's Daughter",
+            subtitle: "Eden",
+            img: `${repoName}/assets/images/book-images/Book1.png`,
+            link: "https://www.lulu.com/shop/keira-jarvis/memoirs-of-a-vampyrs-daughter-eden/paperback/product-1vg9vgp8.html"
+        },
+        {
+            title: "Memoirs of a Vampyr's Daughter",
+            subtitle: "Wisdom",
+            img: `${repoName}/assets/images/book-images/Book2.png`,
+            link: "https://www.lulu.com/shop/keira-jarvis/memoirs-of-a-vampyrs-daughter-wisdom/paperback/product-wmkzv2.html"
+        }
+    ];
 
-// === BOOK CAROUSEL FUNCTIONALITY (Desktop Auto-Rotate & Mobile Swipe) === 
+    const bookWrapper = document.getElementById("book-wrapper");
+    const bookCover = document.getElementById("book-cover");
+    const bookLink = document.getElementById("book-link");
+    const bookTitle = document.getElementById("book-title");
+    const bookSubtitle = document.getElementById("book-subtitle");
 
-const books = [
-    {
-        title: "Memoirs of a Vampyr's Daughter",
-        subtitle: "Eden",
-        img: `${repoName}/assets/images/book-images/Book1.png`,
-        link: "https://www.lulu.com/shop/keira-jarvis/memoirs-of-a-vampyrs-daughter-eden/paperback/product-1vg9vgp8.html"
-    },
-    {
-        title: "Memoirs of a Vampyr's Daughter",
-        subtitle: "Wisdom",
-        img: `${repoName}/assets/images/book-images/Book2.png`,
-        link: "https://www.lulu.com/shop/keira-jarvis/memoirs-of-a-vampyrs-daughter-wisdom/paperback/product-wmkzv2.html"
+    const isMobile = window.matchMedia("(max-width: 768px)").matches; // Detect mobile
+    let currentIndex = 0;
+    let autoRotateInterval;
+
+    // === Preload Images to Prevent Lag on Swipe ===
+    function preloadImages() {
+        books.forEach(book => {
+            const img = new Image();
+            img.src = book.img;
+        });
     }
-];
 
-const bookWrapper = document.getElementById("book-wrapper");
-const bookCover = document.getElementById("book-cover");
-const bookLink = document.getElementById("book-link");
-const bookTitle = document.getElementById("book-title");
-const bookSubtitle = document.getElementById("book-subtitle");
+    // === Function to Update Book Content Dynamically ===
+    function updateBookContent() {
+        const book = books[currentIndex];
+        bookCover.src = book.img;
+        bookCover.alt = book.title + " " + book.subtitle;
+        bookLink.href = book.link;
+        bookTitle.textContent = book.title;
+        bookSubtitle.textContent = book.subtitle;
+    }
 
-const isMobile = window.matchMedia("(max-width: 768px)").matches; // Detect mobile
-let currentIndex = 0;
-let autoRotateInterval;
+    // === DESKTOP AUTO-ROTATION FUNCTION ===
+    function startAutoRotation() {
+        if (!isMobile) {
+            autoRotateInterval = setInterval(() => {
+                currentIndex = (currentIndex + 1) % books.length;
+                updateBookContent();
+            }, 4000);
+        }
+    }
 
-// === Preload Images to Prevent Lag on Swipe ===
-function preloadImages() {
-    books.forEach(book => {
-        const img = new Image();
-        img.src = book.img;
-    });
-}
+    // === MOBILE SWIPE FUNCTIONALITY (Infinite Loop) ===
+    let touchStartX = 0;
+    let touchEndX = 0;
 
-// === Function to Update Book Content Dynamically ===
-function updateBookContent() {
-    const book = books[currentIndex];
-    bookCover.src = book.img;
-    bookCover.alt = book.title + " " + book.subtitle;
-    bookLink.href = book.link;
-    bookTitle.textContent = book.title;
-    bookSubtitle.textContent = book.subtitle;
-}
+    // Function to handle swipe gestures
+    function handleSwipe() {
+        const swipeThreshold = 50; // Minimum swipe distance to trigger
 
-// === DESKTOP AUTO-ROTATION FUNCTION ===
-function startAutoRotation() {
-    if (!isMobile) {
-        autoRotateInterval = setInterval(() => {
+        if (touchStartX - touchEndX > swipeThreshold) {
+            // Swipe Left → Show Next Book
             currentIndex = (currentIndex + 1) % books.length;
-            updateBookContent();
-        }, 4000);
-    }
-}
+        } else if (touchEndX - touchStartX > swipeThreshold) {
+            // Swipe Right → Show Previous Book
+            currentIndex = (currentIndex - 1 + books.length) % books.length;
+        }
 
-// === MOBILE SWIPE FUNCTIONALITY (Infinite Loop) ===
-let touchStartX = 0;
-let touchEndX = 0;
-
-// Function to handle swipe gestures
-function handleSwipe() {
-    const swipeThreshold = 50; // Minimum swipe distance to trigger
-
-    if (touchStartX - touchEndX > swipeThreshold) {
-        // Swipe Left → Show Next Book
-        currentIndex = (currentIndex + 1) % books.length;
-    } else if (touchEndX - touchStartX > swipeThreshold) {
-        // Swipe Right → Show Previous Book
-        currentIndex = (currentIndex - 1 + books.length) % books.length;
+        updateBookContent();
     }
 
-    updateBookContent();
-}
+    // Attach event listeners for touch events (Mobile Swipe)
+    if (isMobile) {
+        bookWrapper.addEventListener("touchstart", (e) => {
+            touchStartX = e.touches[0].clientX;
+        });
 
-// Attach event listeners for touch events (Mobile Swipe)
-if (isMobile) {
-    bookWrapper.addEventListener("touchstart", (e) => {
-        touchStartX = e.touches[0].clientX;
-    });
+        bookWrapper.addEventListener("touchend", (e) => {
+            touchEndX = e.changedTouches[0].clientX;
+            handleSwipe();
+        });
 
-    bookWrapper.addEventListener("touchend", (e) => {
-        touchEndX = e.changedTouches[0].clientX;
-        handleSwipe();
-    });
+        updateBookContent(); // Load first book initially
+    } else {
+        // Start auto-rotation if not on mobile
+        updateBookContent(); // Ensure first book is displayed
+        startAutoRotation();
+    }
 
-    updateBookContent(); // Load first book initially
-} else {
-    // Start auto-rotation if not on mobile
-    updateBookContent(); // Ensure first book is displayed
-    startAutoRotation();
-}
-
-// Preload images on page load
-preloadImages();
-
-
-
-
+    // Preload images on page load
+    preloadImages();
 
     // === CHARACTER EXPANSION (Ensuring One Expansion at a Time) ===
     const characterCards = document.querySelectorAll(".character-card");
@@ -156,13 +148,14 @@ preloadImages();
     } else {
         console.warn("No character cards found.");
     }
-});
 
-function toggleSection(id) {
-    const section = document.getElementById(id);
-    if (section.style.display === "none" || section.style.display === "") {
-        section.style.display = "block";
-    } else {
-        section.style.display = "none";
+    function toggleSection(id) {
+        const section = document.getElementById(id);
+        if (section.style.display === "none" || section.style.display === "") {
+            section.style.display = "block";
+        } else {
+            section.style.display = "none";
+        }
     }
-}
+
+});
