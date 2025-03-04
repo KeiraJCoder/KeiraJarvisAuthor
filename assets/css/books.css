@@ -31,6 +31,25 @@
     box-shadow: 0px 0px 15px rgba(139, 0, 0, 0.7);
 }
 
+/* Ensure the carousel has smooth transitions */
+#book-carousel {
+    position: relative;
+    text-align: center;
+}
+
+/* Fade animation for the book cover */
+.book-cover {
+    opacity: 1;
+    transition: opacity 1s ease-in-out;
+}
+
+/* Fade animation for the book title */
+.book-title {
+    opacity: 1;
+    transition: opacity 1s ease-in-out;
+}
+
+
 /* Book Title */
 .book-title {
     font-size: 1.8em;
