@@ -164,7 +164,7 @@
     /* Smaller Title on Mobile */
     .book-title {
         font-size: clamp(1em, 3.5vw, 1.4em); /* Adjusts between 1em and 1.4em */
-        max-width: 90%; /* Ensures it remains contained */
+        max-width: 70%; /* Ensures it remains contained */
         padding: 0 10px; /* Adds spacing on sides */
     }
 
