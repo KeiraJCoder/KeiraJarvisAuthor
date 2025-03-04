@@ -47,30 +47,34 @@
     text-align: center;
 }
 
-/* Book Title - Made Smaller */
+/* ========================= FIXED RESPONSIVE BOOK TITLE ========================= */
 .book-title {
-    font-size: 1.5em; /* Reduced from 1.8em */
     font-weight: bold;
     color: #ffffff;
     text-shadow: 2px 2px 6px black;
     letter-spacing: 1px;
     margin-top: 10px;
-    word-wrap: break-word;
-    max-width: 80%; /* Prevents title from being wider than container */
     text-align: center;
-    overflow-wrap: break-word; /* Ensures long words break */
+    word-wrap: break-word;
+    overflow-wrap: break-word;
     white-space: normal; /* Allows multi-line text */
     line-height: 1.4; /* Improves readability */
+    max-width: 90%; /* Ensures it does not overflow */
     margin-left: auto;
     margin-right: auto;
+    font-size: clamp(1.2em, 4vw, 1.8em); /* Dynamically resizes between 1.2em and 1.8em */
 }
 
-/* Book Subtitle */
+/* Responsive Subtitle */
 .book-subtitle {
-    font-size: 1.4em;
+    font-size: clamp(1em, 3vw, 1.4em); /* Adjusts based on screen size */
     color: #a30000;
     text-shadow: 1px 1px 5px black;
     margin-bottom: 10px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    text-align: center;
+    max-width: 90%;
 }
 
 /* Book Description */
@@ -117,15 +121,24 @@
     align-items: center;
 }
 
-/* Swipe Indicator - Always Visible */
+/* ========================= SWIPE INDICATOR (ONLY ON MOBILE) ========================= */
+
+/* Hide swipe instructions on desktop */
 .swipe-indicator {
-    display: block; /* Always visible */
-    color: #fff;
-    font-size: 1em;
-    text-align: center;
-    margin-top: 10px;
-    opacity: 0.8;
-    font-weight: bold;
+    display: none;
+}
+
+/* Make swipe instructions always visible on mobile */
+@media (max-width: 768px) {
+    .swipe-indicator {
+        display: block; /* Show only on mobile */
+        color: #fff;
+        font-size: 1em;
+        text-align: center;
+        margin-top: 10px;
+        opacity: 0.8;
+        font-weight: bold;
+    }
 }
 
 /* ========================= Mobile-Specific Styling ========================= */
@@ -150,8 +163,13 @@
 
     /* Smaller Title on Mobile */
     .book-title {
-        font-size: 1.2em; /* Reduced from 1.5em */
+        font-size: clamp(1em, 3.5vw, 1.4em); /* Adjusts between 1em and 1.4em */
         max-width: 90%; /* Ensures it remains contained */
         padding: 0 10px; /* Adds spacing on sides */
+    }
+
+    /* Subtitle also resizes */
+    .book-subtitle {
+        font-size: clamp(0.9em, 3vw, 1.2em);
     }
 }
