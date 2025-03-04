@@ -24,6 +24,12 @@
 .book-item {
     flex: 0 0 100%;
     text-align: center;
+    display: none; /* Hide all books by default */
+}
+
+/* Show only the active book */
+.book-item.active {
+    display: block;
 }
 
 /* Book Cover */
@@ -128,8 +134,9 @@
     opacity: 0.7;
 }
 
-/* Enable Swipe Indicator & Swiping on Mobile */
+/* ========================= Mobile-Specific Styling ========================= */
 @media (max-width: 768px) {
+    /* Show Swipe Indicator on Mobile */
     .swipe-indicator {
         display: block; /* Show swipe hint */
         animation: fadeOut 3s ease-in-out forwards;
@@ -141,15 +148,20 @@
         100% { opacity: 0; }
     }
 
+    /* Allow books to slide left/right */
     .book-wrapper {
         display: flex;
         overflow: hidden;
         touch-action: pan-y; /* Prevent scrolling conflicts */
     }
-}
 
-/* Responsive Book Container */
-@media (max-width: 768px) {
+    /* Show all books for swipe functionality */
+    .book-item {
+        display: block;
+        width: 100%;
+    }
+    
+    /* Adjust container for better spacing */
     .book-container {
         padding: 15px;
     }
