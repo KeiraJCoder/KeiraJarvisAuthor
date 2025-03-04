@@ -25,16 +25,10 @@ body {
     padding-bottom: 0; /* Adjust if necessary */
     background-color: #0d0d0d; /* Deep black */
     color: #c5c5c5; /* Soft grey */
+    min-height: 100vh; /* Ensures the body always covers the entire viewport */
 }
 
-/* Remove the background from the index page completely */
-body.index-page {
-    background: none;
-}
 
-body.index-page::before {
-    display: none; /* Ensures no overlay */
-}
 
 body::before {
     content: "";
