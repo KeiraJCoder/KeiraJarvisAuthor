@@ -23,6 +23,8 @@ document.addEventListener("DOMContentLoaded", function () {
 const repoName = window.location.hostname.includes("github.io")
     ? "/KeiraJarvisAuthor" 
     : "";
+    console.log("Repository Name:", repoName);
+
 
 // === BOOK CAROUSEL FUNCTIONALITY (Desktop Auto-Rotate & Mobile Swipe) === 
 
