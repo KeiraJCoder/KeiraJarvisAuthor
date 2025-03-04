@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
 
-// === BOOK CAROUSEL FUNCTIONALITY (Desktop Auto-Rotate & Mobile Swipe) ===
+// === BOOK CAROUSEL FUNCTIONALITY (Desktop Auto-Rotate & Mobile Swipe) === 
 
 const books = [
     {
@@ -47,6 +47,14 @@ const bookSubtitle = document.getElementById("book-subtitle");
 const isMobile = window.matchMedia("(max-width: 768px)").matches; // Detect mobile
 let currentIndex = 0;
 let autoRotateInterval;
+
+// === Preload Images to Prevent Lag on Swipe ===
+function preloadImages() {
+    books.forEach(book => {
+        const img = new Image();
+        img.src = book.img;
+    });
+}
 
 // === Function to Update Book Content Dynamically ===
 function updateBookContent() {
@@ -104,6 +112,10 @@ if (isMobile) {
     updateBookContent(); // Ensure first book is displayed
     startAutoRotation();
 }
+
+// Preload images on page load
+preloadImages();
+
 
 
 
