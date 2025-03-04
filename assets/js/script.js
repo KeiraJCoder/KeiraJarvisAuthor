@@ -38,8 +38,10 @@ let currentIndex = 0;
 const bookCover = document.querySelector(".book-cover");
 const bookTitle = document.querySelector(".book-title");
 const bookLink = document.querySelector(".book-link");
+
 let autoSwitch;
 
+// Function to update book details
 function updateBook() {
     currentIndex = (currentIndex + 1) % books.length;
     const newImage = new Image();
@@ -52,19 +54,18 @@ function updateBook() {
     };
 }
 
-// Function to start auto-rotation on both mobile and desktop
+// Start the auto-rotation
 function startAutoRotation() {
-    autoSwitch = setInterval(() => {
-        updateBook();
-    }, 4000); // Rotate every 4 seconds
+    if (bookCover && bookTitle && bookLink) {
+        autoSwitch = setInterval(updateBook, 4000); // Rotate every 4 seconds
+    } else {
+        console.warn("Book elements not found. Skipping book rotation.");
+    }
 }
 
-// Ensure the rotation works for both mobile and desktop
-if (bookCover && bookTitle && bookLink) {
-    startAutoRotation(); // Enable auto-rotation for both desktop and mobile
-}
+// Trigger auto-rotation for both mobile and desktop
+startAutoRotation();
 
-    
     
 
     // === CHARACTER EXPANSION (Ensuring One Expansion at a Time) ===
