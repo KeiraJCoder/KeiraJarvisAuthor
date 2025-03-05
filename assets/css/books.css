@@ -28,14 +28,6 @@
     display: block;
 }
 
-/* Book Cover */
-.book-cover {
-    width: 300px; /* Fixed width */
-    height: 450px; /* Fixed height */
-    object-fit: cover; /* Ensure images fill the area without distortion */
-    max-width: 100%; /* Prevents stretching on smaller screens */
-    
-}
 
 .book-cover:hover {
     transform: scale(1.05);
@@ -53,8 +45,6 @@
     opacity: 1;
     transition: opacity 1s ease-in-out;
 }
-
-
 
 /* Fade animation for the book title */
 .book-title {
@@ -191,12 +181,6 @@
         padding: 0 10px; /* Adds spacing on sides */
     }
 
-    /* Make sure book cover is properly resized on small screens */
-    .book-cover {
-        width: 100%;  /* Allow it to scale down */
-        height: auto; /* Maintain aspect ratio */
-        max-width: 280px; /* Ensure it doesn't stretch too large */
-    }
 
     /* Ensure the subtitle is always within bounds */
     .book-subtitle {
@@ -207,9 +191,6 @@
 
     /* Fix between 420px to 408px range for smaller screens */
     @media (max-width: 420px) and (min-width: 408px) {
-        .book-cover {
-            max-width: 250px; /* Adjust image size in this range */
-        }
 
         .book-title {
             font-size: 1.1em; /* Adjust title font size for small screens */
@@ -222,9 +203,6 @@
 
     /* Ensure that between 408px and 263px, the image and title fit within the container */
     @media (max-width: 408px) and (min-width: 263px) {
-        .book-cover {
-            max-width: 240px; /* Ensure image stays within container */
-        }
 
         .book-title {
             font-size: 1em; /* Further adjust title size for this range */
