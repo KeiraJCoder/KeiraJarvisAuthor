@@ -42,8 +42,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const bookWrapper = document.getElementById("book-wrapper");
     const bookCover = document.getElementById("book-cover");
     const bookLink = document.getElementById("book-link");
-    const bookTitle = document.getElementById("book-title");
-    const bookSubtitle = document.getElementById("book-subtitle");
+    const bookTitle = document.querySelector("#book-display .book-title");
+    const bookSubtitle = document.querySelector("#book-display .book-subtitle");
 
     const isMobile = window.matchMedia("(max-width: 768px)").matches; // Detect mobile
     let currentIndex = 0;
@@ -81,22 +81,18 @@ document.addEventListener("DOMContentLoaded", function () {
     let touchStartX = 0;
     let touchEndX = 0;
 
-    // Function to handle swipe gestures
     function handleSwipe() {
-        const swipeThreshold = 50; // Minimum swipe distance to trigger
+        const swipeThreshold = 50;
 
         if (touchStartX - touchEndX > swipeThreshold) {
-            // Swipe Left → Show Next Book
             currentIndex = (currentIndex + 1) % books.length;
         } else if (touchEndX - touchStartX > swipeThreshold) {
-            // Swipe Right → Show Previous Book
             currentIndex = (currentIndex - 1 + books.length) % books.length;
         }
 
         updateBookContent();
     }
 
-    // Attach event listeners for touch events (Mobile Swipe)
     if (isMobile) {
         bookWrapper.addEventListener("touchstart", (e) => {
             touchStartX = e.touches[0].clientX;
@@ -109,12 +105,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
         updateBookContent(); // Load first book initially
     } else {
-        // Start auto-rotation if not on mobile
         updateBookContent(); // Ensure first book is displayed
         startAutoRotation();
     }
 
-    // Preload images on page load
     preloadImages();
 
     // === CHARACTER EXPANSION (Ensuring One Expansion at a Time) ===
@@ -125,19 +119,16 @@ document.addEventListener("DOMContentLoaded", function () {
             card.addEventListener("click", function (event) {
                 event.stopPropagation(); // Prevents event bubbling
 
-                // Collapse all other cards first
                 characterCards.forEach(otherCard => {
                     if (otherCard !== this && otherCard.classList.contains("expanded")) {
                         otherCard.classList.remove("expanded");
                     }
                 });
 
-                // Toggle the clicked card
                 this.classList.toggle("expanded");
             });
         });
 
-        // Clicking outside of character cards collapses all expanded cards
         document.addEventListener("click", function () {
             characterCards.forEach(card => {
                 if (card.classList.contains("expanded")) {
