@@ -30,11 +30,11 @@
 
 /* Book Cover */
 .book-cover {
-    width: 100%; /* Allow it to scale down properly */
-    max-width: 300px; /* Set a max-width to prevent image from getting too large */
-    height: auto; /* Maintain aspect ratio */
-    object-fit: cover; /* Ensures images are cropped, not stretched */
-    margin: 0 auto; /* Centers the image */
+    width: 300px; /* Fixed width */
+    height: 450px; /* Fixed height */
+    object-fit: cover; /* Ensure images fill the area without distortion */
+    max-width: 100%; /* Prevents stretching on smaller screens */
+    
 }
 
 .book-cover:hover {
@@ -54,6 +54,8 @@
     transition: opacity 1s ease-in-out;
 }
 
+
+
 /* Fade animation for the book title */
 .book-title {
     opacity: 1;
@@ -62,38 +64,42 @@
 
 /* Book Title */
 .book-title {
-    font-size: 1.8em;
+
     font-weight: bold;
     color: #ffffff;
-    text-shadow: 2px 2px 6px black;
+    text-shadow: 2px 2px 6px rgb(173, 17, 17);
     letter-spacing: 1px;
-    margin-top: 10px;
-    word-wrap: break-word;
-    max-width: 80%; /* Prevents title from being wider than container */
     text-align: center;
-    overflow-wrap: break-word; /* Ensures long words break */
     white-space: normal; /* Allows multi-line text */
     line-height: 1.4; /* Improves readability */
     margin-left: auto;
     margin-right: auto;
+    max-width: 90%; /* Reduce width to fit inside container */
+    white-space: normal; /* Allow wrapping */
+    word-wrap: break-word; /* Ensure long words break */
+    overflow-wrap: break-word;
+    text-align: center; /* Keep it centered */
+    font-size: clamp(1.2em, 5vw, 1.8em); /* Responsive font size */
+
 }
 
 /* Book Subtitle */
 .book-subtitle {
-    font-size: 1.8em;
     font-weight: bold;
     color: #ffffff;
-    text-shadow: 2px 2px 6px black;
-    letter-spacing: 1px;
-    margin-top: 10px;
+    text-shadow: 2px 2px 6px rgb(204, 5, 5);
     word-wrap: break-word;
-    max-width: 80%; /* Prevents title from being wider than container */
     text-align: center;
-    overflow-wrap: break-word; /* Ensures long words break */
     white-space: normal; /* Allows multi-line text */
-    line-height: 1.4; /* Improves readability */
     margin-left: auto;
     margin-right: auto;
+    max-width: 90%; /* Reduce width to fit inside container */
+    white-space: normal; /* Allow wrapping */
+    word-wrap: break-word; /* Ensure long words break */
+    overflow-wrap: break-word;
+    text-align: center; /* Keep it centered */
+    font-size: clamp(1.2em, 5vw, 1.8em); /* Responsive font size */
+    padding:0;
 }
 
 /* Book Description */

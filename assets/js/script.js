@@ -60,11 +60,22 @@ document.addEventListener("DOMContentLoaded", function () {
     // === Function to Update Book Content Dynamically ===
     function updateBookContent() {
         const book = books[currentIndex];
+
         bookCover.src = book.img;
         bookCover.alt = book.title + " " + book.subtitle;
         bookLink.href = book.link;
         bookTitle.textContent = book.title;
         bookSubtitle.textContent = book.subtitle;
+
+        // Ensure images maintain the same size on both desktop and mobile
+        bookCover.style.width = "300px"; // Fixed width for desktop
+        bookCover.style.height = "450px"; // Fixed height for desktop
+
+        if (isMobile) {
+            // On mobile, scale down while maintaining aspect ratio
+            bookCover.style.width = "90%"; // Scales on mobile
+            bookCover.style.height = "auto"; // Maintains aspect ratio on mobile
+        }
     }
 
     // === DESKTOP AUTO-ROTATION FUNCTION ===
@@ -77,7 +88,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    // === MOBILE SWIPE FUNCTIONALITY (Infinite Loop) ===
+    // === MOBILE SWIPE FUNCTIONALITY ===
     let touchStartX = 0;
     let touchEndX = 0;
 
@@ -148,5 +159,4 @@ document.addEventListener("DOMContentLoaded", function () {
             section.style.display = "none";
         }
     }
-
 });
