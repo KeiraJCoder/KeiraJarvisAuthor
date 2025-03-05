@@ -1,0 +1,29 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat with Sophie</title>
+    <!-- Load CSS file before JS -->
+    <link rel="stylesheet" href="sophie.css">
+    <link rel="stylesheet" href="assets/components/character-chatbot/Sophie/sophie.css">
+</head>
+<body>
+    
+    <div id="chat-container">
+        <div id="chat-header">
+            <img src="../../../images/characters/Sophie/Sophie.webp" alt="Sophie Munday" class="avatar">
+            <h2>Sophie Munday</h2>
+        </div>
+
+        <div id="chat-window">
+            <div id="chat-messages"></div>
+        </div>
+
+        <div id="input-container">
+            <input type="text" id="user-input" placeholder="Type a message..." autocomplete="off">
+            <button id="send-btn">Send</button>
+        </div>
+    </div>
+
+    <!-- Load JS after the page content, ensuring CSS is already loaded -->
+    <script src="sophie.js"></script>
+</body>
