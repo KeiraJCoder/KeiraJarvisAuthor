@@ -154,6 +154,7 @@
     text-align: center;
     margin-bottom: 10px;
     opacity: 0.7;
+    padding:10px;
 }
 
 /* ========================= Mobile-Specific Styling ========================= */
@@ -164,11 +165,6 @@
         animation: fadeOut 3s ease-in-out forwards;
     }
 
-    /* Animation to fade out swipe indicator */
-    @keyframes fadeOut {
-        0% { opacity: 1; }
-        100% { opacity: 0; }
-    }
 
     /* Ensure swipe functionality only applies on mobile */
     .book-wrapper {
