@@ -596,8 +596,8 @@ document.addEventListener("DOMContentLoaded", function () {
     
     
     async function fetchAIResponse(input) {
-        const endpoint = "http://localhost:4000/chat"; // Update the port number here
- // <-- Your live backend URL
+        const endpoint = "https://memoirsbackend.onrender.com/chat"; // ✅ Live backend URL
+
     
         try {
             const response = await fetch(endpoint, {
