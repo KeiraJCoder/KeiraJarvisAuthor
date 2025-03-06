@@ -596,7 +596,7 @@ document.addEventListener("DOMContentLoaded", function () {
     
     
     async function fetchAIResponse(input) {
-        const endpoint = "https://memoirsbackend.onrender.com/chat"; // ✅ Live backend URL
+        const endpoint = "https://memoirsbackend-wusg.onrender.com"; // ✅ Live backend URL
 
     
         try {
