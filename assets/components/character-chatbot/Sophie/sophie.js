@@ -422,7 +422,11 @@ document.addEventListener("DOMContentLoaded", function () {
             "clinical",
             "treatment",
             "stress",
-            "sessions"
+            "sessions", 
+            "counselling",
+            "counsellor", 
+            "therapist",
+            "psych"
         ]
         ,
     
@@ -531,96 +535,98 @@ document.addEventListener("DOMContentLoaded", function () {
             return Math.floor(Math.random() * (max - min + 1)) + min;
         }
     
-    // ==============================
-    // **Store Last Used Response**
-    // ==============================
-    let lastVagueResponse = "";
-    
-    // ==============================
-    // **Get a Unique Vague Response**
-    // ==============================
-    function getUniqueVagueResponse() {
-        let response;
-        do {
-            response = vagueResponses[Math.floor(Math.random() * vagueResponses.length)];
-        } while (response === lastVagueResponse && vagueResponses.length > 1);
-    
-        lastVagueResponse = response;
-        return response;
-    }
-    
-    // ==============================
-    // **Handle User Input**
-    // ==============================
-    async function handleUserInput() {
-        const userText = userInput.value.trim();
-        if (!userText) return;
-    
-        const userMessage = addMessage(userText, "user-message");
-        userInput.value = "";
-    
-        // Step 1: Show "Delivered" after a random delay (1-2 seconds)
-        setTimeout(() => {
-            const deliveredIndicator = document.createElement("span");
-            deliveredIndicator.classList.add("seen");
-            deliveredIndicator.innerText = "Delivered";
-            userMessage.appendChild(deliveredIndicator);
-    
-            // Step 2: Change "Delivered" to "Seen" after another random delay (1-2 seconds)
-            setTimeout(() => {
-                deliveredIndicator.innerText = "Seen ✔";
-            }, randomDelay(1000, 2000));
-        }, randomDelay(1000, 2000));
-    
-        // Step 3: Wait for a random delay (3-4 seconds) then show typing dots
-        setTimeout(async () => {
-            const typingIndicator = showTypingIndicator();
-    
-            // Step 4: Get Sophie's response
-            let responseText = getSophieResponse(userText);
-    
-            // Step 5: If Sophie has no good response, choose between a unique vague fallback or an AI-generated response
-            if (!responseText) {
-                // 50% chance to use a unique vague response, 50% chance to fetch from AI
-                responseText = Math.random() < 0.5 ? getUniqueVagueResponse() : await fetchAIResponse(userText);
-            }
-    
-            // Step 6: After a random delay (2-3 seconds), remove typing dots and show response
-            setTimeout(() => {
-                typingIndicator.remove();
-                addMessage(responseText, "sophie-message");
-            }, randomDelay(2000, 3000));
-        }, randomDelay(3000, 4000));
-    }
-    
-    
-    
-    async function fetchAIResponse(input) {
-        const endpoint = "https://memoirsbackend-wusg.onrender.com/chat";
- // ✅ Live backend URL
-
-    
-        try {
-            const response = await fetch(endpoint, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({ message: input }) // Make sure the key is 'message' (same as in the backend)
-            });
-    
-            if (!response.ok) {
-                console.error("API Error:", await response.text());
-                return "Ugh. Even I don’t know how to answer that. Try again?";
-            }
-    
-            const data = await response.json();
-            return data.message || "No clue. Maybe try asking in a way that doesn’t make my brain hurt?";
-        } catch (error) {
-            console.error("Fetch error:", error);
-            return "Error connecting to AI. Typical.";
+        // ==============================
+        // **Store Last Used Response**
+        // ==============================
+        let lastVagueResponse = "";
+        
+        // ==============================
+        // **Get a Unique Vague Response**
+        // ==============================
+        function getUniqueVagueResponse() {
+            let response;
+            do {
+                response = vagueResponses[Math.floor(Math.random() * vagueResponses.length)];
+            } while (response === lastVagueResponse && vagueResponses.length > 1);
+        
+            lastVagueResponse = response;
+            return response;
         }
-    }
+        
+        // ==============================
+        // **Handle User Input**
+        // ==============================
+        async function handleUserInput() {
+            const userText = userInput.value.trim();
+            if (!userText) return;
+        
+            const userMessage = addMessage(userText, "user-message");
+            userInput.value = "";
+        
+            // Step 1: Show "Delivered" after a random delay (1-2 seconds)
+            setTimeout(() => {
+                const deliveredIndicator = document.createElement("span");
+                deliveredIndicator.classList.add("seen");
+                deliveredIndicator.innerText = "Delivered";
+                userMessage.appendChild(deliveredIndicator);
+        
+                // Step 2: Change "Delivered" to "Seen" after another random delay (1-2 seconds)
+                setTimeout(() => {
+                    deliveredIndicator.innerText = "Seen ✔";
+                }, randomDelay(1000, 2000));
+            }, randomDelay(1000, 2000));
+        
+            // Step 3: Wait for a random delay (3-4 seconds) then show typing dots
+            setTimeout(async () => {
+                const typingIndicator = showTypingIndicator();
+        
+                // Step 4: Get Sophie's response
+                let responseText = getSophieResponse(userText);
+        
+                // Step 5: If Sophie has no good response, choose between a unique vague fallback or an AI-generated response
+                if (!responseText) {
+                    // 50% chance to use a unique vague response, 50% chance to fetch from AI
+                    responseText = Math.random() < 0.5 ? getUniqueVagueResponse() : await fetchAIResponse(userText);
+                }
+        
+                // Step 6: After a random delay (2-3 seconds), remove typing dots and show response
+                setTimeout(() => {
+                    typingIndicator.remove();
+                    addMessage(responseText, "sophie-message");
+                }, randomDelay(2000, 3000));
+            }, randomDelay(3000, 4000));
+        }
+        
+        
+        // ==============================
+        // **Handle Server and AI integration**
+        // ==============================
+        
+        async function fetchAIResponse(input) {
+            const endpoint = "https://memoirsbackend-wusg.onrender.com/chat"; // ✅ Live backend URL
+        
+            try {
+                const response = await fetch(endpoint, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({ message: input }) // Make sure the key is 'message' (same as in the backend)
+                });
+        
+                if (!response.ok) {
+                    console.error("API Error:", await response.text());
+                    return getUniqueVagueResponse(); // Use a sarcastic fallback response instead of an error message
+                }
+        
+                const data = await response.json();
+                return data.message || getUniqueVagueResponse(); // If API fails to return a message, use a fallback response
+            } catch (error) {
+                console.error("Fetch error:", error);
+                return getUniqueVagueResponse(); // Return a sarcastic response if there's an error
+            }
+        }
+    
     
 
     
