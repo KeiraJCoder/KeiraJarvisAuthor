@@ -61,19 +61,48 @@
 </div>
 
 
-    <script>
-        // Show chat when the "Open Chat" button is clicked
-        document.getElementById("open-chat-btn").addEventListener("click", function() {
-            document.getElementById("chat-container").style.display = 'block'; // Show chat
-            this.style.display = 'none'; // Hide Open Chat button
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const chatContainer = document.getElementById("chat-container");
+        const openChatBtn = document.getElementById("open-chat-btn");
+        const minimizeChatBtn = document.getElementById("minimize-chat-btn");
+
+        // ==============================
+        // **Ensure Chat Starts Hidden**
+        // ==============================
+        chatContainer.style.display = "none";
+        chatContainer.style.opacity = "0";
+
+        // ==============================
+        // **Open Chat (Smooth Transition)**
+        // ==============================
+        openChatBtn.addEventListener("click", function () {
+            chatContainer.style.display = "block"; // Make chat visible
+            setTimeout(() => {
+                chatContainer.style.opacity = "1"; // Fade in effect
+            }, 50);
+            openChatBtn.style.display = "none"; // Hide "Open Chat" button
         });
 
-        // Minimize chat when the "Minimize" button inside the chat is clicked
-        document.getElementById("minimize-chat-btn").addEventListener("click", function() {
-            document.getElementById("chat-container").style.display = 'none'; // Hide chat
-            document.getElementById("open-chat-btn").style.display = 'block'; // Show Open Chat button again
+        // ==============================
+        // **Minimize Chat (Smooth Transition)**
+        // ==============================
+        minimizeChatBtn.addEventListener("click", function () {
+            chatContainer.style.opacity = "0"; // Start fade-out
+
+            setTimeout(() => {
+                chatContainer.style.display = "none"; // Fully hide chat
+                openChatBtn.style.display = "block"; // Show "Open Chat" button again
+            }, 300); // Matches CSS transition time
         });
-    </script>
+
+        // ==============================
+        // **Ensure Smooth Minimize Works with CSS**
+        // ==============================
+        chatContainer.style.transition = "opacity 0.3s ease-in-out";
+    });
+</script>
+
 
 
 

@@ -1,3 +1,11 @@
+/* 
+========================================
+GLOBAL IMPORTS & DEFAULTS
+======================================== */
+
+/* Import Gothic Font */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&display=swap');
+
 /* Chat Container - Ensure it is styled correctly */
 #chat-container {
     position: fixed !important;
@@ -177,6 +185,34 @@
     word-wrap: break-word !important;
     overflow-wrap: break-word !important;
     display: block !important;
+}
+
+/* ✅ Open chat button stylings */
+#open-chat-btn {
+    font-family: 'Cinzel Decorative', serif !important;
+    flex: 1 1 calc(50% - 10px);
+    padding: 12px;
+    border: 1px solid #8b0000;
+    border-radius: 8px;
+    background-color: #9c2222;
+    color: #ffffff;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+    font-family: 'Cinzel', serif;
+    display: block; /* Ensures button is in the document flow */
+    margin: 15px auto; /* Centers button and adds spacing below */
+    visibility: visible; /* Ensures it's visible when chat is closed */
+}
+
+#open-chat-btn.hidden {
+    visibility: hidden; /* Hides button without removing layout space */
+}
+
+#open-chat-btn:hover {
+background-color: #a30000;
+    border-color: #ffc400;
 }
 
 /* ✅ Mobile-Friendly Tweaks */
