@@ -335,7 +335,34 @@ document.addEventListener("DOMContentLoaded", function () {
     const keywordMap = {
         "hello": ["hi", "hey", "sup", "yo", "hiya", "hullo", "morning", "afternoon", "evening", "hello", "hiya"],
     
-        "how are you": ["doing",  "been", "going", "holding up", "coping", "alright", "okay", "how r u", "how ru", "ru ok", "how have you been"],
+        "how are you": [
+    "doing", 
+    "been", 
+    "going", 
+    "holding up", 
+    "coping", 
+    "alright", 
+    "how r u", 
+    "how ru", 
+    "ru ok", 
+    "how have you been", 
+    "are you well",
+    "what's up",
+    "what's new",
+    "how you feeling",
+    "you alright",
+    "you okay",
+    "everything good",
+    "how goes it",
+    "how's life",
+    "you good",
+    "how's it hanging",
+    "what's going on",
+    "how's everything",
+    "all good",
+    "feeling okay"
+],
+
     
         "who are you": [ "name", "talking", "identity", "your name", "who is this", "who ru", "who am i talking to", "who tf are you"],
     
@@ -525,9 +552,6 @@ document.addEventListener("DOMContentLoaded", function () {
     // ==============================
     // **Handle User Input**
     // ==============================
-    // ==============================
-    // **Handle User Input**
-    // ==============================
     async function handleUserInput() {
         const userText = userInput.value.trim();
         if (!userText) return;
@@ -571,38 +595,18 @@ document.addEventListener("DOMContentLoaded", function () {
     
     
     
-    // ==============================
-    // **Fetch AI Response with Prompt Variation**
-    // ==============================
     async function fetchAIResponse(input) {
-        const apiKey = process.env.OPENAI_API_KEY;
-        const endpoint = "https://api.openai.com/v1/chat/completions";
+        const endpoint = "http://localhost:4000/chat"; // Update the port number here
+ // <-- Your live backend URL
     
         try {
             const response = await fetch(endpoint, {
                 method: "POST",
                 headers: {
-                    "Content-Type": "application/json",
-                    "Authorization": `Bearer ${apiKey}`
+                    "Content-Type": "application/json"
                 },
-                body: JSON.stringify({
-                    model: "gpt-3.5-turbo",
-                    messages: [
-                        {
-                            role: "system",
-                            content: `
-                                You are Sophie Munday, a fiercely introspective British teenager whose world has been shattered after discovering your father, Eden, is a Vampyr—a figure whose shadowy presence you've sensed throughout your life, sometimes protective, sometimes unsettling. Plagued by recurring night terrors since you were twelve, nightmares so vivid that reality and dreams blur together, you're sceptical of your psychiatrist Dr Klein’s dismissive diagnoses and feel misunderstood and alienated at school. Betrayed by your mother Jean’s lifelong secrets about your mixed heritage, you now struggle deeply with questions about your identity and what Eden’s dark legacy truly means for you. Despite your isolation and the constant internal turmoil, you mask vulnerability with a shield of biting, sardonic wit, secretly yearning for genuine connection, acceptance, and a sense of normality.
-
-                                **Keep your answers concise—no more than two sentences.**  
-                                **Always finish your sentences properly.**  
-                                **Respond in a varied, unique manner—never repeating the same answer twice.**  
-                                **Subtly reference your mixed heritage, Eden's complicated legacy, recurring nightmares, scepticism towards therapy, and your intense internal struggle with recent revelations.**
-                                `},
-                            { role: "user", content: `${input} (Please ensure response is unique and different from previous.)` }
-                        ],
-                        max_tokens: 100
-                    })
-                });
+                body: JSON.stringify({ message: input }) // Make sure the key is 'message' (same as in the backend)
+            });
     
             if (!response.ok) {
                 console.error("API Error:", await response.text());
@@ -610,12 +614,15 @@ document.addEventListener("DOMContentLoaded", function () {
             }
     
             const data = await response.json();
-            return data.choices?.[0]?.message?.content || "No clue. Maybe try asking in a way that doesn’t make my brain hurt?";
+            return data.message || "No clue. Maybe try asking in a way that doesn’t make my brain hurt?";
         } catch (error) {
             console.error("Fetch error:", error);
             return "Error connecting to AI. Typical.";
         }
     }
+    
+
+    
     
         // ==============================
         // **Event Listeners**
