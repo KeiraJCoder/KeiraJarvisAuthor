@@ -403,6 +403,8 @@ document.addEventListener("DOMContentLoaded", function () {
         "random": ["random", "fact", "weird", "tell me something", "favorite", "cats or dogs", "stupid question", "what's your favorite food", "what’s the dumbest thing someone said to you", "do you have hobbies"],
 
         "blaine": [
+            "cute",
+            "richard",
             "blaine",
             "boys",
             "mysterious",
