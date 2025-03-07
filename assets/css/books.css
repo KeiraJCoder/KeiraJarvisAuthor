@@ -42,8 +42,13 @@
 
 /* Fade animation for the book cover */
 .book-cover {
-    opacity: 1;
-    transition: opacity 1s ease-in-out;
+    width: 300px; /* Default desktop size */
+    height: 450px; /* Default desktop size */
+    max-width: 100%; /* Ensures it shrinks properly */
+    max-height: 100%; /* Ensures it maintains aspect ratio */
+    object-fit: contain; /* Prevents distortion */
+    display: block; /* Prevents inline spacing issues */
+    margin: 0 auto; /* Ensures it's centered */
 }
 
 /* Fade animation for the book title */
@@ -54,7 +59,6 @@
 
 /* Book Title */
 .book-title {
-
     font-weight: bold;
     color: #ffffff;
     text-shadow: 2px 2px 6px rgb(173, 17, 17);
@@ -211,5 +215,23 @@
         .book-subtitle {
             font-size: 0.9em;  /* Adjust subtitle font size for very small screens */
         }
+    }
+}
+
+/* Mobile-Specific Styling */
+@media (max-width: 768px) {
+    .book-cover {
+        width: 90%; /* Scale down on smaller screens */
+        height: auto; /* Maintain aspect ratio */
+        max-width: 250px; /* Set a reasonable max-width */
+        max-height: 375px; /* Keep proportional */
+    }
+}
+
+@media (max-width: 480px) {
+    .book-cover {
+        width: 80%; /* Reduce size further on very small screens */
+        max-width: 200px;
+        max-height: 300px;
     }
 }
