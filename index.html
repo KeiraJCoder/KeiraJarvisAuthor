@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/index.css">
     <link rel="stylesheet" href="assets/css/chatbot.css">
-    <link rel="stylesheet" href="assets/components/character-chatbot/Sophie/sophie.css">
 </head>
 <body class="index-page">
     <header>
@@ -33,76 +32,6 @@
             </div>
         </section>
     </main>
-
-<!-- ================================================ -->
-<!-- =================== SOPHIEBOT ================= -->
-<!-- ================================================ -->
-
-    <!-- Open Chat Button -->
-    <button id="open-chat-btn">Open Chat</button>
-
-    <!-- Chat Container (Hidden by default) -->
-<div id="chat-container" style="display: none;">
-    <div id="chat-header">
-        <img src="/assets/images/characters/Sophie/Sophie.webp" alt="Sophie Munday" class="avatar">
-        <h2>Sophie Munday</h2>
-        <!-- Minimize Button -->
-        <button id="minimize-chat-btn" class="minimize-btn">-</button>
-    </div>
-
-    <div id="chat-window">
-        <div id="chat-messages"></div>
-    </div>
-
-    <div id="input-container">
-        <input type="text" id="user-input" placeholder="Type a message..." autocomplete="off">
-        <button id="send-btn">Send</button>
-    </div>
-</div>
-
-
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const chatContainer = document.getElementById("chat-container");
-        const openChatBtn = document.getElementById("open-chat-btn");
-        const minimizeChatBtn = document.getElementById("minimize-chat-btn");
-
-        // ==============================
-        // **Ensure Chat Starts Hidden**
-        // ==============================
-        chatContainer.style.display = "none";
-        chatContainer.style.opacity = "0";
-
-        // ==============================
-        // **Open Chat (Smooth Transition)**
-        // ==============================
-        openChatBtn.addEventListener("click", function () {
-            chatContainer.style.display = "block"; // Make chat visible
-            setTimeout(() => {
-                chatContainer.style.opacity = "1"; // Fade in effect
-            }, 50);
-            openChatBtn.style.display = "none"; // Hide "Open Chat" button
-        });
-
-        // ==============================
-        // **Minimize Chat (Smooth Transition)**
-        // ==============================
-        minimizeChatBtn.addEventListener("click", function () {
-            chatContainer.style.opacity = "0"; // Start fade-out
-
-            setTimeout(() => {
-                chatContainer.style.display = "none"; // Fully hide chat
-                openChatBtn.style.display = "block"; // Show "Open Chat" button again
-            }, 300); // Matches CSS transition time
-        });
-
-        // ==============================
-        // **Ensure Smooth Minimize Works with CSS**
-        // ==============================
-        chatContainer.style.transition = "opacity 0.3s ease-in-out";
-    });
-</script>
-
 
 
 
@@ -147,7 +76,7 @@
 
     <script src="assets/js/script.js"></script>
     <script src="assets/js/chatbot.js"></script>
-    <script src="./assets/components/character-chatbot/Sophie/sophie.js" defer></script>
+
 
     
 </body>
