@@ -17,14 +17,16 @@
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
-    z-index: 1000;
+
 }
 
 /* Show Overlay When Active */
 .character-overlay.visible {
     display: flex;
     opacity: 1;
+    z-index: 1000; /* Keep it below the chat */
     visibility: visible;
+    overflow-y: auto;
 }
 
 /* ================== Overlay Content Box ================== */
@@ -40,6 +42,7 @@
     overflow-y: auto;
     max-height: 90vh;
     position: relative;
+    overflow-y: auto; 
 }
 
 /* Centered Header Above Image & Traits */
@@ -185,7 +188,6 @@
 .expandable-sections details[open],
 .spoiler-sections details[open] {
     position: fixed; /* Keeps it fixed in place */
-    z-index: 1000;
     background: rgba(20, 20, 20, 0.98);
     width: 600px;
     max-width: 90vw;
@@ -197,7 +199,7 @@
     border-radius: 10px;
     transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
     opacity: 1;
-    
+    z-index: 2000;
 }
 
 /* Ensure bullet points in expandable and spoiler sections use ❖ */

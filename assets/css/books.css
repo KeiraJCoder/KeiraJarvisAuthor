@@ -61,7 +61,7 @@
 .book-title {
     font-weight: bold;
     color: #ffffff;
-    text-shadow: 2px 2px 6px rgb(173, 17, 17);
+    text-shadow: 5px 2px 6px rgb(173, 17, 17);
     letter-spacing: 1px;
     text-align: center;
     white-space: normal; /* Allows multi-line text */
@@ -74,7 +74,6 @@
     overflow-wrap: break-word;
     text-align: center; /* Keep it centered */
     font-size: clamp(1.2em, 5vw, 1.8em); /* Responsive font size */
-
 }
 
 /* Book Subtitle */
