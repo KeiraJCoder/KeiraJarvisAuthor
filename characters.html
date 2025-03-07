@@ -101,54 +101,6 @@
                             </div>
                         </div>
 
-
-                        <script>
-                            document.addEventListener("DOMContentLoaded", function () {
-                                const chatContainer = document.getElementById("chat-container");
-                                const openChatBtn = document.getElementById("open-chat-btn");
-                                const minimizeChatBtn = document.getElementById("minimize-chat-btn");
-
-                                // ==============================
-                                // **Ensure Chat Starts Hidden**
-                                // ==============================
-                                chatContainer.style.display = "none";
-                                chatContainer.style.opacity = "0";
-
-                                // ==============================
-                                // **Open Chat (Smooth Transition)**
-                                // ==============================
-                                openChatBtn.addEventListener("click", function () {
-                                    chatContainer.style.display = "block"; // Make chat visible
-                                    setTimeout(() => {
-                                        chatContainer.style.opacity = "1"; // Fade in effect
-                                    }, 50);
-                                    openChatBtn.style.display = "none"; // Hide "Open Chat" button
-                                });
-
-                                
-                                // ==============================
-                                // **Minimize Chat (Stay in Flow)**
-                                // ==============================
-                                minimizeChatBtn.addEventListener("click", function () {
-                                    chatContainer.style.opacity = "0"; // Start fade-out
-
-                                    setTimeout(() => {
-                                        chatContainer.style.display = "none"; // Fully hide chat
-                                        openChatBtn.style.display = "block"; // Show "Open Chat" button again
-
-                                        // Ensure the button stays in the normal document flow
-                                        openChatBtn.style.position = "static";
-                                        openChatBtn.style.margin = "20px auto"; // Adjust as needed to match spacing
-                                    }, 300); // Matches CSS transition time
-                                });
-
-
-                                // ==============================
-                                // **Ensure Smooth Minimize Works with CSS**
-                                // ==============================
-                                chatContainer.style.transition = "opacity 0.3s ease-in-out";
-                            });
-                        </script>
     
                         <div class="overlay-intro">
                             <img src="assets/images/characters/Sophie/Sophie.webp" alt="Sophie" loading="lazy">
