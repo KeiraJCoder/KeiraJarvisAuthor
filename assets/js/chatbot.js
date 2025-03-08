@@ -607,7 +607,6 @@ function handleOtherQuestions() {
     generateEmailForm("");
 }
 
-// [CHANGED] Toggle chatbot with pointer-events + z-index changes
 function toggleChatbot() {
     const chatbot = document.getElementById('chatbot');
     const openChatbotButton = document.getElementById('open-chatbot');
@@ -615,15 +614,15 @@ function toggleChatbot() {
     if (chatbot.style.display === 'none' || chatbot.style.display === '') {
         // Show the chatbot
         chatbot.style.display = 'block';
-        chatbot.style.zIndex = '99999';     // [NEW] Put it above everything
-        chatbot.style.pointerEvents = 'auto'; // [NEW] Allow clicks
+        chatbot.style.zIndex = '99999';     // Ensure it's above everything
+        chatbot.style.pointerEvents = 'auto'; // Allow interaction
         resetOnOpenChatbot();
         openChatbotButton.style.display = 'none';
     } else {
-        // Hide the chatbot
-        chatbot.style.display = 'none';
-        chatbot.style.zIndex = '-1';          // [NEW] Moves it behind everything
-        chatbot.style.pointerEvents = 'none'; // [NEW] No clicks pass through
+        // Hide the chatbot COMPLETELY
+        chatbot.style.display = 'none';   // Ensures it's removed from layout
+        chatbot.style.zIndex = '-9999';   // Moves it completely out of view
+        chatbot.style.pointerEvents = 'none'; // Prevents any interference
         openChatbotButton.style.display = 'block';
         resetChatbot();
     }
