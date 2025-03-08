@@ -24,7 +24,7 @@
 .character-overlay.visible {
     display: flex;
     opacity: 1;
-    z-index: 1000; /* Keep it below the chat */
+    z-index: 10002; /* Keep it below the chat */
     visibility: visible;
     overflow-y: auto;
 }
