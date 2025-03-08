@@ -208,7 +208,9 @@
 /* ================== When <details> is Open (Modal Behavior) ================== */
 .expandable-sections details[open],
 .spoiler-sections details[open] {
-    position: absolute; /* CHANGED from fixed to allow the page behind it, but now overlay is on top */
+    /* [CHANGED] from absolute to fixed for true viewport centering */
+    position: fixed; 
+    
     background: rgba(20, 20, 20, 0.98);
     width: 600px;
     max-width: 90vw;
