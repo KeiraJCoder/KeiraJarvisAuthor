@@ -12,10 +12,9 @@
     height: 100%;
     background: rgba(0, 0, 0, 0.9);
     display: none; /* Ensures it does not appear by default */
-    /* Force a column layout so all content is interactive from top to bottom */
     flex-direction: column; /* ADDED */
     align-items: center;    /* ADDED */
-    justify-content: flex-start; /* ADDED: ensures overlay content starts at the top */
+    justify-content: center; /* CHANGED from flex-start to center */
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
