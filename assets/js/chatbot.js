@@ -513,7 +513,6 @@ function generateEmailForm(initialQuery) {
     responseContainer.appendChild(form);
 }
 
-
 // Function to send form data to Formspree
 function submitEmailForm(email, query) {
     if (!validateEmail(email)) {
@@ -581,18 +580,20 @@ function sendQuestion() {
     const userInput = document.getElementById('user-input');
     const question = userInput.value.trim();
 
-    if (question) {
-        const answer = findAnswer(question);
-
-        if (answer) {
-            displayMessage(answer); // Display matched response
-        } else {
-            displayMessage("I'm sorry, I couldn't find an answer to your question.");
-            generateEmailForm(question);
-        }
-
-        userInput.value = ''; // Clear input field
+    if (!question) {
+        return; // Prevent processing empty messages
     }
+
+    const answer = findAnswer(question);
+
+    if (answer) {
+        displayMessage(answer);
+    } else {
+        displayMessage("I'm sorry, I couldn't find an answer to your question.");
+        generateEmailForm(question);
+    }
+
+    userInput.value = ''; // Clear input field
 }
 
 // Function to hide the question buttons
@@ -612,17 +613,15 @@ function toggleChatbot() {
     const openChatbotButton = document.getElementById('open-chatbot');
 
     if (chatbot.style.display === 'none' || chatbot.style.display === '') {
-        // Show the chatbot
         chatbot.style.display = 'block';
-        chatbot.style.zIndex = '99999';     // Ensure it's above everything
+        chatbot.style.zIndex = '99999'; // Bring it forward
         chatbot.style.pointerEvents = 'auto'; // Allow interaction
         resetOnOpenChatbot();
         openChatbotButton.style.display = 'none';
     } else {
-        // Hide the chatbot COMPLETELY
-        chatbot.style.display = 'none';   // Ensures it's removed from layout
-        chatbot.style.zIndex = '-9999';   // Moves it completely out of view
-        chatbot.style.pointerEvents = 'none'; // Prevents any interference
+        chatbot.style.display = 'none';
+        chatbot.style.zIndex = ''; // Reset to default (removes custom stacking)
+        chatbot.style.pointerEvents = ''; // Reset pointer events
         openChatbotButton.style.display = 'block';
         resetChatbot();
     }
@@ -646,10 +645,10 @@ function resetOnOpenChatbot() {
     const responseContainer = document.getElementById('response');
     const userInput = document.getElementById('user-input');
     const optionsContainer = document.getElementById('options');
-    
+
     responseContainer.innerHTML = '';
     userInput.value = '';
-    optionsContainer.style.display = 'flex';
+    optionsContainer.style.display = 'flex'; // Ensure buttons reappear
 }
 
 //====================================================================================================
@@ -684,16 +683,4 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Reset the chatbot state on page load
     resetChatbotState();
-
-    // Update chatbot button text based on window width
-    function updateChatbotButtonText() {
-        const chatButton = document.getElementById("open-chatbot");
-        if (window.innerWidth < 768) { // For screens below 768px
-            chatButton.textContent = "Chat";
-        } else {
-            chatButton.textContent = "Chat with Me";
-        }
-    }
-    updateChatbotButtonText();
-    window.addEventListener("resize", updateChatbotButtonText);
 });
