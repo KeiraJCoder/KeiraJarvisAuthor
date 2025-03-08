@@ -21,7 +21,7 @@
     overflow-y: auto; /* Allow scrolling */
     pointer-events: auto; /* ADDED: Ensures clicks/taps register on entire overlay */
     overscroll-behavior: contain; /* ADDED: Prevents scrolling outside overlay */
-   z-index: 99999; /* [NEW] or any high number */
+   z-index: 10000; /* now it’s above the main chat but below Sophie’s chat */
 }
 
 /* Show Overlay When Active */
