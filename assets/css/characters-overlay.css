@@ -5,7 +5,7 @@
 
 /* ================== Full-Page Overlay ================== */
 .character-overlay {
-    position: absolute;
+    position: absolute; /* CHANGED from fixed */
     top: 0;
     left: 0;
     width: 100%;
@@ -17,14 +17,14 @@
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
-     overflow-y: auto; /* Allow scrolling */
+    overflow-y: auto; /* Allow scrolling */
 }
 
 /* Show Overlay When Active */
 .character-overlay.visible {
     display: flex;
     opacity: 1;
-    z-index: 10002; /* Keep it below the chat */
+    z-index: 10002; /* CHANGED from 1000 to ensure it's above other elements */
     visibility: visible;
     overflow-y: auto;
 }
@@ -39,10 +39,11 @@
     text-align: center;
     border: 2px solid #7b0202;
     box-shadow: 0px 0px 20px rgba(139, 0, 0, 0.7);
+    /* Removed duplicate overflow-y to avoid confusion */
     overflow-y: auto;
     max-height: 90vh;
     position: relative;
-    overflow-y: auto; 
+    /* We keep only one overflow-y: auto; above */
 }
 
 /* Centered Header Above Image & Traits */
@@ -161,9 +162,9 @@
     max-width: 350px;
     margin: 0 auto 20px; /* Center and add spacing below each "button" */
     transition: all 0.3s ease-in-out;
-   pointer-events: auto; /* Ensures touch events are captured */
+    pointer-events: auto; /* Ensures touch events are captured */
     user-select: none; /* Prevents accidental text selection */
-   -webkit-overflow-scrolling: touch; /* Ensures smooth scrolling */
+    -webkit-overflow-scrolling: touch; /* Ensures smooth scrolling */
     overflow-anchor: none; /* Prevents accidental focus jumps */
 }
 
@@ -180,8 +181,8 @@
     outline: none;             /* Remove focus outline */
     text-align: center;
     list-style: none;          /* Remove default marker if any */
-   touch-action: manipulation; /* Ensures taps work */
-   -webkit-touch-callout: none;
+    touch-action: manipulation; /* Ensures taps work */
+    -webkit-touch-callout: none;
     -webkit-user-select: none; 
     -moz-user-select: none;
     -ms-user-select: none;
@@ -203,7 +204,7 @@
 /* ================== When <details> is Open (Modal Behavior) ================== */
 .expandable-sections details[open],
 .spoiler-sections details[open] {
-    position: fixed; /* Keeps it fixed in place */
+    position: absolute; /* CHANGED from fixed to allow scrolling behind it */
     background: rgba(20, 20, 20, 0.98);
     width: 600px;
     max-width: 90vw;
@@ -216,6 +217,8 @@
     transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
     opacity: 1;
     z-index: 2000;
+    max-height: 80vh; /* ADDED to ensure content inside is scrollable */
+    overflow-y: auto; /* ADDED to allow scrolling if content is long */
 }
 
 /* Ensure bullet points in expandable and spoiler sections use ❖ */
