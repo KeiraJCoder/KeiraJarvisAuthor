@@ -161,6 +161,10 @@
     max-width: 350px;
     margin: 0 auto 20px; /* Center and add spacing below each "button" */
     transition: all 0.3s ease-in-out;
+   pointer-events: auto; /* Ensures touch events are captured */
+    user-select: none; /* Prevents accidental text selection */
+   -webkit-overflow-scrolling: touch; /* Ensures smooth scrolling */
+    overflow-anchor: none; /* Prevents accidental focus jumps */
 }
 
 /* Style the <summary> portion to appear uniform */
@@ -176,6 +180,13 @@
     outline: none;             /* Remove focus outline */
     text-align: center;
     list-style: none;          /* Remove default marker if any */
+   touch-action: manipulation; /* Ensures taps work */
+   -webkit-touch-callout: none;
+    -webkit-user-select: none; 
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    pointer-events: auto; /* Allow touch interaction */
 }
 
 .expandable-sections details summary {
