@@ -32,6 +32,8 @@
     display: none;
     flex-direction: column;
     overflow-y: auto;
+    pointer-events: none;
+    z-index: -1;
 }
 
 
