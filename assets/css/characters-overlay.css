@@ -1,6 +1,6 @@
 /* =========================================================
-   CHARACTER OVERLAY & EXPANDABLE SECTIONS
-   (Complete Updated Version with Responsive Details Buttons)
+CHARACTER OVERLAY & EXPANDABLE SECTIONS
+(Complete Updated Version with Responsive Details Buttons)
    ========================================================= */
 
 /* ================== Full-Page Overlay ================== */
@@ -205,6 +205,8 @@
 .spoiler-sections details summary::-webkit-details-marker {
     display: none;
 }
+
+
 
 /* ================== When <details> is Open (Modal Behavior) ================== */
 .expandable-sections details[open],

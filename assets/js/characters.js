@@ -16,6 +16,7 @@ document.addEventListener("DOMContentLoaded", function () {
         "assets/images/characters/Blaine/Blaine2.webp"
     ]);
 
+
     // ========== MODAL ELEMENTS ==========
     const spoilerModal = document.getElementById("spoilerModal");
     const yesBtn = document.getElementById("spoilerYesBtn");
@@ -37,59 +38,103 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // ========== OVERLAY FUNCTIONS ==========
-    window.openCharacterOverlay = function (overlayId) {
-        const overlay = document.getElementById(overlayId);
-        if (!overlay) {
-            console.error(`Overlay not found for ID: ${overlayId}`);
-            return;
-        }
-        // Close any visible overlay first
-        document.querySelectorAll(".character-overlay").forEach((ov) => {
-            ov.classList.remove("visible");
-        });
-        // Show this overlay
-        overlay.classList.add("visible");
-        console.log("Overlay opened:", overlayId);
 
-        // [NEW] Prevent background scrolling while overlay is open
-        document.body.style.overflow = "hidden";
-        document.documentElement.style.overflow = "hidden"; // [NEW] Extra lock for mobile
+// Open Character Overlay
+window.openCharacterOverlay = function (overlayId) {
+    const overlay = document.getElementById(overlayId);
+    if (!overlay) {
+        console.error(`Overlay not found for ID: ${overlayId}`);
+        return;
+    }
 
-        // [ADDED] Hide the global chat button
+    // Close visible overlays first
+    document.querySelectorAll(".character-overlay").forEach((ov) => {
+        ov.classList.remove("visible");
+    });
+
+    overlay.classList.add("visible");
+    console.log("Overlay opened:", overlayId);
+
+    document.body.style.overflow = "hidden";
+    document.documentElement.style.overflow = "hidden";
+
+    const globalChatButton = document.getElementById('open-chatbot');
+    if (globalChatButton) {
+        globalChatButton.style.display = 'none';
+    }
+
+    // Explicitly hide Sophie's chat container (by removing "visible" class)
+    const sophieChatContainer = document.getElementById('chat-container');
+    if (sophieChatContainer) {
+        sophieChatContainer.classList.remove('visible');
+    }
+
+    // Re-show Sophie's open-chat button (if closed)
+    const openChatBtn = document.getElementById('open-chat-btn');
+    if (openChatBtn) {
+        openChatBtn.style.display = 'block';
+    }
+};
+
+// Close Character Overlay
+window.closeCharacterOverlay = function (overlayId) {
+    const overlay = document.getElementById(overlayId);
+    if (overlay) {
+        overlay.classList.remove("visible");
+        console.log("Overlay closed:", overlayId);
+
+        document.body.style.overflow = "";
+        document.documentElement.style.overflow = "";
+
         const globalChatButton = document.getElementById('open-chatbot');
         if (globalChatButton) {
-            globalChatButton.style.display = 'none';
+            globalChatButton.style.display = 'block';
         }
-    };
 
-    window.closeCharacterOverlay = function (overlayId) {
-        const overlay = document.getElementById(overlayId);
-        if (overlay) {
-            overlay.classList.remove("visible");
-            console.log("Overlay closed:", overlayId);
-
-            // [NEW] Restore background scrolling when overlay closes
-            document.body.style.overflow = "";
-            document.documentElement.style.overflow = "";
-
-            // [ADDED] Re-show the global chat button
-            const globalChatButton = document.getElementById('open-chatbot');
-            if (globalChatButton) {
-                globalChatButton.style.display = 'block';
-            }
+        // Keep Sophie's chat container hidden until explicitly opened
+        const sophieChatContainer = document.getElementById('chat-container');
+        if (sophieChatContainer) {
+            sophieChatContainer.classList.remove('visible');
         }
-    };
 
-    // [NEW] Force overlay to trap touch events (so it doesn't scroll the page)
-    const allOverlays = document.querySelectorAll(".character-overlay");
-    allOverlays.forEach(ov => {
-        ov.addEventListener("touchmove", function(e) {
-            // If overlay is scrollable, allow scrolling inside it, but stop the page behind from moving
-            if (ov.scrollHeight > ov.clientHeight) {
-                e.stopPropagation();
-            }
-        }, { passive: false });
-    });
+        const openChatBtn = document.getElementById('open-chat-btn');
+        if (openChatBtn) {
+            openChatBtn.style.display = 'block';
+        }
+    }
+};
+
+// Explicit click handlers for chat button
+document.getElementById("open-chat-btn").addEventListener("click", function() {
+    const chatContainer = document.getElementById("chat-container");
+    if(chatContainer) {
+        chatContainer.classList.add("visible");
+        this.style.display = "none";
+    }
+});
+
+document.querySelector("#chat-container .minimize-btn").addEventListener("click", function() {
+    const chatContainer = document.getElementById("chat-container");
+    if(chatContainer) {
+        chatContainer.classList.remove("visible");
+        const openChatBtn = document.getElementById("open-chat-btn");
+        if(openChatBtn){
+            openChatBtn.style.display = "block";
+        }
+    }
+});
+
+// Touch Event Fix for Overlays (retain your existing logic)
+const allOverlays = document.querySelectorAll(".character-overlay");
+allOverlays.forEach(ov => {
+    ov.addEventListener("touchmove", function(e) {
+        if (ov.scrollHeight > ov.clientHeight) {
+            e.stopPropagation();
+        }
+    }, { passive: false });
+});
+
+
 
     // ========== BOOK SELECT ==========
     const bookSelect = document.getElementById('book-select');

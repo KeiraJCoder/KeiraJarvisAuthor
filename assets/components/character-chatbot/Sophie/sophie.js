@@ -25,6 +25,7 @@ document.addEventListener("DOMContentLoaded", function () {
         // Keep the Open Chat button in the flow when hidden
         openChatBtn.style.visibility = "hidden";
     });
+    
 
     // Minimize Chat with smooth fade-out
     minimizeChatBtn.addEventListener("click", function () {

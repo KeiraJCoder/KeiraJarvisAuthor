@@ -6,15 +6,10 @@ GLOBAL IMPORTS & DEFAULTS
 /* Import Gothic Font */
 @import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&display=swap');
 
-
-/* 
-========================================
-SOPHIE CHAT CONTAINER & GENERAL LAYOUT
-======================================== */
-
 /* Chat Container - Ensure it is styled correctly */
 #chat-container {
-    position: fixed !important;           /* Keeps it pinned in the viewport */
+    display: none !important; /* Initially hidden completely */
+    position: fixed !important;
     bottom: 20px !important;
     left: 20px !important;
     width: 350px !important;
@@ -23,21 +18,16 @@ SOPHIE CHAT CONTAINER & GENERAL LAYOUT
     border-radius: 10px !important;
     box-shadow: 0px 0px 10px rgba(255, 0, 0, 0.6) !important;
     color: white !important;
-    z-index: 10001 !important;            /* Ensure chat is always above most overlays */
-    font-family: 'Arial', sans-serif !important;
-    display: none;                        /* Start hidden */
-    overflow: hidden !important;          /* Prevents layout shifts */
-    display: flex !important;            /* Chat is flex container */
-    flex-direction: column !important;   /* Messages + input stacked vertically */
+    z-index: 9999 !important;
+    overflow: hidden !important;
+    flex-direction: column !important;
     pointer-events: auto !important;
 }
 
-/* 🛠 Fix: Lower chat `z-index` when closed */
-#chat-container.hidden {
-    z-index: -1 !important;
-    opacity: 0 !important;
-    pointer-events: none !important;
+#chat-container.visible {
+    display: flex !important; /* Explicitly make visible only when needed */
 }
+
 
 /* Chat Header */
 #chat-container #chat-header {
@@ -75,19 +65,13 @@ SOPHIE CHAT CONTAINER & GENERAL LAYOUT
     border-radius: 50% !important;
 }
 
-
-/* 
-========================================
-CHAT WINDOW & MESSAGES
-======================================== */
-
 /* ✅ Fix for Chat Window (Proper Auto-Scrolling) */
 #chat-container #chat-window {
-    flex-grow: 1 !important;      /* Ensures messages take full vertical space */
+    flex-grow: 1 !important; /* Ensures messages take up full space */
     display: flex !important;
     flex-direction: column !important;
     padding: 10px !important;
-    overflow-y: auto !important;  /* Enables scrolling for messages */
+    overflow-y: auto !important; /* Enables scrolling */
     background: #111 !important;
     font-family: 'Arial', sans-serif !important;
     scroll-behavior: smooth !important; /* Enables smooth scrolling */
@@ -110,12 +94,6 @@ CHAT WINDOW & MESSAGES
     border-top-left-radius: 0 !important;
     font-family: 'Arial', sans-serif !important;
 }
-
-
-/* 
-========================================
-TYPING INDICATOR
-======================================== */
 
 /* Typing Indicator Dots */
 #chat-container .message .typing {
@@ -153,7 +131,6 @@ TYPING INDICATOR
     40% { opacity: 1; }
 }
 
-
 /* ✅ "Delivered" and "Seen" indicators */
 #chat-container .message .seen {
     font-size: 0.8em !important;
@@ -163,12 +140,6 @@ TYPING INDICATOR
     text-align: right !important;
     font-family: 'Arial', sans-serif !important;
 }
-
-
-/* 
-========================================
-INPUT CONTAINER & STYLES
-======================================== */
 
 /* ✅ Fix Input Field (So It Doesn't Break Chat Layout) */
 #chat-container #input-container {
@@ -202,11 +173,7 @@ INPUT CONTAINER & STYLES
     background: #a30000 !important;
 }
 
-
-/* 
-========================================
-SHARED MESSAGE STYLES
-======================================== */
+/* ✅ Shared message styles */
 .message {
     margin: 5px !important;
     position: relative !important;
@@ -223,12 +190,6 @@ SHARED MESSAGE STYLES
     overflow-wrap: break-word !important;
     display: block !important;
 }
-
-
-/* 
-========================================
-OPEN CHAT BUTTON STYLES
-======================================== */
 
 /* ✅ Open chat button stylings */
 #open-chat-btn {
@@ -270,30 +231,21 @@ OPEN CHAT BUTTON STYLES
 }
 
 
+
 #open-chat-btn:hover {
-    background-color: #a30000;
+background-color: #a30000;
     border-color: #ffc400;
 }
 
-
-/* 
-========================================
-MOBILE-FRIENDLY TWEAKS
-======================================== */
-
 /* ✅ Mobile-Friendly Tweaks */
 @media (max-width: 600px) {
-    /* 
-       #chat-container {
-           width: 95% !important;
-           height: 500px !important;
-           left: 2.5% !important;
-       } 
-       You commented out this, so it's optional.
-    */
-
+    /* #chat-container {
+        width: 95% !important;
+        height: 500px !important;
+        left: 2.5% !important;
+    } */
     #chat-container #chat-window {
-        height: 400px !important;
+        height: auto;
     }
 }
 
@@ -306,4 +258,5 @@ MOBILE-FRIENDLY TWEAKS
         right: 0;
         border-radius: 0;
     }
+
 }
