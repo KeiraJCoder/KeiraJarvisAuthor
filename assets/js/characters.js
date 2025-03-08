@@ -48,6 +48,9 @@ document.addEventListener("DOMContentLoaded", function () {
         });
         overlay.classList.add("visible");
         console.log("Overlay opened:", overlayId);
+
+        // [NEW] Prevent background scrolling while overlay is open
+        document.body.style.overflow = "hidden";
     };
 
     window.closeCharacterOverlay = function (overlayId) {
@@ -55,6 +58,9 @@ document.addEventListener("DOMContentLoaded", function () {
         if (overlay) {
             overlay.classList.remove("visible");
             console.log("Overlay closed:", overlayId);
+
+            // [NEW] Restore background scrolling when overlay closes
+            document.body.style.overflow = "";
         }
     };
 
