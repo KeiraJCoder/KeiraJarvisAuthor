@@ -1,4 +1,6 @@
 //====================================================================================================
+// 1) DATA & RANDOM FUNCTIONS
+//====================================================================================================
 
 const funFacts = [
     "I have written a trilogy of books, <em>Memoirs of a Vampyr’s Daughter</em>. Two are currently published, and the third is in progress.",
@@ -34,8 +36,6 @@ const funFacts = [
     "There are hidden easter eggs in my books—if you pay close attention, you'll spot a reference to my favourite books, authors, tv shows."
 ];
 
-
-// Function to select a random fun fact
 function getRandomFunFact() {
     const randomIndex = Math.floor(Math.random() * funFacts.length);
     return funFacts[randomIndex];
@@ -71,7 +71,8 @@ function getRandomHelpSuggestion() {
     return helpOptions[Math.floor(Math.random() * helpOptions.length)];
 }
 
-
+//====================================================================================================
+// 2) FAQ KEYWORDS & ANSWERS
 //====================================================================================================
 
 const faqKeywords = [
@@ -429,10 +430,13 @@ const faqKeywords = [
     }
 ];
 
-
+//====================================================================================================
+// 3) DISPLAY LOGIC & FORM CREATION
 //====================================================================================================
 
-// Function to display messages in the chatbot
+/**
+ * Function to display messages in the chatbot
+ */
 function displayMessage(message, isBot = true) {
     const responseContainer = document.getElementById('response');
     responseContainer.innerHTML = ''; // Clear previous messages
@@ -447,7 +451,9 @@ function displayMessage(message, isBot = true) {
     responseContainer.scrollTop = responseContainer.scrollHeight; // Auto-scroll to the latest message
 }
 
-// Function to handle responses based on FAQ keywords
+/**
+ * Function to handle responses based on FAQ keywords
+ */
 function getResponse(question) {
     const lowerCaseQuestion = question.toLowerCase();
     const faq = faqKeywords.find(faq =>
@@ -463,8 +469,12 @@ function getResponse(question) {
 }
 
 //====================================================================================================
+// 4) EMAIL FORM & SUBMISSION
+//====================================================================================================
 
-// Function to generate email form for unknown queries
+/**
+ * Function to generate email form for unknown queries
+ */
 function generateEmailForm(initialQuery) {
     const responseContainer = document.getElementById('response');
     responseContainer.innerHTML = ''; // Clear previous messages
@@ -513,7 +523,9 @@ function generateEmailForm(initialQuery) {
     responseContainer.appendChild(form);
 }
 
-// Function to send form data to Formspree
+/**
+ * Function to send form data to Formspree
+ */
 function submitEmailForm(email, query) {
     if (!validateEmail(email)) {
         alert("Please enter a valid email address.");
@@ -544,13 +556,21 @@ function submitEmailForm(email, query) {
         });
 }
 
-// Function to validate email format
+/**
+ * Function to validate email format
+ */
 function validateEmail(email) {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
 }
 
-// Function to find a matching answer based on keywords
+//====================================================================================================
+// 5) FAQ MATCHING & CHATBOT CORE
+//====================================================================================================
+
+/**
+ * Function to find a matching answer based on keywords
+ */
 function findAnswer(query) {
     const lowerCaseQuery = query.toLowerCase().trim();
     let bestMatch = null;
@@ -558,12 +578,11 @@ function findAnswer(query) {
 
     faqKeywords.forEach(entry => {
         entry.keywords.forEach(keyword => {
-            // Check for exact word match (not just partial match)
-            const regex = new RegExp(`\\b${keyword}\\b`, 'i'); // Word boundary ensures exact match
+            // Check for exact word match (not just partial)
+            const regex = new RegExp(`\\b${keyword}\\b`, 'i');
 
             if (regex.test(lowerCaseQuery)) {
                 const matchScore = keyword.length; // Longer keywords get priority
-
                 if (matchScore > highestMatchScore) {
                     highestMatchScore = matchScore;
                     bestMatch = entry.answer;
@@ -575,17 +594,19 @@ function findAnswer(query) {
     return bestMatch;
 }
 
-// Function to process user input
+/**
+ * Function to process user input
+ */
 function sendQuestion() {
     const userInput = document.getElementById('user-input');
     const question = userInput.value.trim();
 
+    // [CHANGED] Prevent sending blank questions
     if (!question) {
-        return; // Prevent processing empty messages
+        return; 
     }
 
     const answer = findAnswer(question);
-
     if (answer) {
         displayMessage(answer);
     } else {
@@ -596,55 +617,76 @@ function sendQuestion() {
     userInput.value = ''; // Clear input field
 }
 
-// Function to hide the question buttons
+//====================================================================================================
+// 6) UTILITY FUNCTIONS & TOGGLE LOGIC
+//====================================================================================================
+
+/**
+ * Function to hide the question buttons
+ */
 function hideQuestionButtons() {
     const optionsContainer = document.getElementById('options');
     optionsContainer.style.display = 'none';
 }
 
-// Function to handle "Other Questions" button by hiding buttons and showing the email form
+/**
+ * Function to handle "Other Questions" button by hiding buttons & showing email form
+ */
 function handleOtherQuestions() {
     hideQuestionButtons();
     generateEmailForm("");
 }
 
+/**
+ * [CHANGED] Toggle the chatbot with pointer-events & z-index changes
+ */
 function toggleChatbot() {
     const chatbot = document.getElementById('chatbot');
     const openChatbotButton = document.getElementById('open-chatbot');
 
     if (chatbot.style.display === 'none' || chatbot.style.display === '') {
-        // Show the chatbot
+        // [ADDED] Show the chatbot
         chatbot.style.display = 'block';
-        chatbot.style.zIndex = '99999';      // Ensure it's above everything
-        chatbot.style.pointerEvents = 'auto'; // Allow interaction
-        chatbot.style.position = 'fixed';    // Ensure it’s positioned correctly
+        chatbot.style.zIndex = '99999';       // [ADDED] Bring it above all
+        chatbot.style.pointerEvents = 'auto'; // [ADDED] Allow interaction
+        chatbot.style.position = 'fixed';     // [ADDED] Ensure it’s positioned and won't block
         resetOnOpenChatbot();
         openChatbotButton.style.display = 'none';
     } else {
-        // Completely remove chatbot from interaction flow
-        chatbot.style.display = 'none';   
-        chatbot.style.zIndex = '-9999';       // Moves it completely out of view
-        chatbot.style.pointerEvents = 'none'; // Prevents click interaction
-        chatbot.style.position = 'absolute';  // Prevents it from affecting layout
+        // [ADDED] Fully remove chatbot from flow
+        chatbot.style.display = 'none';
+        chatbot.style.zIndex = '-9999';       // Move behind everything
+        chatbot.style.pointerEvents = 'none'; // No click interception
+        chatbot.style.position = 'absolute';  // Prevent layout shifting
         openChatbotButton.style.display = 'block';
         resetChatbot();
     }
 }
 
-// Function to reset chatbot fields (clears messages and user input)
+//====================================================================================================
+// 7) RESET & INIT
+//====================================================================================================
+
+/**
+ * Function to reset chatbot fields (clears messages & user input)
+ */
 function resetChatbot() {
     const responseContainer = document.getElementById('response');
     responseContainer.innerHTML = '';
     document.getElementById('user-input').value = '';
 }
 
-// Function to reset the chatbot to its idle state on page load
+/**
+ * Function to reset the chatbot to its idle state on page load
+ */
 function resetChatbotState() {
     const responseContainer = document.getElementById('response');
     responseContainer.innerHTML = '';
 }
 
-// Function to reset chatbot state when opening (shows question buttons)
+/**
+ * Function to reset chatbot state when opening (shows question buttons)
+ */
 function resetOnOpenChatbot() {
     const responseContainer = document.getElementById('response');
     const userInput = document.getElementById('user-input');
@@ -652,12 +694,13 @@ function resetOnOpenChatbot() {
 
     responseContainer.innerHTML = '';
     userInput.value = '';
-    optionsContainer.style.display = 'flex'; // Ensure buttons reappear
+    optionsContainer.style.display = 'flex'; // Buttons reappear
 }
 
 //====================================================================================================
+// 8) DOMContentLoaded: Attach Events & Set Initial State
+//====================================================================================================
 
-// Combined DOMContentLoaded event listener for all initial setups
 document.addEventListener('DOMContentLoaded', () => {
     // Attach event listeners to question buttons
     document.querySelectorAll('#options button').forEach(button => {
@@ -674,14 +717,14 @@ document.addEventListener('DOMContentLoaded', () => {
     // Attach event listener for user input submit button
     document.getElementById('submit-button').addEventListener('click', sendQuestion);
     
-    // Send question on Enter key press
+    // Send question on Enter key
     document.getElementById('user-input').addEventListener('keyup', (event) => {
         if (event.key === 'Enter') {
             sendQuestion();
         }
     });
 
-    // Attach event listeners for opening and minimizing the chatbot
+    // Attach event listeners for opening & minimizing the chatbot
     document.getElementById('open-chatbot').addEventListener('click', toggleChatbot);
     document.getElementById('minimize-button').addEventListener('click', toggleChatbot);
 
