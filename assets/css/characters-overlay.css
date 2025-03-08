@@ -178,6 +178,11 @@
     list-style: none;          /* Remove default marker if any */
 }
 
+.expandable-sections details summary {
+    touch-action: manipulation; /* Ensures mobile taps register */
+    cursor: pointer;
+}
+
 /* Remove the default disclosure arrow in WebKit/Blink browsers */
 .expandable-sections details summary::-webkit-details-marker,
 .spoiler-sections details summary::-webkit-details-marker {
