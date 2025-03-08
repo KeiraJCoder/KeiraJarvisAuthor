@@ -35,7 +35,6 @@ const funFacts = [
 ];
 
 
-
 // Function to select a random fun fact
 function getRandomFunFact() {
     const randomIndex = Math.floor(Math.random() * funFacts.length);
@@ -158,7 +157,7 @@ const faqKeywords = [
                 <li><strong>Doctor Who</strong> – Time, fate, and the exploration of identity.</li>
             </ul>
         `
-    },  
+    },
     {
         keywords: ["buy", "purchase", "where"],
         answer: `
@@ -331,16 +330,14 @@ const faqKeywords = [
             <p>It explores supernatural horror, moral dilemmas, and some violent moments, but it’s not overly graphic.</p>
             <p>If you enjoy gothic horror or supernatural fantasy, you’ll feel right at home!</p>
         `
-    }
-    ,
+    },
     {
         keywords: ["signed", "autograph", "personalized", "autographed", "sign"],
         answer: `
             <p>If you’d like a signed copy of my books, feel free to reach out to me through my website!</p>
             <p>I can arrange signed editions depending on availability.</p>
         `
-    }
-    ,
+    },
     {
         keywords: ["spinoff", "short stories", "bonus", "extra content"],
         answer: `
@@ -348,7 +345,6 @@ const faqKeywords = [
             <p>But I have lots of ideas for potential spin-offs or extra stories in the Night World!</p>
         `
     },
-
     {
         keywords: ["writing time", "how long", "how fast", "writing process"],
         answer: `
@@ -364,9 +360,7 @@ const faqKeywords = [
             <p>Sophie experiences intense dreams, visions, and out-of-body experiences, all tied to her hidden connection with the Night World.</p>
             <p>These abilities are more than just nightmares—they are glimpses into something far greater.</p>
         `
-    }
-    
-    ,
+    },
     {
         keywords: ["reading order", "which book first", "read first"],
         answer: `
@@ -377,8 +371,7 @@ const faqKeywords = [
                 <li><strong>Book Three: Prophecy</strong> – The grand finale (in progress).</li>
             </ul>
         `
-    }
-    ,
+    },
     {
         keywords: ["follow", "social media", "updates"],
         answer: `
@@ -406,16 +399,14 @@ const faqKeywords = [
             <p><strong>Wisdom</strong> is available in <strong>hardback</strong> format for those who love a premium edition.</p>
             <p><strong>Eden</strong> is available in paperback and eBook formats.</p>
         `
-    }
-    ,
+    },
     {
         keywords: ["audiobook", "audio", "listen"],
         answer: `
             <p>I’ve started recording the <strong>audiobook</strong> for <em>Eden</em>, but it's a long process and will take time to complete.</p>
             <p>As of now, there are no audiobooks for the series, but I’ll share updates when that changes!</p>
         `
-    }
-    ,
+    },
     {
         keywords: ["format", "other versions", "different format"],
         answer: `
@@ -431,17 +422,12 @@ const faqKeywords = [
             <p><strong>The Dukes Head Pub</strong> is a real pub I used to visit when I was around 19, and <strong>The Ruskin Arms</strong> was indeed a rock and metal pub, which I also frequented!</p>
             <p>Bringing these locations into my stories helps create a rich and immersive setting.</p>
         `
-    }
-    
-    ,
+    },
     {
         keywords: ["help", "commands", "options"],
         answer: getRandomHelpSuggestion
     }
-    
 ];
-
-
 
 
 //====================================================================================================
@@ -567,13 +553,27 @@ function validateEmail(email) {
 
 // Function to find a matching answer based on keywords
 function findAnswer(query) {
-    const lowerCaseQuery = query.toLowerCase();
-    for (const faq of faqKeywords) {
-        if (faq.keywords.some(keyword => lowerCaseQuery.includes(keyword))) {
-            return typeof faq.answer === 'function' ? faq.answer() : faq.answer;
-        }
-    }
-    return null; // No match found
+    const lowerCaseQuery = query.toLowerCase().trim();
+    let bestMatch = null;
+    let highestMatchScore = 0;
+
+    faqKeywords.forEach(entry => {
+        entry.keywords.forEach(keyword => {
+            // Check for exact word match (not just partial match)
+            const regex = new RegExp(`\\b${keyword}\\b`, 'i'); // Word boundary ensures exact match
+
+            if (regex.test(lowerCaseQuery)) {
+                const matchScore = keyword.length; // Longer keywords get priority
+
+                if (matchScore > highestMatchScore) {
+                    highestMatchScore = matchScore;
+                    bestMatch = entry.answer;
+                }
+            }
+        });
+    });
+
+    return bestMatch;
 }
 
 // Function to process user input
@@ -595,32 +595,6 @@ function sendQuestion() {
     }
 }
 
-// Function to find the most specific answer based on exact keyword matching
-function findAnswer(question) {
-    const lowerCaseQuestion = question.toLowerCase().trim();
-    let bestMatch = null;
-    let highestMatchScore = 0;
-
-    faqKeywords.forEach(entry => {
-        entry.keywords.forEach(keyword => {
-            // Check for exact word match (not just partial match)
-            const regex = new RegExp(`\\b${keyword}\\b`, 'i'); // Word boundary ensures exact match
-
-            if (regex.test(lowerCaseQuestion)) {
-                const matchScore = keyword.length; // Longer keywords get priority
-
-                if (matchScore > highestMatchScore) {
-                    highestMatchScore = matchScore;
-                    bestMatch = entry.answer;
-                }
-            }
-        });
-    });
-
-    return bestMatch;
-}
-
-
 // Function to hide the question buttons
 function hideQuestionButtons() {
     const optionsContainer = document.getElementById('options');
@@ -633,18 +607,23 @@ function handleOtherQuestions() {
     generateEmailForm("");
 }
 
-// Function to toggle chatbot visibility
+// [CHANGED] Toggle chatbot with pointer-events + z-index changes
 function toggleChatbot() {
     const chatbot = document.getElementById('chatbot');
     const openChatbotButton = document.getElementById('open-chatbot');
 
     if (chatbot.style.display === 'none' || chatbot.style.display === '') {
-        resetOnOpenChatbot();
+        // Show the chatbot
         chatbot.style.display = 'block';
-        chatbot.style.zIndex = "99999"; // Ensure it's above everything
+        chatbot.style.zIndex = '99999';     // [NEW] Put it above everything
+        chatbot.style.pointerEvents = 'auto'; // [NEW] Allow clicks
+        resetOnOpenChatbot();
         openChatbotButton.style.display = 'none';
     } else {
+        // Hide the chatbot
         chatbot.style.display = 'none';
+        chatbot.style.zIndex = '-1';          // [NEW] Moves it behind everything
+        chatbot.style.pointerEvents = 'none'; // [NEW] No clicks pass through
         openChatbotButton.style.display = 'block';
         resetChatbot();
     }
