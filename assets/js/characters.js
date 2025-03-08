@@ -43,14 +43,17 @@ document.addEventListener("DOMContentLoaded", function () {
             console.error(`Overlay not found for ID: ${overlayId}`);
             return;
         }
-        document.querySelectorAll(".character-overlay").forEach((overlay) => {
-            overlay.classList.remove("visible");
+        // Close any visible overlay first
+        document.querySelectorAll(".character-overlay").forEach((ov) => {
+            ov.classList.remove("visible");
         });
+        // Show this overlay
         overlay.classList.add("visible");
         console.log("Overlay opened:", overlayId);
 
         // [NEW] Prevent background scrolling while overlay is open
         document.body.style.overflow = "hidden";
+        document.documentElement.style.overflow = "hidden"; // [NEW] Extra lock for mobile
     };
 
     window.closeCharacterOverlay = function (overlayId) {
@@ -61,8 +64,20 @@ document.addEventListener("DOMContentLoaded", function () {
 
             // [NEW] Restore background scrolling when overlay closes
             document.body.style.overflow = "";
+            document.documentElement.style.overflow = "";
         }
     };
+
+    // [NEW] Force overlay to trap touch events (so it doesn't scroll the page)
+    const allOverlays = document.querySelectorAll(".character-overlay");
+    allOverlays.forEach(ov => {
+        ov.addEventListener("touchmove", function(e) {
+            // If overlay is scrollable, allow scrolling inside it, but stop the page behind from moving
+            if (ov.scrollHeight > ov.clientHeight) {
+                e.stopPropagation();
+            }
+        }, { passive: false });
+    });
 
     // ========== BOOK SELECT ==========
     const bookSelect = document.getElementById('book-select');
@@ -83,15 +98,17 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function filterCharacters() {
         const selectedBook = bookSelect.value;
+        // Show/hide book1 elements
         document.querySelectorAll('.character-section.book1, .character-card.book1, .section-title:not(.book2)')
             .forEach(el => el.style.display = (selectedBook === 'book1') ? 'block' : 'none');
+        // Show/hide book2 elements
         document.querySelectorAll('.character-section.book2, .character-card.book2, .character-section.book2 .section-title')
             .forEach(el => el.style.display = (selectedBook === 'book2') ? 'block' : 'none');
     }
 
     // ========== IMAGE BEHAVIOR FOR CHARACTERS ==========
     // Determine if the device is a touch device.
-    let isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+    let isTouchDevice = ('ontouchstart' in window) || navigator.maxTouchPoints > 0;
 
     // Determine mobile view based on viewport width.
     function isMobileView() {
@@ -101,8 +118,8 @@ document.addEventListener("DOMContentLoaded", function () {
     /**
      * Sets up image behavior for a character element.
      *
-     * When in mobile view (viewport width < 768), if toggleOnMobile is true, tapping the image toggles its source.
-     * When in desktop view, hover events swap the image.
+     * When in mobile view (viewport width < 768), if toggleOnMobile is true,
+     * tapping the image toggles its source. When in desktop view, hover events swap the image.
      *
      * @param {string} imageId - The ID of the image element.
      * @param {string} defaultSrc - The default image source.
@@ -113,8 +130,10 @@ document.addEventListener("DOMContentLoaded", function () {
     function setupCharacterImageBehavior(imageId, defaultSrc, hoverSrc, overlayId, toggleOnMobile = false) {
         const image = document.getElementById(imageId);
         if (!image) return;
+
         image.src = defaultSrc;
 
+        // If on mobile, handle tapping logic
         if (isTouchDevice && isMobileView()) {
             if (toggleOnMobile) {
                 image.addEventListener("touchstart", function(e) {
@@ -129,7 +148,7 @@ document.addEventListener("DOMContentLoaded", function () {
             }
             // If toggleOnMobile is false, tapping the image triggers the card's onclick as usual.
         } else {
-            // Desktop (or larger view on touch devices): attach hover events.
+            // Desktop or large-screen: attach hover events
             image.addEventListener("mouseenter", function () {
                 image.src = hoverSrc;
             });
@@ -146,6 +165,7 @@ document.addEventListener("DOMContentLoaded", function () {
         { id: "aeryn-image", defaultSrc: "assets/images/characters/Aeryn/Aeryn.jpg", hoverSrc: "assets/images/characters/Aeryn/Aeryn2.png", overlayId: "aeryn2-overlay", toggleOnMobile: true },
         { id: "eden-image", defaultSrc: "assets/images/characters/Eden/Eden.webp", hoverSrc: "assets/images/characters/Eden/Eden2.webp", overlayId: "eden2-overlay", toggleOnMobile: true },
         { id: "blaine-image", defaultSrc: "assets/images/characters/Blaine/Blaine.webp", hoverSrc: "assets/images/characters/Blaine/Blaine2.webp", overlayId: "blaine-overlay", toggleOnMobile: true },
+
         // Book 1 characters
         { id: "aeryn-book1-image", defaultSrc: "assets/images/characters/Aeryn/Aeryn.jpg", hoverSrc: "assets/images/characters/Aeryn/Aeryn2.png", overlayId: "aeryn-overlay", toggleOnMobile: true },
         { id: "blaine-book1-image", defaultSrc: "assets/images/characters/Blaine/Blaine.webp", hoverSrc: "assets/images/characters/Blaine/Blaine2.webp", overlayId: "blaine-overlay", toggleOnMobile: true },
@@ -156,9 +176,9 @@ document.addEventListener("DOMContentLoaded", function () {
     // Initializes (or re-initializes) image behaviors for all characters.
     function initImageBehaviors() {
         imageConfigs.forEach(function(config) {
+            // Clone & replace to remove old event listeners
             const elem = document.getElementById(config.id);
             if (elem) {
-                // Replace the element with a clone to remove old event listeners.
                 const newElem = elem.cloneNode(true);
                 elem.parentNode.replaceChild(newElem, elem);
             }
@@ -221,5 +241,17 @@ document.addEventListener('DOMContentLoaded', function () {
         });
       }
     });
+
+    // [NEW] Optionally force the first tap to open <details> on mobile
+    // If you need it, uncomment below:
+    /*
+    const summary = detail.querySelector('summary');
+    summary.addEventListener('click', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      if (!detail.open) detail.open = true;
+      else detail.open = false;
+    });
+    */
   });
 });
