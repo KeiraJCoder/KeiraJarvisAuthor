@@ -5,7 +5,7 @@
 
 /* ================== Full-Page Overlay ================== */
 .character-overlay {
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
@@ -17,7 +17,7 @@
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
-
+     overflow-y: auto; /* Allow scrolling */
 }
 
 /* Show Overlay When Active */
