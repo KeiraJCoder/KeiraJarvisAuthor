@@ -54,6 +54,12 @@ document.addEventListener("DOMContentLoaded", function () {
         // [NEW] Prevent background scrolling while overlay is open
         document.body.style.overflow = "hidden";
         document.documentElement.style.overflow = "hidden"; // [NEW] Extra lock for mobile
+
+        // [ADDED] Hide the global chat button
+        const globalChatButton = document.getElementById('open-chatbot');
+        if (globalChatButton) {
+            globalChatButton.style.display = 'none';
+        }
     };
 
     window.closeCharacterOverlay = function (overlayId) {
@@ -65,6 +71,12 @@ document.addEventListener("DOMContentLoaded", function () {
             // [NEW] Restore background scrolling when overlay closes
             document.body.style.overflow = "";
             document.documentElement.style.overflow = "";
+
+            // [ADDED] Re-show the global chat button
+            const globalChatButton = document.getElementById('open-chatbot');
+            if (globalChatButton) {
+                globalChatButton.style.display = 'block';
+            }
         }
     };
 
