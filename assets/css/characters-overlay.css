@@ -21,6 +21,7 @@
     overflow-y: auto; /* Allow scrolling */
     pointer-events: auto; /* ADDED: Ensures clicks/taps register on entire overlay */
     overscroll-behavior: contain; /* ADDED: Prevents scrolling outside overlay */
+   z-index: 99999; /* [NEW] or any high number */
 }
 
 /* Show Overlay When Active */
