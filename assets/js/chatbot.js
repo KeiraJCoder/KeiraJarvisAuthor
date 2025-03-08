@@ -613,15 +613,19 @@ function toggleChatbot() {
     const openChatbotButton = document.getElementById('open-chatbot');
 
     if (chatbot.style.display === 'none' || chatbot.style.display === '') {
+        // Show the chatbot
         chatbot.style.display = 'block';
-        chatbot.style.zIndex = '99999'; // Bring it forward
+        chatbot.style.zIndex = '99999';      // Ensure it's above everything
         chatbot.style.pointerEvents = 'auto'; // Allow interaction
+        chatbot.style.position = 'fixed';    // Ensure it’s positioned correctly
         resetOnOpenChatbot();
         openChatbotButton.style.display = 'none';
     } else {
-        chatbot.style.display = 'none';
-        chatbot.style.zIndex = ''; // Reset to default (removes custom stacking)
-        chatbot.style.pointerEvents = ''; // Reset pointer events
+        // Completely remove chatbot from interaction flow
+        chatbot.style.display = 'none';   
+        chatbot.style.zIndex = '-9999';       // Moves it completely out of view
+        chatbot.style.pointerEvents = 'none'; // Prevents click interaction
+        chatbot.style.position = 'absolute';  // Prevents it from affecting layout
         openChatbotButton.style.display = 'block';
         resetChatbot();
     }
