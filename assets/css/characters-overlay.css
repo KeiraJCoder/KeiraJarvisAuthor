@@ -18,6 +18,8 @@
     visibility: hidden;
     transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
     overflow-y: auto; /* Allow scrolling */
+    pointer-events: auto; /* ADDED: Ensures clicks/taps register on entire overlay */
+    overscroll-behavior: contain; /* ADDED: Prevents scrolling outside overlay */
 }
 
 /* Show Overlay When Active */
@@ -27,6 +29,7 @@
     z-index: 10002; /* CHANGED from 1000 to ensure it's above other elements */
     visibility: visible;
     overflow-y: auto;
+    pointer-events: auto; /* ADDED: Keep overlay clickable */
 }
 
 /* ================== Overlay Content Box ================== */
