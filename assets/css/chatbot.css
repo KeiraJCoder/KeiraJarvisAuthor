@@ -29,7 +29,7 @@
     border-radius: 12px;
     font-family: 'Cinzel', serif;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
-    display: flex;
+    display: none;
     flex-direction: column;
     overflow-y: auto;
 }
