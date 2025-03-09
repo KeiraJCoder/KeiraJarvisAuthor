@@ -16,6 +16,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
             }
         });
+    });
 
     // === CHARACTER OVERLAY FUNCTIONALITY ===
     function openCharacterOverlay(overlayId) {
@@ -24,7 +25,6 @@ document.addEventListener("DOMContentLoaded", function () {
             overlay.style.display = "block";
             overlay.classList.add("visible");
 
-            // Ensure chat stays above overlay
             document.getElementById("chat-container").style.zIndex = "10001";
         }
     }
@@ -37,7 +37,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    // Attach event listeners to character cards
     const characterCards = document.querySelectorAll(".character-card");
     characterCards.forEach(card => {
         card.addEventListener("click", function (event) {
@@ -47,7 +46,6 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
-    // Ensure clicking inside overlay does not close it
     document.querySelectorAll(".character-overlay").forEach(overlay => {
         overlay.addEventListener("click", function (event) {
             event.stopPropagation();
@@ -61,37 +59,21 @@ document.addEventListener("DOMContentLoaded", function () {
             event.stopPropagation();
         });
 
-        // Ensure Chat is Always Above Overlays
         chatContainer.style.zIndex = "10001";
     }
 
-    // === Close Overlay When Clicking Outside of It (Fixing Mobile Issue) ===
-    // function closeAllOverlays(event) {
-    //     document.querySelectorAll(".character-overlay.active").forEach(overlay => {
-    //         if (!overlay.contains(event.target) && !chatContainer.contains(event.target)) {
-    //             closeCharacterOverlay(overlay.id);
-    //         }
-    //     });
-    // }
-
-    // document.addEventListener("click", closeAllOverlays);
-    // document.addEventListener("touchstart", closeAllOverlays); // ✅ Mobile Fix
-
-    // === Ensure Chat Button Does Not Close Overlay ===
     const openChatBtn = document.getElementById("open-chat-btn");
     if (openChatBtn) {
         openChatBtn.addEventListener("click", function (event) {
             event.stopPropagation();
             chatContainer.style.display = "block";
             chatContainer.style.opacity = "1";
-            openChatBtn.style.display = "none"; // Hide button properly
+            openChatBtn.style.display = "none";
         });
 
-        // ✅ Ensure Chat Button Always Registers Touch Events
         openChatBtn.style.touchAction = "manipulation";
     }
 
-    // === Minimize Chat Button (Fixing Mobile Interactions) ===
     const minimizeChatBtn = document.getElementById("minimize-chat-btn");
     if (minimizeChatBtn) {
         minimizeChatBtn.addEventListener("click", function (event) {
@@ -103,8 +85,6 @@ document.addEventListener("DOMContentLoaded", function () {
             }, 300);
         });
     }
-});
-
 
     // === BOOK CAROUSEL FUNCTIONALITY ===
     const books = [
@@ -119,6 +99,12 @@ document.addEventListener("DOMContentLoaded", function () {
             subtitle: "Wisdom",
             img: "assets/images/book-images/Book2.png",
             link: "https://www.lulu.com/shop/keira-jarvis/memoirs-of-a-vampyrs-daughter-wisdom/paperback/product-wmkzv2.html"
+        },
+        {
+            title: "Memoirs of a Vampyr's Daughter",
+            subtitle: "Coming Soon...",
+            img: "assets/images/book-images/book3preview.png",
+            link: "#"  // Placeholder link
         }
     ];
 
