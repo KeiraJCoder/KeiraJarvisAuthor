@@ -102,6 +102,7 @@ document.addEventListener("DOMContentLoaded", function () {
         },
         {
             title: "Memoirs of a Vampyr's Daughter",
+            subtitle: "Prophecy",
             subtitle: "Coming Soon...",
             img: "assets/images/book-images/book3preview.png",
             link: "#"  // Placeholder link
