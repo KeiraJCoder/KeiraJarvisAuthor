@@ -4,6 +4,13 @@ body {
     
 }
 
+html, body {
+    min-height: 100vh;
+    background-color: #000; /* explicitly set background to dark */
+    margin: 0;
+    padding: 0;
+}
+
 /* Adjust Hero Section to Fit Viewport */
 .hero {
     background: url("../images/background/background.webp") no-repeat center center/cover;
