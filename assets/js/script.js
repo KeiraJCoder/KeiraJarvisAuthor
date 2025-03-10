@@ -29,13 +29,13 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    function closeCharacterOverlay(overlayId) {
-        const overlay = document.getElementById(overlayId);
-        if (overlay) {
-            overlay.style.display = "none";
-            overlay.classList.remove("visible");
-        }
-    }
+    // function closeCharacterOverlay(overlayId) {
+    //     const overlay = document.getElementById(overlayId);
+    //     if (overlay) {
+    //         overlay.style.display = "none";
+    //         overlay.classList.remove("visible");
+    //     }
+    // }
 
     const characterCards = document.querySelectorAll(".character-card");
     characterCards.forEach(card => {
@@ -116,7 +116,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const isMobile = window.matchMedia("(max-width: 768px)").matches;
     let currentIndex = 0;
-    let autoRotateInterval;
+    // let autoRotateInterval;
 
     function preloadImages() {
         books.forEach(book => {
