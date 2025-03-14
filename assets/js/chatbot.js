@@ -349,7 +349,7 @@ const faqKeywords = [
     {
         keywords: ["writing time", "how long", "how fast", "writing process"],
         answer: `
-            <p><strong>Eden</strong> was first written as a short story around 2004/2005 before evolving into a full novel. It took many years to refine and develop into what it is today.</p>
+            <p><strong>Eden</strong> was first written as a short story around 2005 before evolving into a full novel. It took many years to refine and develop into what it is today.</p>
             <p><strong>Wisdom</strong> began a few years later, around 2008. However, I got stuck for years, particularly in the tunnels leading to the witches for Aeryn and Mischa, and the parallel storyline of Sophie and Blaine. They were trapped in torchlit, damp corridors, and I couldn’t find a way out.</p>
             <p>The biggest gap in writing was between 2013 and 2016, when the characters simply stopped talking to me. But in 2016, I met my partner—who, despite <strong>pretending</strong> she liked YA fantasy, inspired me to continue. With her encouragement, the story finally flowed.</p>
             <p>By 2017, not only had I finished <strong>Wisdom</strong>, but I had also completed <strong>Prophecy</strong> in very short order.</p>
